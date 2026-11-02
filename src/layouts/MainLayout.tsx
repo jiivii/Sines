@@ -27,14 +27,13 @@ export default function MainLayout() {
           </nav>
         </div>
       </header>
-      <p className="bg-bg text-soft p-2 text-center">Estamos renovando nuestra web. Estamos trabajando para ofrecerte toda la información sobre nuestros servicios. Gracias por tu paciencia.</p>
       <main><Outlet /></main>
       <footer className="relative mt-24 bg-bosque pb-8 pt-12 text-[#D3D9CF]">
         <div className="absolute inset-x-0 top-0 flex h-2.5"><span className="flex-1 bg-amarillo" /><span className="flex-1 bg-azul" /><span className="flex-1 bg-verde" /><span className="flex-1 bg-naranja" /></div>
         <div className="wrap grid gap-7 text-[.92rem] md:grid-cols-[1.2fr_1fr_1fr]">
           <div><p className="lab text-lino">Centro de bienestar</p><p className="font-serif text-2xl italic text-lino">Cuidado integral, en cada etapa de la vida.</p></div>
-          <div><p className="lab mb-1 text-lino">Contacto</p><p className="mb-1">{CONTACTO.telefono}</p><p className="mb-1">{CONTACTO.email}</p><p className="mb-1">{CONTACTO.direccion}</p></div>
-          <div><p className="lab mb-1 text-lino">Horario</p><p className="mb-1">Lunes a viernes</p><p className="mb-1">9:00 a 21:00</p></div>
+          <div><p className="lab mb-1 text-lino">Contacto</p><p className="mb-1">{CONTACTO.telefono}</p><p className="mb-1">{CONTACTO.email}</p><p className="mb-1">{CONTACTO.direccion}</p><p className="mb-1">{CONTACTO.web}</p></div>
+          <div><p className="lab mb-1 text-lino">Horario</p><p className="mb-1">{CONTACTO.horario}</p></div>
         </div>
       </footer>
     </>
