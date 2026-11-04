@@ -4,6 +4,7 @@ import { AREAS, CONTACTO, getArea, isAreaSlug } from '../services/areas'
 import { crearReserva, horasOcupadas } from '../services/bookings'
 import { fmtFecha, HORAS, proximosDias } from '../utils/dates'
 import { useTitle } from '../hooks/useTitle'
+import { SITE, WHATSAPP } from '../config'
 import type { AreaSlug, Paciente } from '../types'
 
 const empty = { nombre: '', telefono: '', email: '', notas: '', edad: '', web: '', ok: false }
@@ -62,6 +63,22 @@ export default function Reservar() {
         <div key={k as string} className="mt-2.5"><dt className="text-[.78rem] text-soft">{k}</dt><dd className="m-0 font-serif text-[1.3rem]">{v || '—'}</dd></div>
       ))}
     </dl>
+  )
+
+  if (!SITE.reservasAbiertas) return (
+    <div className="wrap mt-14">
+      <div className="mx-auto max-w-[720px] rounded-[28px] bg-ocre/25 p-8 text-center">
+        <span className="lab">Web en construcción</span>
+        <h1 className="my-3 text-[clamp(2rem,5vw,3rem)]">Citas online en pausa</h1>
+        <p className="mx-auto text-soft">Estamos actualizando el sitio y, de momento, no recogemos citas online. Para pedir información o resolver cualquier duda, llámanos o escríbenos por WhatsApp.</p>
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="btn">Llamar al {CONTACTO.telefono}</a>
+          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn btn-alt">WhatsApp</a>
+        </div>
+        <p className="mb-0 mt-6 text-[.85rem] text-soft">{CONTACTO.direccion.split('\n')[0]} · Atención {CONTACTO.horario}</p>
+        <Link to="/" className="mt-6 inline-block underline">Volver al inicio</Link>
+      </div>
+    </div>
   )
 
   if (done) return (

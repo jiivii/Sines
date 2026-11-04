@@ -2,17 +2,30 @@ import { useEffect } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import Logo from '../components/Logo'
 import { AREAS, CONTACTO } from '../services/areas'
+import { SITE, WHATSAPP } from '../config'
 
 const dot: Record<string, string> = { psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja' }
+
+const EXTRAS = [
+  { to: '/atencion-temprana', label: 'Atención temprana' },
+  { to: '/online', label: 'Atención online' },
+  { to: '/programas', label: 'Colegios y empresas' },
+]
 
 export default function MainLayout() {
   const { pathname } = useLocation()
   useEffect(() => { window.scrollTo(0, 0) }, [pathname])
   return (
     <>
-      <header className="sticky top-0 z-10 border-b border-line bg-bg">
+      <header className="sticky top-0 z-20 border-b border-line bg-bg">
         <div className="wrap flex flex-wrap items-center justify-between gap-4 py-2.5">
-          <Link to="/" className="w-[150px] rounded-[22px] bg-lino px-3 py-1.5" aria-label="Sinestesya, inicio"><Logo /></Link>
+          <Link to="/" className="flex items-center gap-3" aria-label="Sinestesya, inicio">
+            <span className="w-[150px] rounded-[22px] bg-lino px-3 py-1.5"><Logo /></span>
+            <span className="hidden flex-col border-l border-line pl-3 leading-tight sm:flex">
+              <span className="font-serif text-lg text-ink">Salud integral</span>
+              <span className="lab mt-1 text-[.58rem] text-soft">Centro multidisciplinar</span>
+            </span>
+          </Link>
           <nav aria-label="Principal" className="flex max-w-full items-center gap-1.5 overflow-x-auto">
             {AREAS.map((a) => (
               <NavLink key={a.slug} to={`/${a.slug}`}
@@ -26,14 +39,68 @@ export default function MainLayout() {
             <Link to="/reservar" className="btn !px-5 !py-2">Reservar</Link>
           </nav>
         </div>
+        <div className="border-t border-line/70">
+          <div className="wrap flex items-center gap-x-4 gap-y-1 overflow-x-auto py-1.5 text-[.82rem] text-soft">
+            {EXTRAS.map((e) => (
+              <NavLink key={e.to} to={e.to}
+                className={({ isActive }) => `whitespace-nowrap no-underline hover:text-ink ${isActive ? 'font-medium text-ink' : ''}`}>
+                {e.label}
+              </NavLink>
+            ))}
+            <span className="ml-auto hidden whitespace-nowrap sm:inline">
+              Tel. y WhatsApp <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="text-ink no-underline">{CONTACTO.telefono}</a>
+            </span>
+          </div>
+        </div>
       </header>
+
+      {!SITE.reservasAbiertas && (
+        <div role="status" className="bg-ocre/30">
+          <p className="wrap mb-0 py-2 text-center text-[.82rem] leading-snug text-tinta">
+            <strong className="font-medium">Web en construcción.</strong> Estamos actualizando el sitio y, de momento, no recogemos citas online. Para cualquier consulta, llámanos o escríbenos al{' '}
+            <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="font-medium text-ink">{CONTACTO.telefono}</a>.
+          </p>
+        </div>
+      )}
+
       <main><Outlet /></main>
+
       <footer className="relative mt-24 bg-bosque pb-8 pt-12 text-[#D3D9CF]">
         <div className="absolute inset-x-0 top-0 flex h-2.5"><span className="flex-1 bg-amarillo" /><span className="flex-1 bg-azul" /><span className="flex-1 bg-verde" /><span className="flex-1 bg-naranja" /></div>
-        <div className="wrap grid gap-7 text-[.92rem] md:grid-cols-[1.2fr_1fr_1fr]">
-          <div><p className="lab text-lino">Centro de bienestar</p><p className="font-serif text-2xl italic text-lino">Cuidado integral, en cada etapa de la vida.</p></div>
-          <div><p className="lab mb-1 text-lino">Contacto</p><p className="mb-1">{CONTACTO.telefono}</p><p className="mb-1">{CONTACTO.email}</p><p className="mb-1">{CONTACTO.direccion}</p><p className="mb-1">{CONTACTO.web}</p></div>
-          <div><p className="lab mb-1 text-lino">Horario</p><p className="mb-1">{CONTACTO.horario}</p></div>
+        <div className="wrap grid gap-8 text-[.92rem] md:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <p className="lab text-lino">Sinestesya · Salud integral</p>
+            <p className="mt-2 font-serif text-2xl italic text-lino">Cuidado integral, en cada etapa de la vida.</p>
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-3 inline-block text-[#D3D9CF] underline">Escríbenos por WhatsApp</a>
+          </div>
+          <div>
+            <p className="lab mb-2 text-lino">Disciplinas</p>
+            <ul className="m-0 list-none space-y-1 p-0">
+              {AREAS.map((a) => (
+                <li key={a.slug}><Link to={`/${a.slug}`} className="no-underline hover:text-lino">{a.nombre}</Link></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="lab mb-2 text-lino">El centro</p>
+            <ul className="m-0 list-none space-y-1 p-0">
+              <li><Link to="/quienes-somos" className="no-underline hover:text-lino">Quiénes somos</Link></li>
+              {EXTRAS.map((e) => (
+                <li key={e.to}><Link to={e.to} className="no-underline hover:text-lino">{e.label}</Link></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="lab mb-2 text-lino">Contacto</p>
+            <p className="mb-1"><a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="no-underline hover:text-lino">{CONTACTO.telefono}</a></p>
+            <p className="mb-1"><a href={`mailto:${CONTACTO.email}`} className="no-underline hover:text-lino">{CONTACTO.email}</a></p>
+            <p className="mb-1 whitespace-pre-line">{CONTACTO.direccion}</p>
+            <p className="mb-1">{CONTACTO.horario}</p>
+            <p className="mb-0">{CONTACTO.web}</p>
+          </div>
+        </div>
+        <div className="wrap mt-8 border-t border-white/10 pt-4 text-[.78rem] text-[#AEB9B0]">
+          <p className="mb-0">Sinestesia Villarroya SL · Centro multidisciplinar sanitario</p>
         </div>
       </footer>
     </>

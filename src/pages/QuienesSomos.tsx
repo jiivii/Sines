@@ -2,6 +2,7 @@ import { Apple, Brain, PersonStanding, Speech } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTitle } from "../hooks/useTitle";
 import { AREAS } from "../services/areas";
+import { WHATSAPP } from "../config";
 
 const ICONOS = {
   psicologia: Brain,
@@ -25,7 +26,7 @@ const VALORACION = [
 ];
 
 export default function QuienesSomos() {
-  useTitle("Quiénes somos - Sinestesya");
+  useTitle("Quiénes somos");
 
   return (
     <div className="wrap">
@@ -34,7 +35,7 @@ export default function QuienesSomos() {
           {/* Hero Section */}
           <div className="mb-20 text-center md:mb-24">
             <p className="mb-6 inline-block rounded-full bg-[--line] px-4 py-2 text-xs font-medium uppercase tracking-wider text-[--ink]">
-              Centro de bienestar multidisciplinar
+              Salud integral multidisciplinar
             </p>
 
             <h1 className="mb-6 font-serif text-5xl font-bold leading-[1.1] tracking-tight text-[--ink] md:text-6xl lg:text-7xl">
@@ -187,7 +188,7 @@ export default function QuienesSomos() {
           {/* Valoración conjunta - pasos */}
           <section className="mt-16">
             <h2 className="mb-8 text-center font-serif text-3xl font-bold text-[--ink] md:text-4xl">Valoración conjunta, paso a paso</h2>
-            <div className="steps mt-6">
+            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {VALORACION.map((item) => (
                 <div key={item.numero} className="border-t-2 border-current pt-3.5">
                   <span className="block font-serif text-[2.6rem] font-light italic leading-none">{item.numero}</span>
@@ -290,20 +291,22 @@ export default function QuienesSomos() {
                 ¡Comienza tu camino hoy!
               </h2>
               <p className="mx-auto mb-8 max-w-2xl text-lg text-[--soft]">
-                Agenda tu primera consulta y descubre cómo nuestro equipo puede ayudarte a alcanzar tu bienestar integral.
+                Escríbenos y te orientamos hacia el profesional o la valoración que mejor encaje contigo.
               </p>
               <div className="flex flex-wrap justify-center gap-3">
-                <Link
-                  to="/reservar"
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noreferrer"
                   className="rounded-lg bg-[--salvia] px-6 py-3 font-semibold text-[--lino] transition-colors hover:bg-[--salvia]/90"
                 >
-                  Reserva tu cita
-                </Link>
+                  Hablar con el equipo
+                </a>
                 <Link
-                  to="/quienes-somos"
+                  to="/programas"
                   className="rounded-lg border border-[--salvia] px-6 py-3 font-semibold text-[--salvia] transition-colors hover:bg-[--salvia]/10"
                 >
-                  Conoce más
+                  Programas a medida
                 </Link>
               </div>
             </section>

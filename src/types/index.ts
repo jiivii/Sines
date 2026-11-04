@@ -2,6 +2,11 @@ export type AreaSlug = 'psicologia' | 'logopedia' | 'fisioterapia' | 'nutricion'
 export type Paciente = 'adulto' | 'nino'
 export type Estado = 'pendiente' | 'confirmada' | 'cancelada'
 
+export interface Paso {
+  titulo: string
+  descripcion: string
+}
+
 export interface Area {
   slug: AreaSlug
   nombre: string
@@ -11,8 +16,12 @@ export interface Area {
   hex: string
   sub: string
   intro: string
+  claim: string
   adultos: string[]
   ninos: string[]
+  pasos: Paso[]
+  ctaTitulo: string
+  ctaTexto: string
   blob: string
 }
 export interface ReservaInput {

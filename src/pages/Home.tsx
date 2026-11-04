@@ -1,8 +1,15 @@
 import { Link } from 'react-router-dom'
 import AreaCard from '../components/AreaCard'
 import Wave from '../components/Wave'
-import { AREAS } from '../services/areas'
+import { AREAS, CONTACTO } from '../services/areas'
+import { SITE, WHATSAPP } from '../config'
 import { useTitle } from '../hooks/useTitle'
+
+const EXTRAS = [
+  { to: '/atencion-temprana', label: 'Atención temprana', texto: 'Intervención coordinada de 0 a 6 años, con la familia dentro del plan.' },
+  { to: '/online', label: 'Atención online', texto: 'Sesiones desde casa para que la distancia o el horario no sean un obstáculo.' },
+  { to: '/programas', label: 'Colegios y empresas', texto: 'Charlas, talleres y programas de salud a medida para tu centro o empresa.' },
+]
 
 export default function Home() {
   useTitle()
@@ -10,19 +17,25 @@ export default function Home() {
     <div className="wrap">
       <div className="mt-5 grid gap-4 md:grid-cols-[1.25fr_1fr]">
         <div className="flex flex-col justify-center rounded-[40px] bg-bosque p-[clamp(28px,5vw,56px)] text-[#F3EEE5]">
-          <span className="lab mb-4 text-ocre">Centro de bienestar</span>
+          <span className="lab mb-4 text-ocre">Salud integral</span>
           <h1>Cuidado integral, <i className="font-light">en cada etapa de la vida.</i></h1>
           <p className="mt-4 text-[#D3D9CF]">Sinestesya nace con una idea sencilla: cuidar de la salud no debería obligarte a ir de puerta en puerta. Somos un centro multidisciplinar sanitario en La Puebla de Alfindén que reúne psicología, logopedia, fisioterapia y nutrición bajo un mismo techo.</p>
           <div className="mt-3 flex flex-wrap gap-3">
-            <Link to="/reservar" className="btn !bg-lino !text-bosque">Reservar cita</Link>
+            {SITE.reservasAbiertas ? (
+              <Link to="/reservar" className="btn !bg-lino !text-bosque">Reservar cita</Link>
+            ) : (
+              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn !bg-lino !text-bosque">Hablar con el equipo</a>
+            )}
             <a href="#servicios" className="btn btn-alt">Ver servicios</a>
           </div>
         </div>
         <div className="grid place-items-center rounded-[40px] bg-panel p-8">
-          <div className="flex flex-col items-center gap-4 text-center p-6">
+          <div className="flex flex-col items-center gap-2 text-center p-4">
             <p className="text-3xl font-light text-bosque mt-2">Calle Fuertes, 1</p>
-            <p className="text-sm text-[#66726A]">La Puebla de Alfindén, Zaragoza</p>
-            <p className="text-xs text-[#788A99]">Código postal 50171</p>
+            <p className="text-sm text-[#66726A]">La Puebla de Alfindén, Zaragoza · 50171</p>
+            <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="mt-2 font-serif text-2xl text-bosque no-underline">{CONTACTO.telefono}</a>
+            <p className="text-xs text-[#788A99]">Atención {CONTACTO.horario}</p>
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-1 text-sm text-[#5A665A] underline">WhatsApp</a>
           </div>
         </div>
       </div>
@@ -39,9 +52,24 @@ export default function Home() {
         <div className="rounded-[28px] bg-azul/25 p-8"><span className="lab">Infancia y adolescencia</span><h2 className="mt-2">0 – 18 años</h2><p>Dificultades emocionales y de conducta, lenguaje y habla, lectoescritura y dislexia, fisioterapia pediátrica, alimentación infantil y orientación a familias.</p></div>
       </section>
 
-      <section className="mt-20 grid gap-4 md:grid-cols-2">
+      <section className="mt-4 grid gap-4 md:grid-cols-2">
         <div className="rounded-[28px] bg-verde/25 p-8"><span className="lab">Tercera edad</span><h2 className="mt-2">Autonomía y bienestar</h2><p>Acompañamiento emocional, estimulación cognitiva, movilidad y equilibrio, prevención de caídas y alimentación adaptada.</p></div>
-        <div className="rounded-[28px] bg-naranja/25 p-8"><span className="lab">Online</span><h2 className="mt-2">Salud a distancia</h2><p>Sesiones desde casa, sin desplazamientos. Cita a tu medida, con los profesionales del centro cerca de ti.</p></div>
+        <div className="rounded-[28px] bg-naranja/25 p-8"><span className="lab">Atención temprana</span><h2 className="mt-2">De 0 a 6 años</h2><p>Psicología, logopedia y fisioterapia trabajan juntas y de la mano de la familia para acompañar el desarrollo del niño.</p></div>
+      </section>
+
+      <section className="mt-20">
+        <span className="lab">Más formas de cuidarte</span>
+        <h2 className="mt-2">Salud también donde tú estás</h2>
+        <p className="text-soft">Además de la consulta en el centro, llevamos nuestro acompañamiento a casa, a los colegios y a las empresas.</p>
+        <div className="mt-6 grid gap-3.5 md:grid-cols-3">
+          {EXTRAS.map((e) => (
+            <Link key={e.to} to={e.to} className="rounded-[26px] bg-panel p-6 no-underline transition-transform hover:-translate-y-1">
+              <h3 className="font-serif text-2xl">{e.label}</h3>
+              <p className="mb-0 mt-2 text-[.92rem] text-soft">{e.texto}</p>
+              <span className="mt-4 inline-block text-[.9rem] font-medium">Conocer más →</span>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <section className="mt-20">
@@ -53,9 +81,29 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-20 rounded-[28px] bg-panel p-[clamp(34px,6vw,64px)] text-center">
+      <section className="mt-20 rounded-[32px] bg-bosque p-[clamp(28px,5vw,56px)] text-[#F3EEE5]">
+        <div className="grid gap-8 md:grid-cols-[1.3fr_1fr] md:items-center">
+          <div>
+            <span className="lab text-ocre">Contacto</span>
+            <h2 className="mt-2 text-lino">Te esperamos en La Puebla de Alfindén</h2>
+            <p className="text-[#D3D9CF]">Calle Fuertes, 1 · 50171 La Puebla de Alfindén (Zaragoza)</p>
+            <p className="mb-0 text-[#D3D9CF]">Atención {CONTACTO.horario} · Presencial y online.</p>
+          </div>
+          <div className="flex flex-col items-start gap-3 md:items-end">
+            <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="font-serif text-3xl text-lino no-underline">{CONTACTO.telefono}</a>
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn !bg-lino !text-bosque">Escríbenos por WhatsApp</a>
+            <span className="text-[.9rem] text-[#AEB9B0]">{CONTACTO.web}</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-12 rounded-[28px] bg-panel p-[clamp(34px,6vw,64px)] text-center">
         <p className="mx-auto mb-5 max-w-[30ch] font-serif text-[clamp(1.5rem,3vw,2.2rem)] font-light italic leading-tight">Elige cómo empezar. El resto del equipo se une cuando lo necesites.</p>
-        <Link to="/reservar" className="btn">Reservar cita</Link>
+        {SITE.reservasAbiertas ? (
+          <Link to="/reservar" className="btn">Reservar cita</Link>
+        ) : (
+          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn">Hablar con el equipo</a>
+        )}
       </section>
     </div>
   )

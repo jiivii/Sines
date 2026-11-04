@@ -1,4 +1,4 @@
-# Sinestesya · Centro de bienestar
+# Sinestesya · Salud integral
 
 Web de Sinestesya (psicología, logopedia, fisioterapia y nutrición; adultos y niños) con reserva online y panel para el equipo.
 Stack: Vite + React + TypeScript + Tailwind · Supabase (BD y acceso) · Cloudflare Pages (hosting y funciones `functions/`).
