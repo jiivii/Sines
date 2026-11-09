@@ -1,4 +1,4 @@
-import { admin, AREAS, type Env } from './_supabase'
+import { admin, AREAS, hasSupabaseConfig, type Env } from './_supabase'
 
 /** GET /api/disponibilidad · horas ocupadas de un área y día (siempre JSON, sin caché). */
 export async function onRequestGet(context: { request: Request; env: Env }) {
@@ -9,7 +9,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
   if (!area || !AREAS.includes(area) || !fecha || !/^\d{4}-\d{2}-\d{2}$/.test(fecha))
     return Response.json({ error: 'Parámetros no válidos.' }, { status: 400 })
 
-  if (!context.env.SUPABASE_URL || !context.env.SUPABASE_SECRET_KEY)
+  if (!hasSupabaseConfig(context.env))
     return Response.json({ error: 'No hemos podido consultar la disponibilidad.' }, { status: 500 })
 
   const { data, error } = await admin(context.env)

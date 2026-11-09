@@ -24,8 +24,11 @@ npm run preview:cf               # build + wrangler pages dev: web y functions e
 ## Puesta en producción
 1. **Supabase**: crea un proyecto y ejecuta `supabase/migrations/001_reservas.sql` en el SQL Editor.
    En *Authentication > Providers > Email* desactiva *Allow new users to sign up*, y crea a mano los usuarios del equipo (*Authentication > Users*).
-2. **Cloudflare Pages**: crea el proyecto desde el repositorio (Workers & Pages > Create > Pages) con build command `npm run build` y directorio de salida `dist`, y añade las variables de entorno (Production y Preview):
-   `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `WEB1_API_URL` (debe ser **HTTPS**), `WEB1_API_SECRET`.
+2. **Vercel** (producción actual): importa el repositorio con build command `npm run build` y output `dist`. Añade estas variables en *Settings > Environment Variables* (Production):
+   `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `SUPABASE_URL`, `SUPABASE_SECRET_KEY` (o `SUPABASE_SERVICE_ROLE_KEY`), `WEB1_API_URL`, `WEB1_API_SECRET`.
+   - `WEB1_API_URL` debe ser **HTTPS** y la **URL base** de Klinika, por ejemplo `https://gestkli.vercel.app` (sin `/api` ni `/api/public-reservation`; también se aceptan y se normalizan).
+   - `WEB1_API_SECRET` debe coincidir exactamente con `WEB2_API_SECRET` en Klinika.
+   - Las `functions/` de Cloudflare se mantienen como alternativa; si se usa Cloudflare Pages, los mismos nombres van en *Settings > Environment variables*.
 3. **Dominio**: cámbialo en `public/robots.txt` y `public/sitemap.xml` (ahora `sinestesya.es`).
 4. Panel del equipo: `/admin` (confirmar o cancelar reservas; cancelar libera el hueco).
 

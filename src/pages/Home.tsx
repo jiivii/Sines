@@ -15,7 +15,7 @@ export default function Home() {
   useTitle()
   return (
     <div className="wrap">
-      <div className="mt-5 grid gap-4 md:grid-cols-[1.25fr_1fr]">
+      <div className="mt-5">
         <div className="flex flex-col justify-center rounded-[40px] bg-bosque p-[clamp(28px,5vw,56px)] text-[#F3EEE5]">
           <span className="lab mb-4 text-ocre">Salud integral</span>
           <h1>Cuidado integral, <i className="font-light">en cada etapa de la vida.</i></h1>
@@ -27,15 +27,7 @@ export default function Home() {
               <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn !bg-lino !text-bosque">Hablar con el equipo</a>
             )}
             <a href="#servicios" className="btn btn-alt">Ver servicios</a>
-          </div>
-        </div>
-        <div className="grid place-items-center rounded-[40px] bg-panel p-8">
-          <div className="flex flex-col items-center gap-2 text-center p-4">
-            <p className="text-3xl font-light text-bosque mt-2">Calle Fuertes, 1</p>
-            <p className="text-sm text-[#66726A]">La Puebla de Alfindén, Zaragoza · 50171</p>
-            <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="mt-2 font-serif text-2xl text-bosque no-underline">{CONTACTO.telefono}</a>
-            <p className="text-xs text-[#788A99]">Atención {CONTACTO.horario}</p>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-1 text-sm text-[#5A665A] underline">WhatsApp</a>
+            <Link to="/tarifas" className="btn btn-alt">Ver tarifas</Link>
           </div>
         </div>
       </div>

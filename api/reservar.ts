@@ -8,7 +8,7 @@ const AREAS = [
 ]
 
 const HORAS = [
-  '9:00',
+  '09:00',
   '10:00',
   '11:00',
   '12:00',
@@ -17,6 +17,42 @@ const HORAS = [
   '18:00',
   '19:00'
 ]
+
+/** Acepta "9:00" y "09:00" y devuelve siempre "HH:MM". */
+const normalizarHora = (value: string): string => {
+  const match = /^(\d{1,2}):(\d{2})$/.exec(value)
+  return match ? `${match[1].padStart(2, '0')}:${match[2]}` : value
+}
+
+/**
+ * Construye siempre `https://host/base/api/public-reservation`, de forma
+ * idempotente: vale tanto `https://host`, `https://host/`,
+ * `https://host/api` como la URL completa del endpoint.
+ */
+const buildEndpoint = (raw: string | undefined): string | null => {
+  if (!raw) return null
+
+  const trimmed = raw.trim().replace(/\/+$/, '')
+  if (!trimmed) return null
+
+  let url: URL
+  try {
+    url = new URL(trimmed)
+  } catch {
+    return null
+  }
+
+  const localhost = url.hostname === 'localhost' || url.hostname === '127.0.0.1'
+  if (url.protocol !== 'https:' && !localhost) return null
+  if (!url.hostname) return null
+
+  const basePath = url.pathname
+    .replace(/\/+$/, '')
+    .replace(/\/api\/public-reservation$/i, '')
+    .replace(/\/api$/i, '')
+
+  return `${url.origin}${basePath}/api/public-reservation`
+}
 
 export default async function handler(
   req: VercelRequest,
@@ -33,9 +69,13 @@ export default async function handler(
     WEB1_API_SECRET
   } = process.env
 
-  if (!WEB1_API_URL || !WEB1_API_SECRET) {
-    console.error('Configuración Web1:', {
+  const endpoint = buildEndpoint(WEB1_API_URL)
+  const secret = (WEB1_API_SECRET || '').trim()
+
+  if (!endpoint || !secret) {
+    console.error('Configuración Web1 incompleta:', {
       WEB1_API_URL: !!WEB1_API_URL,
+      WEB1_API_URL_valida: !!endpoint,
       WEB1_API_SECRET: !!WEB1_API_SECRET
     })
 
@@ -61,7 +101,7 @@ export default async function handler(
   const area = s(b.area, 20)
   const paciente = s(b.paciente, 6)
   const fecha = s(b.fecha, 10)
-  const hora = s(b.hora, 5)
+  const hora = normalizarHora(s(b.hora, 5))
   const nombre = s(b.nombre, 120)
   const telefono = s(b.telefono, 30)
   const email = s(b.email, 160)
@@ -125,26 +165,23 @@ export default async function handler(
   }
 
   try {
-    const response = await fetch(
-      `${WEB1_API_URL.replace(/\/$/, '')}/api/public-reservation`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-web2-secret': WEB1_API_SECRET
-        },
-        body: JSON.stringify(reservation)
-      }
-    )
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-web2-secret': secret
+      },
+      body: JSON.stringify(reservation)
+    })
 
     const result = await response.json().catch(() => ({}))
 
     if (!response.ok) {
-      console.error(
-        'Web1 respondió con error:',
-        response.status,
+      console.error('Web1 respondió con error:', {
+        endpoint,
+        status: response.status,
         result
-      )
+      })
 
       return res.status(response.status).json({
         error:
@@ -158,10 +195,10 @@ export default async function handler(
       id: result.id
     })
   } catch (error) {
-    console.error(
-      'Error conectando con Web1:',
-      error
-    )
+    console.error('Error conectando con Web1:', {
+      endpoint,
+      message: error instanceof Error ? error.message : String(error)
+    })
 
     return res.status(502).json({
       error:

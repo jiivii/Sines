@@ -3,7 +3,9 @@
 # En Cloudflare Pages van en Settings > Environment variables (Production y Preview).
 
 SUPABASE_URL=https://xxxx.supabase.co
+# Vale cualquiera de los dos nombres (se aceptan ambos)
 SUPABASE_SECRET_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
 
 # Web1 recibe las reservas. DEBE SER HTTPS: Cloudflare Functions no permite fetch saliente a HTTP.
 WEB1_API_URL=https://tudominio.com

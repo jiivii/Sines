@@ -5,7 +5,7 @@
 export const SITE = {
   nombre: 'Sinestesya',
   claim: 'Salud integral',
-  reservasAbiertas: true,
+  reservasAbiertas: false,
   avisoConstruccion:
     'Web en construcción. Estamos actualizando el sitio y, de momento, no recogemos citas online. Para cualquier consulta, llámanos o escríbenos.',
 }

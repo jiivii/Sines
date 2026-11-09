@@ -213,7 +213,7 @@ export default function QuienesSomos() {
                   <div className="mb-4 inline-block rounded-full bg-[--salvia]/10 p-4">
                     <Brain size={32} strokeWidth={1.5} className="text-[--salvia]" />
                   </div>
-                  <h3 className="mb-2 font-semibold text-[--ink]">Equipo Multidisciplinario</h3>
+                  <h3 className="mb-2 font-semibold text-[--ink]">Equipo Multidisciplinar</h3>
                   <p className="text-sm text-[--soft]">
                     Cuatro disciplinas que comparten objetivos y se comunican entre sí
                   </p>

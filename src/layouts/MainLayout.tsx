@@ -10,6 +10,7 @@ const EXTRAS = [
   { to: '/atencion-temprana', label: 'Atención temprana' },
   { to: '/online', label: 'Atención online' },
   { to: '/programas', label: 'Colegios y empresas' },
+  { to: '/tarifas', label: 'Tarifas' },
 ]
 
 export default function MainLayout() {
@@ -20,7 +21,7 @@ export default function MainLayout() {
       <header className="sticky top-0 z-20 border-b border-line bg-bg">
         <div className="wrap flex flex-wrap items-center justify-between gap-4 py-2.5">
           <Link to="/" className="flex items-center gap-3" aria-label="Sinestesya, inicio">
-            <span className="w-[150px] rounded-[22px] bg-lino px-3 py-1.5"><Logo /></span>
+            <span className="w-[128px] rounded-[18px] bg-lino px-2 py-1"><Logo /></span>
             <span className="hidden flex-col border-l border-line pl-3 leading-tight sm:flex">
               <span className="font-serif text-lg text-ink">Salud integral</span>
               <span className="lab mt-1 text-[.58rem] text-soft">Centro multidisciplinar</span>

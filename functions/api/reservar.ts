@@ -5,13 +5,53 @@ type Env = {
   WEB1_API_SECRET: string
 }
 
+/** Acepta "9:00" y "09:00" y devuelve siempre "HH:MM". */
+const normalizarHora = (value: string): string => {
+  const match = /^(\d{1,2}):(\d{2})$/.exec(value)
+  return match ? `${match[1].padStart(2, '0')}:${match[2]}` : value
+}
+
+/**
+ * Construye siempre `https://host/base/api/public-reservation`, de forma
+ * idempotente: vale tanto `https://host`, `https://host/`,
+ * `https://host/api` como la URL completa del endpoint.
+ */
+const buildEndpoint = (raw: string | undefined): string | null => {
+  if (!raw) return null
+
+  const trimmed = raw.trim().replace(/\/+$/, '')
+  if (!trimmed) return null
+
+  let url: URL
+  try {
+    url = new URL(trimmed)
+  } catch {
+    return null
+  }
+
+  const localhost = url.hostname === 'localhost' || url.hostname === '127.0.0.1'
+  if (url.protocol !== 'https:' && !localhost) return null
+  if (!url.hostname) return null
+
+  const basePath = url.pathname
+    .replace(/\/+$/, '')
+    .replace(/\/api\/public-reservation$/i, '')
+    .replace(/\/api$/i, '')
+
+  return `${url.origin}${basePath}/api/public-reservation`
+}
+
 /** POST /api/reservar · valida los datos y reenvía la solicitud a Web1. */
 export async function onRequestPost(context: { request: Request; env: Env }) {
   const { env } = context
 
-  if (!env.WEB1_API_URL || !env.WEB1_API_SECRET) {
-    console.error('Configuración Web1:', {
+  const endpoint = buildEndpoint(env.WEB1_API_URL)
+  const secret = (env.WEB1_API_SECRET || '').trim()
+
+  if (!endpoint || !secret) {
+    console.error('Configuración Web1 incompleta:', {
       WEB1_API_URL: !!env.WEB1_API_URL,
+      WEB1_API_URL_valida: !!endpoint,
       WEB1_API_SECRET: !!env.WEB1_API_SECRET,
     })
     return Response.json(
@@ -31,7 +71,7 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
   const area = s(b.area, 20)
   const paciente = s(b.paciente, 6)
   const fecha = s(b.fecha, 10)
-  const hora = s(b.hora, 5)
+  const hora = normalizarHora(s(b.hora, 5))
   const nombre = s(b.nombre, 120)
   const telefono = s(b.telefono, 30)
   const email = s(b.email, 160)
@@ -84,12 +124,12 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
 
   try {
     const response = await fetch(
-      `${env.WEB1_API_URL.replace(/\/$/, '')}/api/public-reservation`,
+      endpoint,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-web2-secret': env.WEB1_API_SECRET,
+          'x-web2-secret': secret,
         },
         body: JSON.stringify(reservation),
       },
@@ -98,7 +138,7 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
     const result = (await response.json().catch(() => ({}))) as { id?: string; error?: string }
 
     if (!response.ok) {
-      console.error('Web1 respondió con error:', response.status, result)
+      console.error('Web1 respondió con error:', { endpoint, status: response.status, result })
       return Response.json(
         { error: result.error || 'No hemos podido guardar la solicitud.' },
         { status: response.status },
@@ -107,7 +147,10 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
 
     return Response.json({ ok: true, id: result.id }, { status: 201 })
   } catch (error) {
-    console.error('Error conectando con Web1:', error)
+    console.error('Error conectando con Web1:', {
+      endpoint,
+      message: error instanceof Error ? error.message : String(error),
+    })
     return Response.json(
       { error: 'No hemos podido conectar con el sistema de reservas. Inténtalo de nuevo.' },
       { status: 502 },

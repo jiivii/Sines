@@ -1,4 +1,4 @@
-export const HORAS = ['9:00', '10:00', '11:00', '12:00', '16:00', '17:00', '18:00', '19:00']
+export const HORAS = ['09:00', '10:00', '11:00', '12:00', '16:00', '17:00', '18:00', '19:00']
 const p = (n: number) => String(n).padStart(2, '0')
 export const toISO = (d: Date) => `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`
 export function proximosDias(n: number): string[] {

@@ -9,6 +9,7 @@ import QuienesSomos from './pages/QuienesSomos'
 import AtencionTemprana from './pages/AtencionTemprana'
 import Online from './pages/Online'
 import Programas from './pages/Programas'
+import Tarifas from './pages/Tarifas'
 
 const Panel = lazy(() => import('./pages/admin/Panel'))
 
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="atencion-temprana" element={<AtencionTemprana />} />
         <Route path="online" element={<Online />} />
         <Route path="programas" element={<Programas />} />
+        <Route path="tarifas" element={<Tarifas />} />
         <Route path=":slug" element={<Servicio />} />
         <Route path="*" element={<NotFound />} />
       </Route>
