@@ -4,6 +4,7 @@ import Logo from '../components/Logo'
 import { AREAS, CONTACTO } from '../services/areas'
 import { EMPRESA, SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
+import { aplicarSeo } from '../seo'
 
 const dot: Record<string, string> = { psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja' }
 
@@ -17,7 +18,7 @@ const EXTRAS = [
 export default function MainLayout() {
   const wa = useWhatsApp()
   const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  useEffect(() => { window.scrollTo(0, 0); aplicarSeo(pathname) }, [pathname])
   return (
     <>
       <header className="z-20 border-b border-line bg-bg md:sticky md:top-0">

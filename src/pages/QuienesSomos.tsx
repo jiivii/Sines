@@ -1,6 +1,5 @@
 import { Apple, Brain, PersonStanding, Speech } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useTitle } from "../hooks/useTitle";
 import { AREAS } from "../services/areas";
 import { useWhatsApp } from '../hooks/useWhatsApp'
 
@@ -34,7 +33,6 @@ const VALORACION = [
 
 export default function QuienesSomos() {
   const wa = useWhatsApp()
-  useTitle("Quiénes somos");
 
   return (
     <div className="wrap">

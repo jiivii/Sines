@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { AREAS, CONTACTO } from '../services/areas'
 import { SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
-import { useTitle } from '../hooks/useTitle'
 
 type Tarifa = { servicio: string; detalle: string; precio: string }
 
@@ -95,7 +94,6 @@ const BLOQUES: Bloque[] = [
 
 export default function Tarifas() {
   const wa = useWhatsApp()
-  useTitle('Tarifas')
 
   return (
     <div className="wrap">

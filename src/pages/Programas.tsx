@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { useTitle } from '../hooks/useTitle'
 import { CONTACTO } from '../services/areas'
 import { useWhatsApp } from '../hooks/useWhatsApp'
 
@@ -19,7 +18,6 @@ const EMPRESAS = [
 
 export default function Programas() {
   const wa = useWhatsApp()
-  useTitle('Colegios y empresas')
   return (
     <div className="wrap">
       <section className="mt-10 rounded-[40px] bg-naranja/30 p-[clamp(28px,6vw,64px)]">

@@ -3,7 +3,6 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { AREAS, CONTACTO, getArea, isAreaSlug } from '../services/areas'
 import { crearReserva, horasOcupadas } from '../services/bookings'
 import { fmtFecha, HORAS, proximosDias } from '../utils/dates'
-import { useTitle } from '../hooks/useTitle'
 import { EMPRESA, SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
 import type { AreaSlug, Paciente } from '../types'
@@ -12,7 +11,6 @@ const empty = { nombre: '', telefono: '', email: '', notas: '', edad: '', web: '
 
 export default function Reservar() {
   const wa = useWhatsApp()
-  useTitle('Reserva tu cita')
   const [sp] = useSearchParams()
   const q = sp.get('area')
   const [step, setStep] = useState(1)

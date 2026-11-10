@@ -4,7 +4,6 @@ import Wave from '../components/Wave'
 import { AREAS, CONTACTO } from '../services/areas'
 import { SITE, whatsappLink } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
-import { useTitle } from '../hooks/useTitle'
 
 const EXTRAS = [
   { to: '/atencion-temprana', label: 'Atención temprana', texto: 'Intervención coordinada de 0 a 6 años, con la familia dentro del plan.' },
@@ -23,7 +22,6 @@ const ORIENTAME = whatsappLink('Hola, no sé por dónde empezar, ¿me orientáis
 
 export default function Home() {
   const wa = useWhatsApp()
-  useTitle()
   return (
     <div className="wrap">
       <section className="mt-5 grid items-center gap-10 rounded-[40px] bg-bosque p-[clamp(28px,5vw,56px)] text-[#F3EEE5] lg:grid-cols-[1.5fr_1fr]">

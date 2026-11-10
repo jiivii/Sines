@@ -1,6 +1,5 @@
 import { Brain, PersonStanding, Speech } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { useTitle } from '../hooks/useTitle'
 import { CONTACTO } from '../services/areas'
 import { useWhatsApp } from '../hooks/useWhatsApp'
 
@@ -19,7 +18,6 @@ const APORTA = [
 
 export default function AtencionTemprana() {
   const wa = useWhatsApp()
-  useTitle('Atención temprana')
   return (
     <div className="wrap">
       <section className="mt-10 rounded-[40px] bg-verde/30 p-[clamp(28px,6vw,64px)]">

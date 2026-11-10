@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import AreaCard from '../components/AreaCard'
 import { AREAS, CONTACTO, getArea } from '../services/areas'
-import { useTitle } from '../hooks/useTitle'
 import { SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
 import NotFound from './NotFound'
@@ -9,7 +8,6 @@ import NotFound from './NotFound'
 export default function Servicio() {
   const wa = useWhatsApp()
   const area = getArea(useParams().slug)
-  useTitle(area?.nombre)
   if (!area) return <NotFound />
 
   const list = (items: string[]) => (

@@ -37,10 +37,10 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 ## Fase 3 · SEO técnico
 | # | Prio | Tarea | Estado |
 |---|---|---|---|
-| 3.1 | A | Título y descripción propios por página (servicio + La Puebla de Alfindén) | ⬜ |
-| 3.2 | A | Prerenderizado de cada ruta | ⬜ |
-| 3.3 | A | 404 real en Vercel (sin devolver la portada con 200) | ⬜ |
-| 3.4 | A | Sitemap completo, canonical y og:image | ⬜ |
+| 3.1 | A | Título y descripción propios por página (servicio + La Puebla de Alfindén) — `src/seo.ts` | ✅ |
+| 3.2 | A | Prerenderizado de cada ruta (`scripts/prerender.mjs`) | ✅ |
+| 3.3 | A | 404 real en Vercel (sin devolver la portada con 200) | ✅ comprobar tras desplegar |
+| 3.4 | A | Sitemap completo, canonical y og:image | ✅ |
 | 3.5 | B | Datos estructurados `MedicalClinic` | ⬜ |
 | 3.6 | B | Encabezados descriptivos y refuerzo «Sinestesya + La Puebla» | ⬜ |
 | 3.7 | — | Search Console y ficha de Google Business (fuera del código) | ⬜ |
@@ -64,6 +64,13 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 - **Paso 2** — 1.3, 1.6 y 1.7 hechos; 1.2 a falta de domicilio social y CIF.
 - **Paso 3** — 2.1, 2.2 y 2.3 hechos. En móvil la cabecera deja de ser fija (la barra inferior cubre el contacto).
 - **Paso 4** — 2.4 y 2.5 hechos. Fase 2 completa.
+- **Paso 5** — 3.1 a 3.4 hechos. Dominio canónico: `https://sinestesya.es` (sin www).
+
+## Comprobar tras desplegar en Vercel
+- `/logopedia` responde 200 con su propio título; `/cualquier-cosa` responde 404.
+- Compartir un enlace por WhatsApp muestra la imagen y el título de la página.
+- Que `www.sinestesya.es` redirija a `sinestesya.es` (Vercel › Settings › Domains).
+- Enviar `https://sinestesya.es/sitemap.xml` en Google Search Console.
 
 ## Para la asesoría
 - Revisar `/privacidad`, `/aviso-legal` y `/cookies` (textos en `src/pages/Legal.tsx`).

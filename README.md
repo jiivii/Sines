@@ -8,7 +8,9 @@ Stack: Vite + React + TypeScript + Tailwind · Supabase (BD y acceso) · Cloudfl
 - `src/services` · datos de las áreas y llamadas a la API
 - `src/config.ts` · ajustes del sitio y datos legales de la empresa (`EMPRESA`: CIF, domicilio social…)
 - `functions/` · Pages Functions: `api/reservar` (valida y llama a Web1) y `api/disponibilidad` (horas ocupadas)
-- `public/` · `_redirects` (SPA), `_headers` (cabeceras de seguridad) y `_routes.json` (solo `/api/*` invoca functions)
+- `src/seo.ts` · título, descripción y dominio de cada página (también genera el sitemap)
+- `scripts/prerender.mjs` · al compilar crea un HTML por página (`dist/logopedia.html`…), `404.html` y `sitemap.xml`
+- `public/` · `og.png` (imagen para redes), `_headers` (cabeceras de seguridad) y `_routes.json` (solo `/api/*` invoca functions)
 - `supabase/migrations` · tabla `reservas` con RLS
 - `api/` + `vercel.json` · compatibilidad con Vercel, **temporal** como red de seguridad; se eliminará tras verificar el despliegue en Cloudflare
 
@@ -20,7 +22,8 @@ cp .dev.vars.example .dev.vars   # secretos del servidor para preview con functi
 npm run dev                      # web en http://localhost:5173 (sin API)
 npm run preview:cf               # build + wrangler pages dev: web y functions en local
 ```
-`npm run build` comprueba tipos y genera `dist/`.
+`npm run build` comprueba tipos, compila y genera en `dist/` una página HTML por ruta, la 404 y el sitemap.
+Para añadir una página: crea la ruta en `src/App.tsx` y su título y descripción en `src/seo.ts`.
 
 ## Puesta en producción
 1. **Supabase**: crea un proyecto y ejecuta `supabase/migrations/001_reservas.sql` en el SQL Editor.
@@ -30,7 +33,7 @@ npm run preview:cf               # build + wrangler pages dev: web y functions e
    - `WEB1_API_URL` debe ser **HTTPS** y la **URL base** de Klinika, por ejemplo `https://gestkli.vercel.app` (sin `/api` ni `/api/public-reservation`; también se aceptan y se normalizan).
    - `WEB1_API_SECRET` debe coincidir exactamente con `WEB2_API_SECRET` en Klinika.
    - Las `functions/` de Cloudflare se mantienen como alternativa; si se usa Cloudflare Pages, los mismos nombres van en *Settings > Environment variables*.
-3. **Dominio**: cámbialo en `public/robots.txt` y `public/sitemap.xml` (ahora `sinestesya.es`).
+3. **Dominio**: cámbialo en `src/seo.ts` (`SITE_URL`) y en `public/robots.txt` (ahora `https://sinestesya.es`).
 
 ## Seguridad
 - Los visitantes nunca escriben en la base de datos: reservan por `/api/reservar`, que valida los datos, evita dobles reservas (índice único) y usa la service role, que solo existe en el servidor.

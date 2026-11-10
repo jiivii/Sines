@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { useTitle } from '../hooks/useTitle'
 import { EMPRESA } from '../config'
 import { CONTACTO } from '../services/areas'
 
@@ -9,7 +8,6 @@ const dato = (v: string | null) => v ?? pendiente
 const centro = CONTACTO.direccion.replace('\n', ', ')
 
 function LegalLayout({ titulo, children }: { titulo: string; children: ReactNode }) {
-  useTitle(titulo)
   return (
     <div className="wrap mt-14">
       <article className="mx-auto max-w-[760px] [&_h2]:mt-10 [&_h2]:text-[clamp(1.5rem,3vw,2rem)] [&_li]:mb-1.5 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-5">
