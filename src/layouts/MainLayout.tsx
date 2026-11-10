@@ -104,7 +104,7 @@ export default function MainLayout() {
             <p className="mb-1"><a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="no-underline hover:text-lino">{CONTACTO.telefono}</a></p>
             <p className="mb-1"><a href={`mailto:${CONTACTO.email}`} className="no-underline hover:text-lino">{CONTACTO.email}</a></p>
             <p className="mb-1 whitespace-pre-line">{CONTACTO.direccion}</p>
-            <p className="mb-1">{CONTACTO.horario}</p>
+            <p className="mb-1 first-letter:uppercase">{CONTACTO.horario}</p>
             <p className="mb-0">{CONTACTO.web}</p>
           </div>
         </div>

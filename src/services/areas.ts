@@ -73,5 +73,5 @@ export const CONTACTO = {
   email: 'hola@sinestesya.es',
   direccion: 'Calle Fuertes, 1\n50171 La Puebla de Alfindén (Zaragoza)',
   web: 'www.sinestesya.es',
-  horario: 'de 9 h a 21 h'
+  horario: 'de lunes a viernes, de 9 h a 21 h'
 }

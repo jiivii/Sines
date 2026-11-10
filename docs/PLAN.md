@@ -7,7 +7,7 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 - Razón social: **Sinestesya Villarroya S.L.**
 - Domicilio social, CIF y nº de autorización sanitaria: pendientes de confirmar.
 - Precios: de momento **70 €** en todas las especialidades (como psicología).
-- Horario: se mantiene «de 9 h a 21 h».
+- Horario: de lunes a viernes, de 9 h a 21 h.
 - Reservas online: cerradas. Botón de cabecera «Pedir cita» → WhatsApp.
 - Hosting en producción: **Vercel**.
 - Mutuas / aseguradoras: **no**.
@@ -41,8 +41,8 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 | 3.2 | A | Prerenderizado de cada ruta (`scripts/prerender.mjs`) | ✅ |
 | 3.3 | A | 404 real en Vercel (sin devolver la portada con 200) | ✅ comprobar tras desplegar |
 | 3.4 | A | Sitemap completo, canonical y og:image | ✅ |
-| 3.5 | B | Datos estructurados `MedicalClinic` | ⬜ |
-| 3.6 | B | Encabezados descriptivos y refuerzo «Sinestesya + La Puebla» | ⬜ |
+| 3.5 | B | Datos estructurados `MedicalClinic` (`CENTRO_JSONLD` en `src/seo.ts`) | ✅ |
+| 3.6 | B | Encabezados descriptivos y refuerzo «Sinestesya + La Puebla» | ✅ |
 | 3.7 | — | Search Console y ficha de Google Business (fuera del código) | ⬜ |
 
 ## Fase 4 · Contenido de servicios
@@ -65,6 +65,7 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 - **Paso 3** — 2.1, 2.2 y 2.3 hechos. En móvil la cabecera deja de ser fija (la barra inferior cubre el contacto).
 - **Paso 4** — 2.4 y 2.5 hechos. Fase 2 completa.
 - **Paso 5** — 3.1 a 3.4 hechos. Dominio canónico: `https://sinestesya.es` (sin www).
+- **Paso 6** — 3.5 y 3.6 hechos. Horario «de lunes a viernes» en toda la web. Pendiente: añadir redes sociales y ficha de Google a `sameAs` cuando existan.
 
 ## Comprobar tras desplegar en Vercel
 - `/logopedia` responde 200 con su propio título; `/cualquier-cosa` responde 404.

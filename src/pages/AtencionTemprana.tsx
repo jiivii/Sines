@@ -22,7 +22,7 @@ export default function AtencionTemprana() {
     <div className="wrap">
       <section className="mt-10 rounded-[40px] bg-verde/30 p-[clamp(28px,6vw,64px)]">
         <span className="lab">Atención temprana</span>
-        <h1 className="mb-3 mt-3">De 0 a 6 años</h1>
+        <h1 className="mb-3 mt-3"><span className="sr-only">Atención temprana: </span>De 0 a 6 años{' '}<span className="mt-2 block text-[.42em] font-light italic leading-tight">en La Puebla de Alfindén</span></h1>
         <p className="max-w-[62ch] text-[1.15rem]">Intervención coordinada en los primeros años de vida. Psicología, logopedia y fisioterapia trabajan juntas y de la mano de la familia para acompañar el desarrollo del niño.</p>
         <div className="mt-3 flex flex-wrap gap-3">
           <a href={wa} target="_blank" rel="noreferrer" className="btn">Hablar con el equipo</a>

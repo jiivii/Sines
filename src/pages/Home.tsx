@@ -68,7 +68,8 @@ export default function Home() {
       <Wave className="mt-16 block h-auto w-full" />
 
       <section id="servicios" className="mt-12">
-        <h2>Cuatro caminos, un mismo propósito</h2>
+        <span className="lab">Cuatro caminos, un mismo propósito</span>
+        <h2 className="mt-2">Nuestras especialidades</h2>
         <p className="text-soft">Psicología, logopedia, fisioterapia y nutrición se encuentran bajo un mismo techo para cuidar de la persona completa. Empieza por donde lo necesites; el resto del equipo se une cuando haga falta.</p>
         <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">{AREAS.map((a, i) => <AreaCard key={a.slug} area={a} i={i} />)}</div>
       </section>

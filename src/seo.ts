@@ -1,4 +1,4 @@
-import { SITE } from './config'
+import { EMPRESA, SITE } from './config'
 import { CONTACTO } from './services/areas'
 
 /** Dominio principal (sin barra final). Se usa en canonical, og:url y sitemap. */
@@ -82,6 +82,38 @@ export const urlCanonica = (path: string) => SITE_URL + (normalizar(path) === '/
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
+/** Ficha del centro para Google (schema.org/MedicalClinic). */
+export const CENTRO_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalClinic',
+  '@id': `${SITE_URL}/#centro`,
+  name: MARCA,
+  alternateName: [`${MARCA} Salud integral`, `${MARCA} ${LUGAR}`],
+  legalName: EMPRESA.razonSocial,
+  description: `Centro sanitario multidisciplinar en ${LUGAR}: psicología, logopedia, fisioterapia y nutrición para niños, adultos y mayores.`,
+  url: `${SITE_URL}/`,
+  image: OG_IMAGE,
+  telephone: `+34${CONTACTO.telefono.replace(/\s/g, '')}`,
+  email: CONTACTO.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Calle Fuertes, 1',
+    postalCode: '50171',
+    addressLocality: LUGAR,
+    addressRegion: 'Zaragoza',
+    addressCountry: 'ES',
+  },
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '21:00',
+  }],
+  medicalSpecialty: ['https://schema.org/SpeechPathology', 'https://schema.org/Physiotherapy', 'https://schema.org/DietNutrition'],
+  availableService: ['Psicología', 'Logopedia', 'Fisioterapia', 'Nutrición', 'Atención temprana'].map((name) => ({ '@type': 'MedicalTherapy', name })),
+  areaServed: [LUGAR, 'Zaragoza'],
+}
+
 /** Etiquetas del <head> para una ruta. `path` es null en la página 404. */
 export function headHtml(seo: Seo, path: string | null) {
   const t = esc(seo.title)
@@ -101,6 +133,7 @@ export function headHtml(seo: Seo, path: string | null) {
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="630" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
+    `<script type="application/ld+json">${JSON.stringify(CENTRO_JSONLD).replace(/</g, '\\u003c')}</script>`,
   ].filter(Boolean).join('\n  ')
 }
 

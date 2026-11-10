@@ -22,7 +22,7 @@ export default function Servicio() {
         <div className="wrap grid items-center gap-6 md:grid-cols-[1.4fr_1fr]">
           <div>
             <span className="lab">{area.dimension} · {area.nombre}</span>
-            <h1 className="mb-4 mt-3.5">{area.nombre}</h1>
+            <h1 className="mb-4 mt-3.5">{area.nombre}{' '}<span className="mt-2 block text-[.42em] font-light italic leading-tight">en La Puebla de Alfindén</span></h1>
             <p className="text-[1.15rem]">{area.intro}</p>
             <p className="mt-1 font-serif text-[1.35rem] font-light italic">{area.claim}</p>
             {SITE.reservasAbiertas ? (

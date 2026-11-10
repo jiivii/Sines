@@ -45,7 +45,8 @@ export default function QuienesSomos() {
             </p>
 
             <h1 className="mb-6 font-serif text-5xl font-bold leading-[1.1] tracking-tight text-ink md:text-6xl lg:text-7xl">
-              Sinestesya
+              Sinestesya<span className="sr-only">,</span>{' '}
+              <span className="mt-3 block text-[.42em] font-light italic tracking-normal">centro multidisciplinar en La Puebla de Alfindén</span>
             </h1>
 
             <p className="mx-auto max-w-2xl text-2xl leading-relaxed text-soft md:text-3xl lg:text-4xl">
