@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import AreaCard from '../components/AreaCard'
 import Wave from '../components/Wave'
 import { AREAS, CONTACTO } from '../services/areas'
-import { SITE, WHATSAPP } from '../config'
+import { SITE } from '../config'
+import { useWhatsApp } from '../hooks/useWhatsApp'
 import { useTitle } from '../hooks/useTitle'
 
 const EXTRAS = [
@@ -12,6 +13,7 @@ const EXTRAS = [
 ]
 
 export default function Home() {
+  const wa = useWhatsApp()
   useTitle()
   return (
     <div className="wrap">
@@ -24,7 +26,7 @@ export default function Home() {
             {SITE.reservasAbiertas ? (
               <Link to="/reservar" className="btn !bg-lino !text-bosque">Reservar cita</Link>
             ) : (
-              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn !bg-lino !text-bosque">Hablar con el equipo</a>
+              <a href={wa} target="_blank" rel="noreferrer" className="btn !bg-lino !text-bosque">Hablar con el equipo</a>
             )}
             <a href="#servicios" className="btn btn-alt">Ver servicios</a>
             <Link to="/tarifas" className="btn btn-alt">Ver tarifas</Link>
@@ -83,7 +85,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-start gap-3 md:items-end">
             <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="font-serif text-3xl text-lino no-underline">{CONTACTO.telefono}</a>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn !bg-lino !text-bosque">Escríbenos por WhatsApp</a>
+            <a href={wa} target="_blank" rel="noreferrer" className="btn !bg-lino !text-bosque">Escríbenos por WhatsApp</a>
             <span className="text-[.9rem] text-[#AEB9B0]">{CONTACTO.web}</span>
           </div>
         </div>
@@ -94,7 +96,7 @@ export default function Home() {
         {SITE.reservasAbiertas ? (
           <Link to="/reservar" className="btn">Reservar cita</Link>
         ) : (
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn">Hablar con el equipo</a>
+          <a href={wa} target="_blank" rel="noreferrer" className="btn">Hablar con el equipo</a>
         )}
       </section>
     </div>

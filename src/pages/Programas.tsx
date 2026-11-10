@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTitle } from '../hooks/useTitle'
 import { CONTACTO } from '../services/areas'
-import { WHATSAPP } from '../config'
+import { useWhatsApp } from '../hooks/useWhatsApp'
 
 const CENTROS = [
   'Charlas para familias y profesorado',
@@ -18,6 +18,7 @@ const EMPRESAS = [
 ]
 
 export default function Programas() {
+  const wa = useWhatsApp()
   useTitle('Colegios y empresas')
   return (
     <div className="wrap">
@@ -26,7 +27,7 @@ export default function Programas() {
         <h1 className="mb-3 mt-3">Salud también en colegios y empresas</h1>
         <p className="max-w-[62ch] text-[1.15rem]">Llevamos la mirada multidisciplinar de Sinestesya a centros educativos y empresas. Cuéntanos qué necesita tu centro o tu empresa y diseñamos el programa contigo.</p>
         <div className="mt-3 flex flex-wrap gap-3">
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn">Hablemos del programa</a>
+          <a href={wa} target="_blank" rel="noreferrer" className="btn">Hablemos del programa</a>
           <a href={`mailto:${CONTACTO.email}`} className="btn btn-alt">Escribir por email</a>
         </div>
       </section>
@@ -69,7 +70,7 @@ export default function Programas() {
         <p className="mx-auto mb-3 max-w-[34ch] font-serif text-3xl font-light italic">Diseñamos el programa contigo.</p>
         <p className="mx-auto mb-5 max-w-[52ch] text-soft">Cuéntanos qué necesita tu centro educativo o tu empresa y te proponemos una propuesta a medida.</p>
         <div className="flex flex-wrap justify-center gap-3">
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn">WhatsApp · {CONTACTO.telefono}</a>
+          <a href={wa} target="_blank" rel="noreferrer" className="btn">WhatsApp · {CONTACTO.telefono}</a>
           <a href={`mailto:${CONTACTO.email}`} className="btn btn-alt">Escribir por email</a>
         </div>
       </section>

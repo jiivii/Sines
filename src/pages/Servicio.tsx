@@ -2,10 +2,12 @@ import { Link, useParams } from 'react-router-dom'
 import AreaCard from '../components/AreaCard'
 import { AREAS, CONTACTO, getArea } from '../services/areas'
 import { useTitle } from '../hooks/useTitle'
-import { SITE, WHATSAPP } from '../config'
+import { SITE } from '../config'
+import { useWhatsApp } from '../hooks/useWhatsApp'
 import NotFound from './NotFound'
 
 export default function Servicio() {
+  const wa = useWhatsApp()
   const area = getArea(useParams().slug)
   useTitle(area?.nombre)
   if (!area) return <NotFound />
@@ -28,7 +30,7 @@ export default function Servicio() {
             {SITE.reservasAbiertas ? (
               <Link to={`/reservar?area=${area.slug}`} className="btn mt-3">Reservar en {area.nombre}</Link>
             ) : (
-              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn mt-3">Contactar por WhatsApp</a>
+              <a href={wa} target="_blank" rel="noreferrer" className="btn mt-3">Contactar por WhatsApp</a>
             )}
             <p className="mb-0 mt-3 text-[.85rem] opacity-80">Atención presencial y online. Las áreas concretas se definen en la primera valoración.</p>
           </div>
@@ -65,7 +67,7 @@ export default function Servicio() {
           {SITE.reservasAbiertas ? (
             <Link to={`/reservar?area=${area.slug}`} className="btn">Reservar cita</Link>
           ) : (
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn">Hablar con el equipo</a>
+            <a href={wa} target="_blank" rel="noreferrer" className="btn">Hablar con el equipo</a>
           )}
           <p className="mb-0 mt-3 text-[.85rem] text-soft">También puedes llamarnos al {CONTACTO.telefono}.</p>
         </section>

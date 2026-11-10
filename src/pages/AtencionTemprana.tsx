@@ -2,7 +2,7 @@ import { Brain, PersonStanding, Speech } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useTitle } from '../hooks/useTitle'
 import { CONTACTO } from '../services/areas'
-import { WHATSAPP } from '../config'
+import { useWhatsApp } from '../hooks/useWhatsApp'
 
 const DISCIPLINAS = [
   { nombre: 'Psicología', Icono: Brain, color: 'bg-amarillo/40', texto: 'Emociones, conducta y desarrollo personal del niño y de su familia.' },
@@ -18,6 +18,7 @@ const APORTA = [
 ]
 
 export default function AtencionTemprana() {
+  const wa = useWhatsApp()
   useTitle('Atención temprana')
   return (
     <div className="wrap">
@@ -26,7 +27,7 @@ export default function AtencionTemprana() {
         <h1 className="mb-3 mt-3">De 0 a 6 años</h1>
         <p className="max-w-[62ch] text-[1.15rem]">Intervención coordinada en los primeros años de vida. Psicología, logopedia y fisioterapia trabajan juntas y de la mano de la familia para acompañar el desarrollo del niño.</p>
         <div className="mt-3 flex flex-wrap gap-3">
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn">Hablar con el equipo</a>
+          <a href={wa} target="_blank" rel="noreferrer" className="btn">Hablar con el equipo</a>
           <Link to="/quienes-somos" className="btn btn-alt">Cómo trabajamos</Link>
         </div>
       </section>
@@ -64,7 +65,7 @@ export default function AtencionTemprana() {
         <p className="mx-auto mb-3 max-w-[34ch] font-serif text-3xl font-light italic">Cuéntanos cómo es tu hijo o hija.</p>
         <p className="mx-auto mb-5 max-w-[52ch] text-soft">Te orientamos sobre si conviene una valoración conjunta y qué profesionales deberían participar.</p>
         <div className="flex flex-wrap justify-center gap-3">
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn">Escríbenos por WhatsApp</a>
+          <a href={wa} target="_blank" rel="noreferrer" className="btn">Escríbenos por WhatsApp</a>
           <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="btn btn-alt">Llamar al {CONTACTO.telefono}</a>
         </div>
       </section>

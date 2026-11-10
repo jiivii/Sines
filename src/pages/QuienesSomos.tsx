@@ -2,7 +2,7 @@ import { Apple, Brain, PersonStanding, Speech } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTitle } from "../hooks/useTitle";
 import { AREAS } from "../services/areas";
-import { WHATSAPP } from "../config";
+import { useWhatsApp } from '../hooks/useWhatsApp'
 
 const ICONOS = {
   psicologia: Brain,
@@ -33,6 +33,7 @@ const VALORACION = [
 ];
 
 export default function QuienesSomos() {
+  const wa = useWhatsApp()
   useTitle("Quiénes somos");
 
   return (
@@ -302,7 +303,7 @@ export default function QuienesSomos() {
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 <a
-                  href={WHATSAPP}
+                  href={wa}
                   target="_blank"
                   rel="noreferrer"
                   className="btn"

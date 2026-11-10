@@ -12,6 +12,9 @@ export const SITE = {
 
 export const WHATSAPP = 'https://wa.me/34602533313'
 
+/** Enlace de WhatsApp con un mensaje ya escrito. */
+export const whatsappLink = (texto: string) => `${WHATSAPP}?text=${encodeURIComponent(texto)}`
+
 /**
  * Datos legales de la empresa. Los campos en `null` se muestran como
  * «pendiente» en las páginas legales y se ocultan en el pie hasta tenerlos.

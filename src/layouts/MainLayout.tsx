@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import Logo from '../components/Logo'
 import { AREAS, CONTACTO } from '../services/areas'
-import { EMPRESA, SITE, WHATSAPP } from '../config'
+import { EMPRESA, SITE } from '../config'
+import { useWhatsApp } from '../hooks/useWhatsApp'
 
 const dot: Record<string, string> = { psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja' }
 
@@ -14,30 +15,36 @@ const EXTRAS = [
 ]
 
 export default function MainLayout() {
+  const wa = useWhatsApp()
   const { pathname } = useLocation()
   useEffect(() => { window.scrollTo(0, 0) }, [pathname])
   return (
     <>
-      <header className="sticky top-0 z-20 border-b border-line bg-bg">
-        <div className="wrap flex flex-wrap items-center justify-between gap-4 py-2.5">
-          <Link to="/" className="flex items-center gap-3" aria-label="Sinestesya, inicio">
-            <span className="w-[128px] rounded-[18px] bg-lino px-2 py-1"><Logo /></span>
+      <header className="z-20 border-b border-line bg-bg md:sticky md:top-0">
+        <div className="wrap flex flex-wrap items-center gap-x-4 gap-y-1 py-2.5">
+          <Link to="/" className="order-1 flex items-center gap-3" aria-label="Sinestesya, inicio">
+            <span className="w-[92px] rounded-[16px] bg-lino px-2 py-1 sm:w-[128px] sm:rounded-[18px]"><Logo /></span>
             <span className="hidden flex-col border-l border-line pl-3 leading-tight sm:flex">
               <span className="font-serif text-lg text-ink">Salud integral</span>
               <span className="lab mt-1 text-[.58rem] text-soft">Centro multidisciplinar</span>
             </span>
           </Link>
-          <nav aria-label="Principal" className="flex max-w-full items-center gap-1.5 overflow-x-auto">
+          {SITE.reservasAbiertas ? (
+            <Link to="/reservar" className="btn order-2 ml-auto !px-5 !py-2 xl:order-3 xl:ml-0">Reservar</Link>
+          ) : (
+            <a href={wa} target="_blank" rel="noreferrer" className="btn order-2 ml-auto !px-5 !py-2 xl:order-3 xl:ml-0">Pedir cita</a>
+          )}
+          <nav aria-label="Principal" className="order-3 -mx-5 flex w-[calc(100%+2.5rem)] items-center gap-1.5 overflow-x-auto px-5 xl:order-2 xl:mx-0 xl:ml-auto xl:w-auto xl:px-0">
             {AREAS.map((a) => (
               <NavLink key={a.slug} to={`/${a.slug}`}
                 className={({ isActive }) => `flex items-center gap-2 whitespace-nowrap rounded-full px-3.5 py-2 text-[.92rem] font-normal no-underline hover:bg-panel ${isActive ? 'bg-panel' : ''}`}>
                 <i className={`h-2.5 w-2.5 rounded-full ${dot[a.slug]}`} />{a.nombre}
               </NavLink>
             ))}
-            <NavLink to="/quienes-somos" className="flex items-center gap-2 whitespace-nowrap rounded-full px-3.5 py-2 text-[.92rem] font-normal no-underline hover:bg-panel">
-              <i className="h-2.5 w-2.5 rounded-full bg-bosque text-ink" />Quiénes somos
+            <NavLink to="/quienes-somos"
+              className={({ isActive }) => `flex items-center gap-2 whitespace-nowrap rounded-full px-3.5 py-2 text-[.92rem] font-normal no-underline hover:bg-panel ${isActive ? 'bg-panel' : ''}`}>
+              <i className="h-2.5 w-2.5 rounded-full bg-soft" />Quiénes somos
             </NavLink>
-            <Link to="/reservar" className="btn !px-5 !py-2">Reservar</Link>
           </nav>
         </div>
         <div className="border-t border-line/70">
@@ -66,13 +73,13 @@ export default function MainLayout() {
 
       <main><Outlet /></main>
 
-      <footer className="relative mt-24 bg-bosque pb-8 pt-12 text-[#D3D9CF]">
+      <footer className="relative mt-24 bg-bosque pb-24 pt-12 text-[#D3D9CF] md:pb-8">
         <div className="absolute inset-x-0 top-0 flex h-2.5"><span className="flex-1 bg-amarillo" /><span className="flex-1 bg-azul" /><span className="flex-1 bg-verde" /><span className="flex-1 bg-naranja" /></div>
         <div className="wrap grid gap-8 text-[.92rem] md:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="lab text-lino">Sinestesya · Salud integral</p>
             <p className="mt-2 font-serif text-2xl italic text-lino">Cuidado integral, en cada etapa de la vida.</p>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-3 inline-block text-[#D3D9CF] underline">Escríbenos por WhatsApp</a>
+            <a href={wa} target="_blank" rel="noreferrer" className="mt-3 inline-block text-[#D3D9CF] underline">Escríbenos por WhatsApp</a>
           </div>
           <div>
             <p className="lab mb-2 text-lino">Disciplinas</p>
@@ -111,6 +118,14 @@ export default function MainLayout() {
           </nav>
         </div>
       </footer>
+
+      {/* Barra fija de contacto en móvil */}
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-bg px-3 pt-2 md:hidden" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + .5rem)' }}>
+        <div className="mx-auto grid max-w-[480px] grid-cols-2 gap-2">
+          <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="btn btn-alt !px-3 !py-2.5 text-center">Llamar</a>
+          <a href={wa} target="_blank" rel="noreferrer" className="btn !px-3 !py-2.5 text-center">WhatsApp</a>
+        </div>
+      </div>
     </>
   )
 }
