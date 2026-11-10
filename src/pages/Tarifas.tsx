@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { AREAS, CONTACTO } from '../services/areas'
-import { SITE, WHATSAPP } from '../config'
-import { useTitle } from '../hooks/useTitle'
+import { SITE } from '../config'
+import { useWhatsApp } from '../hooks/useWhatsApp'
 
 type Tarifa = { servicio: string; detalle: string; precio: string }
 
@@ -93,7 +93,7 @@ const BLOQUES: Bloque[] = [
 ]
 
 export default function Tarifas() {
-  useTitle('Tarifas')
+  const wa = useWhatsApp()
 
   return (
     <div className="wrap">
@@ -108,7 +108,7 @@ export default function Tarifas() {
           {SITE.reservasAbiertas ? (
             <Link to="/reservar" className="btn">Reservar cita</Link>
           ) : (
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn">Hablar con el equipo</a>
+            <a href={wa} target="_blank" rel="noreferrer" className="btn">Hablar con el equipo</a>
           )}
           <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="btn btn-alt">
             Llamar al {CONTACTO.telefono}
@@ -177,7 +177,7 @@ export default function Tarifas() {
             <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="font-serif text-3xl text-lino no-underline">
               {CONTACTO.telefono}
             </a>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn !bg-lino !text-bosque">
+            <a href={wa} target="_blank" rel="noreferrer" className="btn !bg-lino !text-bosque">
               Escríbenos por WhatsApp
             </a>
             <span className="text-[.9rem] text-[#AEB9B0]">{CONTACTO.web}</span>

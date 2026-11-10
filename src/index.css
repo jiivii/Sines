@@ -24,8 +24,8 @@
   .lab { @apply text-[.78rem] font-medium uppercase tracking-[.2em]; }
   .tile { @apply rounded-[28px] bg-panel p-8; }
   .field { @apply w-full rounded-2xl border-[1.5px] border-line bg-bg px-3.5 py-3 text-base text-ink; }
-  .chip { @apply cursor-pointer rounded-2xl border-[1.5px] border-line bg-panel p-3.5 text-left text-[.95rem] font-normal text-tinta disabled:cursor-not-allowed disabled:line-through disabled:opacity-40; }
-  .chip[aria-pressed='true'] { @apply border-tinta; }
+  .chip { @apply cursor-pointer rounded-2xl border-[1.5px] border-line bg-panel p-3.5 text-left text-[.95rem] font-normal text-ink disabled:cursor-not-allowed disabled:line-through disabled:opacity-40; }
+  .chip[aria-pressed='true'] { @apply border-tinta text-tinta; }
   .steps { @apply mt-6 grid gap-4 md:grid-cols-3; }
 }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useTitle } from '../hooks/useTitle'
 import { CONTACTO } from '../services/areas'
-import { WHATSAPP } from '../config'
+import { useWhatsApp } from '../hooks/useWhatsApp'
 
 const VENTAJAS = [
   { titulo: 'Desde donde estés', texto: 'Sesiones desde casa, sin desplazamientos.' },
@@ -10,7 +9,7 @@ const VENTAJAS = [
 ]
 
 export default function Online() {
-  useTitle('Atención online')
+  const wa = useWhatsApp()
   return (
     <div className="wrap">
       <section className="mt-10 rounded-[40px] bg-azul/30 p-[clamp(28px,6vw,64px)]">
@@ -18,7 +17,7 @@ export default function Online() {
         <h1 className="mb-3 mt-3">Salud a distancia</h1>
         <p className="max-w-[62ch] text-[1.15rem]">Atendemos también online para que la distancia, el horario o la falta de tiempo no sean un obstáculo. Cuéntanos qué necesitas y te indicamos qué sesiones se pueden hacer a distancia y cuáles es mejor hacer en el centro.</p>
         <div className="mt-3 flex flex-wrap gap-3">
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn">Escríbenos por WhatsApp</a>
+          <a href={wa} target="_blank" rel="noreferrer" className="btn">Escríbenos por WhatsApp</a>
           <Link to="/quienes-somos" className="btn btn-alt">Cómo trabajamos</Link>
         </div>
       </section>
@@ -54,7 +53,7 @@ export default function Online() {
         <p className="mx-auto mb-3 max-w-[34ch] font-serif text-3xl font-light italic">La distancia no tiene por qué separarte de tu bienestar.</p>
         <p className="mx-auto mb-5 max-w-[52ch] text-soft">Escríbenos y te contamos qué sesiones encajan mejor contigo.</p>
         <div className="flex flex-wrap justify-center gap-3">
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn">WhatsApp · {CONTACTO.telefono}</a>
+          <a href={wa} target="_blank" rel="noreferrer" className="btn">WhatsApp · {CONTACTO.telefono}</a>
           <a href={`mailto:${CONTACTO.email}`} className="btn btn-alt">Escribir por email</a>
         </div>
       </section>
