@@ -1,5 +1,4 @@
-import { supabase } from '../lib/supabase'
-import type { AreaSlug, Estado, Reserva, ReservaInput } from '../types'
+import type { AreaSlug, ReservaInput } from '../types'
 
 async function api<T>(url: string, init?: RequestInit): Promise<T> {
   const r = await fetch(url, init)
@@ -24,14 +23,3 @@ export const horasOcupadas = async (area: AreaSlug, fecha: string) => {
   return Array.isArray(j.ocupadas) ? (j.ocupadas as string[]) : []
 }
 
-export async function listarReservas(): Promise<Reserva[]> {
-  if (!supabase) throw new Error('Supabase no está configurado.')
-  const { data, error } = await supabase.from('reservas').select('*').order('fecha').order('hora')
-  if (error) throw error
-  return data as Reserva[]
-}
-export async function cambiarEstado(id: string, estado: Estado) {
-  if (!supabase) throw new Error('Supabase no está configurado.')
-  const { error } = await supabase.from('reservas').update({ estado }).eq('id', id)
-  if (error) throw error
-}

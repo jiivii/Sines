@@ -7,7 +7,7 @@ export default defineConfig({
     target: 'es2020',
     sourcemap: false,
     rollupOptions: {
-      output: { manualChunks: { react: ['react', 'react-dom', 'react-router-dom'], supabase: ['@supabase/supabase-js'] } },
+      output: { manualChunks: { react: ['react', 'react-dom', 'react-router-dom'] } },
     },
   },
 })

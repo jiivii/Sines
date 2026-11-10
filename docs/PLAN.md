@@ -18,12 +18,12 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 | # | Prio | Tarea | Estado |
 |---|---|---|---|
 | 1.1 | A | Registro del plan (`docs/PLAN.md`) | ✅ |
-| 1.2 | A | Pie: razón social corregida, domicilio, CIF y enlaces legales | ⏸ domicilio y CIF |
-| 1.3 | A | Páginas Privacidad, Aviso legal y Cookies (borrador para la asesoría) y enlace en el formulario | ⬜ |
+| 1.2 | A | Pie: razón social corregida y enlaces legales ✅ · domicilio social y CIF (se completan en `EMPRESA`, `src/config.ts`) | ⏸ domicilio y CIF |
+| 1.3 | A | Páginas Privacidad, Aviso legal y Cookies (borrador para la asesoría) y enlace en el formulario | ✅ pendiente revisión asesoría |
 | 1.4 | A | Quiénes somos: variables de color inexistentes sustituidas por colores de marca | ✅ |
 | 1.5 | A | Contraste en modo oscuro: aviso «Web en construcción» (texto y teléfono ilegibles), botones de selección y color de barra del navegador | ✅ |
-| 1.6 | A | Quitar `/admin` (ruta, panel, login y cliente Supabase en el navegador) | ⬜ |
-| 1.7 | B | Cambiar «el mismo día laborable» por un plazo realista | ⬜ |
+| 1.6 | A | Quitar `/admin` (ruta, panel, login y cliente Supabase en el navegador) | ✅ |
+| 1.7 | B | Cambiar «el mismo día laborable» por «48 horas laborables» | ✅ |
 
 ## Fase 2 · Contacto (portada, móvil, WhatsApp)
 | # | Prio | Tarea | Estado |
@@ -61,3 +61,9 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 
 ## Historial
 - **Paso 1** — 1.1, 1.4 y 1.5 hechos.
+- **Paso 2** — 1.3, 1.6 y 1.7 hechos; 1.2 a falta de domicilio social y CIF.
+
+## Para la asesoría
+- Revisar `/privacidad`, `/aviso-legal` y `/cookies` (textos en `src/pages/Legal.tsx`).
+- Confirmar proveedores encargados del tratamiento (Vercel, Supabase, Resend, Órbita) y sus contratos.
+- Al validarlos, poner `legalRevisado: true` en `src/config.ts`.

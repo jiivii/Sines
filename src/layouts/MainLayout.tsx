@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import Logo from '../components/Logo'
 import { AREAS, CONTACTO } from '../services/areas'
-import { SITE, WHATSAPP } from '../config'
+import { EMPRESA, SITE, WHATSAPP } from '../config'
 
 const dot: Record<string, string> = { psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja' }
 
@@ -100,8 +100,15 @@ export default function MainLayout() {
             <p className="mb-0">{CONTACTO.web}</p>
           </div>
         </div>
-        <div className="wrap mt-8 border-t border-white/10 pt-4 text-[.78rem] text-[#AEB9B0]">
-          <p className="mb-0">Sinestesia Villarroya SL · Centro multidisciplinar sanitario</p>
+        <div className="wrap mt-8 flex flex-col gap-3 border-t border-white/10 pt-4 text-[.78rem] text-[#AEB9B0] md:flex-row md:items-start md:justify-between">
+          <p className="mb-0">
+            {[EMPRESA.razonSocial, EMPRESA.cif && `CIF ${EMPRESA.cif}`, EMPRESA.domicilioSocial, 'Centro multidisciplinar sanitario'].filter(Boolean).join(' · ')}
+          </p>
+          <nav aria-label="Información legal" className="flex flex-wrap gap-x-4 gap-y-1">
+            <Link to="/aviso-legal" className="text-[#D3D9CF] hover:text-lino">Aviso legal</Link>
+            <Link to="/privacidad" className="text-[#D3D9CF] hover:text-lino">Privacidad</Link>
+            <Link to="/cookies" className="text-[#D3D9CF] hover:text-lino">Cookies</Link>
+          </nav>
         </div>
       </footer>
     </>
