@@ -56,10 +56,10 @@ export default function MainLayout() {
       </header>
 
       {!SITE.reservasAbiertas && (
-        <div role="status" className="bg-ocre/30">
+        <div role="status" className="bg-ocre text-tinta">
           <p className="wrap mb-0 py-2 text-center text-[.82rem] leading-snug text-tinta">
             <strong className="font-medium">Web en construcción.</strong> Estamos actualizando el sitio y, de momento, no recogemos citas online. Para cualquier consulta, llámanos o escríbenos al{' '}
-            <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="font-medium text-ink">{CONTACTO.telefono}</a>.
+            <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="whitespace-nowrap font-medium text-tinta underline">{CONTACTO.telefono}</a>.
           </p>
         </div>
       )}
