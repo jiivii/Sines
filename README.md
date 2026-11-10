@@ -15,7 +15,7 @@ Stack: Vite + React + TypeScript + Tailwind · Supabase (BD y acceso) · Cloudfl
 ## Desarrollo
 ```bash
 npm install
-cp .env.example .env             # variables públicas VITE_* para npm run dev
+cp .env.example .env             # variables del servidor (no hacen falta para npm run dev)
 cp .dev.vars.example .dev.vars   # secretos del servidor para preview con functions
 npm run dev                      # web en http://localhost:5173 (sin API)
 npm run preview:cf               # build + wrangler pages dev: web y functions en local
