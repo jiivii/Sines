@@ -31,8 +31,8 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 | 2.1 | A | Botón «Pedir cita» siempre visible en la cabecera (móvil incluido) | ✅ |
 | 2.2 | A | Barra fija Llamar / WhatsApp en móvil | ✅ |
 | 2.3 | A | WhatsApp con mensaje predefinido por especialidad (`src/hooks/useWhatsApp.ts`) | ✅ |
-| 2.4 | A | Nuevo bloque principal de portada | ⬜ |
-| 2.5 | A | Bloque «¿Por dónde empiezo?» | ⬜ |
+| 2.4 | A | Nuevo bloque principal de portada | ✅ |
+| 2.5 | A | Bloque «¿Por dónde empiezo?» | ✅ |
 
 ## Fase 3 · SEO técnico
 | # | Prio | Tarea | Estado |
@@ -63,6 +63,7 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 - **Paso 1** — 1.1, 1.4 y 1.5 hechos.
 - **Paso 2** — 1.3, 1.6 y 1.7 hechos; 1.2 a falta de domicilio social y CIF.
 - **Paso 3** — 2.1, 2.2 y 2.3 hechos. En móvil la cabecera deja de ser fija (la barra inferior cubre el contacto).
+- **Paso 4** — 2.4 y 2.5 hechos. Fase 2 completa.
 
 ## Para la asesoría
 - Revisar `/privacidad`, `/aviso-legal` y `/cookies` (textos en `src/pages/Legal.tsx`).
