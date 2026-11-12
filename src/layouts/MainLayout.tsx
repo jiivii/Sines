@@ -17,8 +17,13 @@ const EXTRAS = [
 
 export default function MainLayout() {
   const wa = useWhatsApp()
-  const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo(0, 0); aplicarSeo(pathname) }, [pathname])
+  const { pathname, hash } = useLocation()
+  useEffect(() => {
+    const destino = hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null
+    if (destino) destino.scrollIntoView()
+    else window.scrollTo(0, 0)
+    aplicarSeo(pathname)
+  }, [pathname, hash])
   return (
     <>
       <header className="z-20 border-b border-line bg-bg md:sticky md:top-0">
@@ -104,7 +109,7 @@ export default function MainLayout() {
             <p className="mb-1"><a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="no-underline hover:text-lino">{CONTACTO.telefono}</a></p>
             <p className="mb-1"><a href={`mailto:${CONTACTO.email}`} className="no-underline hover:text-lino">{CONTACTO.email}</a></p>
             <p className="mb-1 whitespace-pre-line">{CONTACTO.direccion}</p>
-            <p className="mb-1">{CONTACTO.horario}</p>
+            <p className="mb-1 first-letter:uppercase">{CONTACTO.horario}</p>
             <p className="mb-0">{CONTACTO.web}</p>
           </div>
         </div>

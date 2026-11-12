@@ -1,5 +1,6 @@
-import { SITE } from './config'
-import { CONTACTO } from './services/areas'
+import { EMPRESA, SITE } from './config'
+import { AREAS, CONTACTO } from './services/areas'
+import { FAQ_INICIO, faqServicio, type Faq } from './services/faq'
 
 /** Dominio principal (sin barra final). Se usa en canonical, og:url y sitemap. */
 export const SITE_URL = 'https://sinestesya.es'
@@ -10,6 +11,8 @@ export interface Seo {
   description: string
   /** true para pedir a los buscadores que no indexen la página. */
   noindex?: boolean
+  /** Preguntas frecuentes de la página (datos estructurados FAQPage). */
+  faq?: Faq[]
 }
 
 const MARCA = 'Sinestesya'
@@ -67,6 +70,17 @@ export const SEO: Record<string, Seo> = {
   '/cookies': { title: `Política de cookies · ${MARCA}`, description: `Información sobre el uso de cookies en el sitio web de ${MARCA}.` },
 }
 
+SEO['/'].faq = FAQ_INICIO
+for (const a of AREAS) SEO[`/${a.slug}`].faq = faqServicio(a.slug)
+
+const faqJsonLd = (faq: Faq[]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+})
+const ldScript = (data: object, id?: string) =>
+  `<script type="application/ld+json"${id ? ` id="${id}"` : ''}>${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`
+
 export const NOT_FOUND: Seo = {
   title: `Página no encontrada · ${MARCA}`,
   description: 'Esta página no existe.',
@@ -81,6 +95,40 @@ export const getSeo = (path: string): Seo | undefined => SEO[normalizar(path)]
 export const urlCanonica = (path: string) => SITE_URL + (normalizar(path) === '/' ? '/' : normalizar(path))
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
+/** Ficha del centro para Google (schema.org/MedicalClinic). */
+export const CENTRO_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalClinic',
+  '@id': `${SITE_URL}/#centro`,
+  name: MARCA,
+  alternateName: [`${MARCA} Salud integral`, `${MARCA} ${LUGAR}`],
+  legalName: EMPRESA.razonSocial,
+  description: `Centro sanitario multidisciplinar en ${LUGAR}: psicología, logopedia, fisioterapia y nutrición para niños, adultos y mayores.`,
+  url: `${SITE_URL}/`,
+  image: OG_IMAGE,
+  telephone: `+34${CONTACTO.telefono.replace(/\s/g, '')}`,
+  email: CONTACTO.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Calle Fuertes, 1',
+    postalCode: '50171',
+    addressLocality: LUGAR,
+    addressRegion: 'Zaragoza',
+    addressCountry: 'ES',
+  },
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '21:00',
+  }],
+  medicalSpecialty: ['https://schema.org/SpeechPathology', 'https://schema.org/Physiotherapy', 'https://schema.org/DietNutrition'],
+  availableService: ['Psicología', 'Logopedia', 'Fisioterapia', 'Nutrición', 'Atención temprana'].map((name) => ({ '@type': 'MedicalTherapy', name })),
+  areaServed: [LUGAR, 'Zaragoza'],
+  priceRange: '35 €–110 €',
+  taxID: EMPRESA.cif ?? undefined,
+}
 
 /** Etiquetas del <head> para una ruta. `path` es null en la página 404. */
 export function headHtml(seo: Seo, path: string | null) {
@@ -101,6 +149,8 @@ export function headHtml(seo: Seo, path: string | null) {
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="630" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
+    ldScript(CENTRO_JSONLD),
+    seo.faq?.length ? ldScript(faqJsonLd(seo.faq), 'faq-jsonld') : '',
   ].filter(Boolean).join('\n  ')
 }
 
@@ -125,4 +175,13 @@ export function aplicarSeo(path: string) {
     if (!link) { link = document.createElement('link'); link.rel = 'canonical'; document.head.appendChild(link) }
     link.href = urlCanonica(path)
   } else link?.remove()
+  // Preguntas frecuentes: sustituye o quita el bloque de la página anterior
+  document.getElementById('faq-jsonld')?.remove()
+  if (seo.faq?.length) {
+    const el = document.createElement('script')
+    el.type = 'application/ld+json'
+    el.id = 'faq-jsonld'
+    el.textContent = JSON.stringify(faqJsonLd(seo.faq))
+    document.head.appendChild(el)
+  }
 }

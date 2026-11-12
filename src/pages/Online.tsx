@@ -14,7 +14,7 @@ export default function Online() {
     <div className="wrap">
       <section className="mt-10 rounded-[40px] bg-azul/30 p-[clamp(28px,6vw,64px)]">
         <span className="lab">Atención online</span>
-        <h1 className="mb-3 mt-3">Salud a distancia</h1>
+        <h1 className="mb-3 mt-3">Salud a distancia<span className="sr-only">:</span>{' '}<span className="mt-2 block text-[.42em] font-light italic leading-tight">psicología, logopedia y nutrición online</span></h1>
         <p className="max-w-[62ch] text-[1.15rem]">Atendemos también online para que la distancia, el horario o la falta de tiempo no sean un obstáculo. Cuéntanos qué necesitas y te indicamos qué sesiones se pueden hacer a distancia y cuáles es mejor hacer en el centro.</p>
         <div className="mt-3 flex flex-wrap gap-3">
           <a href={wa} target="_blank" rel="noreferrer" className="btn">Escríbenos por WhatsApp</a>

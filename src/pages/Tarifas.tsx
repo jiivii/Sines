@@ -2,95 +2,8 @@ import { Link } from 'react-router-dom'
 import { AREAS, CONTACTO } from '../services/areas'
 import { SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
+import { BLOQUES, TARIFARIO_VIGENCIA } from '../services/tarifas'
 
-type Tarifa = { servicio: string; detalle: string; precio: string }
-
-type Bloque = {
-  slug: string
-  nombre: string
-  dimension: string
-  soft: string
-  dot: string
-  intro: string
-  tarifas: Tarifa[]
-  bonos: Tarifa[]
-  nota?: string
-}
-
-const BLOQUES: Bloque[] = [
-  {
-    slug: 'psicologia',
-    nombre: 'Psicología',
-    dimension: 'Mente',
-    soft: 'bg-amarillo/25',
-    dot: 'bg-amarillo',
-    intro: 'Acompañamiento emocional para adultos, parejas, familias y menores.',
-    tarifas: [
-      { servicio: 'Primera consulta / sesión individual', detalle: '45–50 min', precio: '70 €' },
-      { servicio: 'Sesión individual', detalle: '45–50 min', precio: '70 €' },
-      { servicio: 'Terapia de pareja', detalle: '60 min', precio: '90 €' },
-      { servicio: 'Terapia familiar', detalle: '60 min', precio: '90 €' },
-      { servicio: 'Informe psicológico', detalle: 'Según complejidad', precio: '70 €' },
-    ],
-    bonos: [
-      { servicio: 'Bono 4 sesiones individuales', detalle: '4 × 45–50 min', precio: '260 €' },
-    ],
-  },
-  {
-    slug: 'fisioterapia',
-    nombre: 'Fisioterapia',
-    dimension: 'Cuerpo',
-    soft: 'bg-verde/25',
-    dot: 'bg-verde',
-    intro: 'Valoración y tratamiento del movimiento, el dolor y la funcionalidad.',
-    tarifas: [
-      { servicio: 'Primera valoración + tratamiento', detalle: '60 min', precio: '70 €' },
-      { servicio: 'Sesión ordinaria', detalle: '50 min', precio: '50 €' },
-      { servicio: 'Sesión breve', detalle: '30 min', precio: '35 €' },
-    ],
-    bonos: [
-      { servicio: 'Bono 5 sesiones', detalle: '5 × 50 min', precio: '235 €' },
-      { servicio: 'Bono 10 sesiones', detalle: '10 × 50 min', precio: '450 €' },
-    ],
-  },
-  {
-    slug: 'logopedia',
-    nombre: 'Logopedia',
-    dimension: 'Voz',
-    soft: 'bg-azul/25',
-    dot: 'bg-azul',
-    intro: 'Valoración e intervención del lenguaje, el habla, la voz y la deglución.',
-    tarifas: [
-      { servicio: 'Valoración inicial', detalle: '60 min', precio: '85 €' },
-      { servicio: 'Devolución de resultados', detalle: '45 min', precio: '60 €' },
-      { servicio: 'Sesión ordinaria', detalle: '45 min', precio: '50 €' },
-      { servicio: 'Sesión breve', detalle: '30 min', precio: '35 €' },
-    ],
-    bonos: [
-      { servicio: 'Bono 5 sesiones', detalle: '5 × 45 min', precio: '235 €' },
-      { servicio: 'Bono 10 sesiones', detalle: '10 × 45 min', precio: '450 €' },
-    ],
-    nota: 'La valoración inicial y la devolución de resultados son dos servicios independientes.',
-  },
-  {
-    slug: 'nutricion',
-    nombre: 'Nutrición',
-    dimension: 'Alimento',
-    soft: 'bg-naranja/25',
-    dot: 'bg-naranja',
-    intro: 'Alimentación personalizada para cada etapa y cada objetivo.',
-    tarifas: [
-      { servicio: 'Primera consulta completa', detalle: '60–75 min', precio: '110 €' },
-      { servicio: 'Seguimiento', detalle: '40–45 min', precio: '50 €' },
-      { servicio: 'Valoración antropométrica independiente', detalle: '20–30 min', precio: '40 €' },
-    ],
-    bonos: [
-      { servicio: 'Bono 3 seguimientos', detalle: '3 × 40–45 min', precio: '140 €' },
-      { servicio: 'Bono 5 seguimientos', detalle: '5 × 40–45 min', precio: '225 €' },
-    ],
-    nota: 'La primera consulta incluye historia nutricional, entrevista, antropometría, mediciones, pliegues cuando proceda, valoración de objetivos y planificación nutricional personalizada.',
-  },
-]
 
 export default function Tarifas() {
   const wa = useWhatsApp()
@@ -98,7 +11,7 @@ export default function Tarifas() {
   return (
     <div className="wrap">
       <section className="mt-10 rounded-[40px] bg-ocre/30 p-[clamp(28px,6vw,64px)]">
-        <span className="lab">Tarifario · Noviembre 2026</span>
+        <span className="lab">Tarifario</span>
         <h1 className="mb-3 mt-3">Tarifas claras, sin sorpresas.</h1>
         <p className="max-w-[62ch] text-[1.15rem]">
           Consulta aquí los precios de las sesiones y bonos de psicología, fisioterapia, logopedia y nutrición.
@@ -114,12 +27,12 @@ export default function Tarifas() {
             Llamar al {CONTACTO.telefono}
           </a>
         </div>
-        <p className="mb-0 mt-4 text-[.85rem] text-soft">Precios vigentes en noviembre de 2026.</p>
+        <p className="mb-0 mt-4 text-[.85rem] text-soft">Precios vigentes en {TARIFARIO_VIGENCIA}.</p>
       </section>
 
       <div className="mt-14 grid gap-5 md:grid-cols-2">
         {BLOQUES.map((b) => (
-          <section key={b.slug} className={`${b.soft} rounded-[28px] p-6 md:p-8`}>
+          <section key={b.slug} id={b.slug} className={`${b.soft} scroll-mt-48 rounded-[28px] p-6 md:p-8`}>
             <div className="flex items-start justify-between gap-3">
               <div>
                 <span className="lab">{b.dimension}</span>
@@ -131,7 +44,7 @@ export default function Tarifas() {
 
             <ul className="m-0 mt-4 list-none p-0">
               {b.tarifas.map((t) => (
-                <li key={t.servicio} className="flex items-start justify-between gap-4 border-t border-line/80 py-3">
+                <li key={t.servicio} className="flex items-start justify-between gap-4 border-t border-line py-3">
                   <span className="min-w-0">
                     <span className="block text-[.98rem] leading-snug">{t.servicio}</span>
                     <span className="block text-[.8rem] text-soft">{t.detalle}</span>
@@ -142,7 +55,7 @@ export default function Tarifas() {
             </ul>
 
             {b.bonos.length > 0 && (
-              <div className="mt-4 rounded-[18px] bg-panel/80 p-4">
+              <div className="mt-4 rounded-[18px] bg-panel p-4">
                 <span className="lab text-[.68rem]">Bonos</span>
                 <ul className="m-0 mt-2 list-none space-y-2 p-0">
                   {b.bonos.map((t) => (

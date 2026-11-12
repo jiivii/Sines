@@ -15,7 +15,7 @@ export const AREAS: Area[] = [
     ],
     ctaTitulo: 'Tu bienestar emocional empieza por escucharte.',
     ctaTexto: 'Si sientes que algo te pesa, podemos ayudarte a ponerle nombre y a encontrar tu camino.',
-    blob: 'M20 30c8-16 34-20 52-8 16 34 4 46-14 14-40 14-54 2C10 60 12 42 20 30z'
+    blob: 'M20 30c8-16 34-20 52-8 16 12 14 34 4 46-14 14-40 14-54 2C10 60 12 42 20 30z'
   },
   {
     slug: 'logopedia', nombre: 'Logopedia', dimension: 'Voz', bg: 'bg-azul', soft: 'bg-azul/25', hex: '#6B92DB',
@@ -73,5 +73,5 @@ export const CONTACTO = {
   email: 'hola@sinestesya.es',
   direccion: 'Calle Fuertes, 1\n50171 La Puebla de Alfindén (Zaragoza)',
   web: 'www.sinestesya.es',
-  horario: 'de 9 h a 21 h'
+  horario: 'de lunes a viernes, de 9\u00a0h a 21\u00a0h'
 }
