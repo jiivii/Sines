@@ -1,5 +1,6 @@
 import { EMPRESA, SITE } from './config'
-import { CONTACTO } from './services/areas'
+import { AREAS, CONTACTO } from './services/areas'
+import { FAQ_INICIO, faqServicio, type Faq } from './services/faq'
 
 /** Dominio principal (sin barra final). Se usa en canonical, og:url y sitemap. */
 export const SITE_URL = 'https://sinestesya.es'
@@ -10,6 +11,8 @@ export interface Seo {
   description: string
   /** true para pedir a los buscadores que no indexen la página. */
   noindex?: boolean
+  /** Preguntas frecuentes de la página (datos estructurados FAQPage). */
+  faq?: Faq[]
 }
 
 const MARCA = 'Sinestesya'
@@ -66,6 +69,17 @@ export const SEO: Record<string, Seo> = {
   '/privacidad': { title: `Política de privacidad · ${MARCA}`, description: `Cómo trata ${MARCA} tus datos personales y de salud, y cómo ejercer tus derechos.` },
   '/cookies': { title: `Política de cookies · ${MARCA}`, description: `Información sobre el uso de cookies en el sitio web de ${MARCA}.` },
 }
+
+SEO['/'].faq = FAQ_INICIO
+for (const a of AREAS) SEO[`/${a.slug}`].faq = faqServicio(a.slug)
+
+const faqJsonLd = (faq: Faq[]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+})
+const ldScript = (data: object, id?: string) =>
+  `<script type="application/ld+json"${id ? ` id="${id}"` : ''}>${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`
 
 export const NOT_FOUND: Seo = {
   title: `Página no encontrada · ${MARCA}`,
@@ -135,7 +149,8 @@ export function headHtml(seo: Seo, path: string | null) {
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="630" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
-    `<script type="application/ld+json">${JSON.stringify(CENTRO_JSONLD).replace(/</g, '\\u003c')}</script>`,
+    ldScript(CENTRO_JSONLD),
+    seo.faq?.length ? ldScript(faqJsonLd(seo.faq), 'faq-jsonld') : '',
   ].filter(Boolean).join('\n  ')
 }
 
@@ -160,4 +175,13 @@ export function aplicarSeo(path: string) {
     if (!link) { link = document.createElement('link'); link.rel = 'canonical'; document.head.appendChild(link) }
     link.href = urlCanonica(path)
   } else link?.remove()
+  // Preguntas frecuentes: sustituye o quita el bloque de la página anterior
+  document.getElementById('faq-jsonld')?.remove()
+  if (seo.faq?.length) {
+    const el = document.createElement('script')
+    el.type = 'application/ld+json'
+    el.id = 'faq-jsonld'
+    el.textContent = JSON.stringify(faqJsonLd(seo.faq))
+    document.head.appendChild(el)
+  }
 }

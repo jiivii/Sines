@@ -4,6 +4,8 @@ import { AREAS, CONTACTO, getArea } from '../services/areas'
 import { SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
 import { getTarifas } from '../services/tarifas'
+import FaqList from '../components/Faq'
+import { faqServicio } from '../services/faq'
 import NotFound from './NotFound'
 
 export default function Servicio() {
@@ -95,6 +97,8 @@ export default function Servicio() {
             </div>
           </section>
         )}
+
+        <FaqList items={faqServicio(area.slug)} titulo={`Preguntas frecuentes sobre ${area.nombre.toLowerCase()}`} className="mt-20" />
 
         <section className={`${area.soft} mt-20 rounded-[28px] p-8 text-center`}>
           <p className="mx-auto mb-3 max-w-[34ch] font-serif text-3xl font-light italic">{area.ctaTitulo}</p>

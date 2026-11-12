@@ -4,6 +4,8 @@ import Wave from '../components/Wave'
 import { AREAS, CONTACTO } from '../services/areas'
 import { SITE, whatsappLink } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
+import FaqList from '../components/Faq'
+import { FAQ_INICIO } from '../services/faq'
 
 const EXTRAS = [
   { to: '/atencion-temprana', label: 'Atención temprana', texto: 'Intervención coordinada de 0 a 6 años, con la familia dentro del plan.' },
@@ -107,6 +109,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <FaqList items={FAQ_INICIO} className="mt-20" />
 
       <section className="mt-20 rounded-[32px] bg-bosque p-[clamp(28px,5vw,56px)] text-[#F3EEE5]">
         <div className="grid gap-8 md:grid-cols-[1.3fr_1fr] md:items-center">
