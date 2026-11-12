@@ -17,8 +17,13 @@ const EXTRAS = [
 
 export default function MainLayout() {
   const wa = useWhatsApp()
-  const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo(0, 0); aplicarSeo(pathname) }, [pathname])
+  const { pathname, hash } = useLocation()
+  useEffect(() => {
+    const destino = hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null
+    if (destino) destino.scrollIntoView()
+    else window.scrollTo(0, 0)
+    aplicarSeo(pathname)
+  }, [pathname, hash])
   return (
     <>
       <header className="z-20 border-b border-line bg-bg md:sticky md:top-0">

@@ -112,6 +112,8 @@ export const CENTRO_JSONLD = {
   medicalSpecialty: ['https://schema.org/SpeechPathology', 'https://schema.org/Physiotherapy', 'https://schema.org/DietNutrition'],
   availableService: ['Psicología', 'Logopedia', 'Fisioterapia', 'Nutrición', 'Atención temprana'].map((name) => ({ '@type': 'MedicalTherapy', name })),
   areaServed: [LUGAR, 'Zaragoza'],
+  priceRange: '35 €–110 €',
+  taxID: EMPRESA.cif ?? undefined,
 }
 
 /** Etiquetas del <head> para una ruta. `path` es null en la página 404. */

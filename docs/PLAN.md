@@ -5,8 +5,9 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 
 ## Datos confirmados
 - Razón social: **Sinestesya Villarroya S.L.**
-- Domicilio social, CIF y nº de autorización sanitaria: pendientes de confirmar.
-- Precios: de momento **70 €** en todas las especialidades (como psicología).
+- CIF: B05747308 · Domicilio social: C/ Fuertes, 1 Bis, 50171 La Puebla de Alfindén (Zaragoza).
+- Pendientes: nº de registro mercantil y de autorización sanitaria.
+- Precios: según `TARIFARIO_2027.pdf` (coincide con `src/services/tarifas.ts`). Sustituye al «70 € para todo».
 - Horario: de lunes a viernes, de 9 h a 21 h.
 - Reservas online: cerradas. Botón de cabecera «Pedir cita» → WhatsApp.
 - Hosting en producción: **Vercel**.
@@ -18,7 +19,7 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 | # | Prio | Tarea | Estado |
 |---|---|---|---|
 | 1.1 | A | Registro del plan (`docs/PLAN.md`) | ✅ |
-| 1.2 | A | Pie: razón social corregida y enlaces legales ✅ · domicilio social y CIF (se completan en `EMPRESA`, `src/config.ts`) | ⏸ domicilio y CIF |
+| 1.2 | A | Pie: razón social, CIF, domicilio social y enlaces legales (`EMPRESA`, `src/config.ts`) | ✅ |
 | 1.3 | A | Páginas Privacidad, Aviso legal y Cookies (borrador para la asesoría) y enlace en el formulario | ✅ pendiente revisión asesoría |
 | 1.4 | A | Quiénes somos: variables de color inexistentes sustituidas por colores de marca | ✅ |
 | 1.5 | A | Contraste en modo oscuro: aviso «Web en construcción» (texto y teléfono ilegibles), botones de selección y color de barra del navegador | ✅ |
@@ -49,7 +50,7 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 | # | Prio | Tarea | Estado |
 |---|---|---|---|
 | 4.1 | B | Servicios con «Es para ti si…» y «La primera sesión» | ⬜ |
-| 4.2 | B | Precio y duración en cada servicio (70 €) y unificar `/tarifas` | ⬜ |
+| 4.2 | B | Precio y duración en cada servicio; tarifario único en `src/services/tarifas.ts` | ✅ |
 | 4.3 | B | Formulario «Avísame cuando abráis» con consentimiento separado | ⬜ |
 
 ## Fase 5 · Confianza y contenido
@@ -66,6 +67,7 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 - **Paso 4** — 2.4 y 2.5 hechos. Fase 2 completa.
 - **Paso 5** — 3.1 a 3.4 hechos. Dominio canónico: `https://sinestesya.es` (sin www).
 - **Paso 6** — 3.5 y 3.6 hechos. Horario «de lunes a viernes» en toda la web. Pendiente: añadir redes sociales y ficha de Google a `sameAs` cuando existan.
+- **Paso 7** — 4.2 hecho con el tarifario oficial; CIF y domicilio social en el pie y páginas legales (1.2 cerrado).
 
 ## Comprobar tras desplegar en Vercel
 - `/logopedia` responde 200 con su propio título; `/cualquier-cosa` responde 404.

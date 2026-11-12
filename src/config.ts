@@ -21,8 +21,8 @@ export const whatsappLink = (texto: string) => `${WHATSAPP}?text=${encodeURIComp
  */
 export const EMPRESA = {
   razonSocial: 'Sinestesya Villarroya S.L.',
-  cif: null as string | null,
-  domicilioSocial: null as string | null,
+  cif: 'B05747308' as string | null,
+  domicilioSocial: 'C/ Fuertes, 1 Bis, 50171 La Puebla de Alfindén (Zaragoza)' as string | null,
   registroMercantil: null as string | null,
   autorizacionSanitaria: null as string | null,
   email: 'hola@sinestesya.es',

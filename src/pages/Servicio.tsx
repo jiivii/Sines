@@ -3,12 +3,15 @@ import AreaCard from '../components/AreaCard'
 import { AREAS, CONTACTO, getArea } from '../services/areas'
 import { SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
+import { getTarifas } from '../services/tarifas'
 import NotFound from './NotFound'
 
 export default function Servicio() {
   const wa = useWhatsApp()
   const area = getArea(useParams().slug)
   if (!area) return <NotFound />
+  const tarifas = getTarifas(area.slug)
+  const primera = tarifas?.tarifas[0]
 
   const list = (items: string[]) => (
     <ul className="mt-3 list-none p-0">
@@ -30,6 +33,7 @@ export default function Servicio() {
             ) : (
               <a href={wa} target="_blank" rel="noreferrer" className="btn mt-3">Contactar por WhatsApp</a>
             )}
+            {primera && <p className="mb-0 mt-4 text-[.95rem]"><span className="font-medium">{primera.servicio}:</span> {primera.precio} · {primera.detalle}</p>}
             <p className="mb-0 mt-3 text-[.85rem] opacity-80">Atención presencial y online. Las áreas concretas se definen en la primera valoración.</p>
           </div>
           <svg viewBox="0 0 100 100" aria-hidden="true" className="max-w-[150px] justify-self-center opacity-55 md:max-w-[300px]"><path fill="#F8F3ED" d={area.blob} /></svg>
@@ -58,6 +62,39 @@ export default function Servicio() {
             ))}
           </div>
         </section>
+
+        {tarifas && (
+          <section id="precios" className="mt-20">
+            <span className="lab">Precios y duración</span>
+            <h2 className="mt-2">Tarifas de {area.nombre.toLowerCase()}</h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-[1.4fr_1fr]">
+              <ul className="tile m-0 list-none">
+                {tarifas.tarifas.map((t) => (
+                  <li key={t.servicio} className="flex items-start justify-between gap-4 border-t border-line py-3 first:border-t-0 first:pt-0">
+                    <span className="min-w-0">
+                      <span className="block leading-snug">{t.servicio}</span>
+                      <span className="block text-[.82rem] text-soft">{t.detalle}</span>
+                    </span>
+                    <span className="shrink-0 font-serif text-[1.4rem] leading-none">{t.precio}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="tile">
+                <span className="lab text-[.7rem]">Bonos</span>
+                <ul className="m-0 mt-3 list-none space-y-2 p-0">
+                  {tarifas.bonos.map((t) => (
+                    <li key={t.servicio} className="flex items-start justify-between gap-3">
+                      <span className="min-w-0 text-[.92rem] leading-snug">{t.servicio}<span className="block text-[.78rem] text-soft">{t.detalle}</span></span>
+                      <span className="shrink-0 font-serif text-[1.2rem] leading-none">{t.precio}</span>
+                    </li>
+                  ))}
+                </ul>
+                {tarifas.nota && <p className="mb-0 mt-4 text-[.8rem] text-soft">{tarifas.nota}</p>}
+                <Link to={`/tarifas#${area.slug}`} className="mt-4 inline-block text-[.9rem] font-medium">Ver todas las tarifas →</Link>
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className={`${area.soft} mt-20 rounded-[28px] p-8 text-center`}>
           <p className="mx-auto mb-3 max-w-[34ch] font-serif text-3xl font-light italic">{area.ctaTitulo}</p>
