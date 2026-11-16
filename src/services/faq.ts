@@ -32,7 +32,7 @@ const ONLINE: Record<string, string> = {
 
 const ESPECIFICAS: Record<string, Faq[]> = {
   psicologia: [
-    { q: '¿Atendéis a niños y adolescentes?', a: 'Sí. Trabajamos dificultades emocionales y de conducta, ansiedad y miedos, atención y aprendizaje, y orientamos a las familias.' },
+    { q: '¿Atendéis a niños y adolescentes?', a: 'Sí. Trabajamos dificultades emocionales y de conducta, ansiedad y miedos, trastornos del aprendizaje, TDAH y TEA, trastornos de la conducta alimentaria (TCA) y abuso de pantallas.' },
     { q: '¿Hacéis terapia de pareja o familiar?', a: 'Sí. Las sesiones de terapia de pareja y de terapia familiar duran 60 minutos y cuestan 90 €.' },
   ],
   logopedia: [
@@ -41,7 +41,7 @@ const ESPECIFICAS: Record<string, Faq[]> = {
   ],
   fisioterapia: [
     { q: '¿Qué tengo que llevar a la primera sesión?', a: 'Ropa cómoda y, si los tienes, informes médicos o pruebas de imagen relacionados con tu problema.' },
-    { q: '¿Tratáis a bebés y niños?', a: 'Sí. Hacemos fisioterapia pediátrica: desarrollo motor, alteraciones posturales y atención temprana.' },
+    { q: '¿Tratáis a bebés y niños?', a: 'Sí. Hacemos fisioterapia pediátrica: desarrollo motor, alteraciones posturales, atención temprana, lesiones deportivas, problemas respiratorios y rehabilitación neurológica infantil.' },
   ],
   nutricion: [
     { q: '¿Qué incluye la primera consulta?', a: 'Historia nutricional, entrevista, antropometría y mediciones (pliegues cuando procede), valoración de objetivos y planificación nutricional personalizada.' },

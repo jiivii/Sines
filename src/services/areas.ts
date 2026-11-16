@@ -6,8 +6,8 @@ export const AREAS: Area[] = [
     sub: 'Bienestar emocional',
     intro: 'Acompañamos las emociones, la conducta y el desarrollo personal.',
     claim: 'Un espacio para entenderte con calma.',
-    adultos: ['Ansiedad, estrés y depresión', 'Duelo y procesos vitales', 'Autoestima y gestión emocional', 'Relaciones y acompañamiento', 'Estimulación cognitiva'],
-    ninos: ['Dificultades emocionales y de conducta', 'Ansiedad y miedos', 'Atención y aprendizaje', 'Orientación a familias'],
+    adultos: ['Ansiedad, estrés y depresión', 'Duelo y procesos vitales', 'Autoestima y gestión emocional', 'Trastornos de la conducta alimentaria (TCA)', 'Problemas de pareja'],
+    ninos: ['Dificultades emocionales y de conducta', 'Ansiedad y miedos', 'Trastornos del aprendizaje', 'TDAH y TEA', 'Trastornos de la conducta alimentaria (TCA)', 'Abuso de pantallas'],
     pasos: [
       { titulo: 'Primera conversación', descripcion: 'Nos cuentas qué te preocupa y cómo te afecta en tu día a día.' },
       { titulo: 'Valoración emocional', descripcion: 'Exploramos juntos tu historia, tus recursos y tus objetivos.' },
@@ -23,7 +23,7 @@ export const AREAS: Area[] = [
     intro: 'Mejoramos la comunicación, el habla, la voz y la deglución.',
     claim: 'Comunicarse es poder contar quién eres.',
     adultos: ['Voz y disfonías', 'Tartamudez', 'Trastornos del habla y del lenguaje', 'Disfagia y rehabilitación tras daño cerebral', 'Afasia y rehabilitación neurológica'],
-    ninos: ['Retraso y trastornos del lenguaje', 'Dificultades del habla', 'Lectoescritura y dislexia', 'Deglución y alimentación'],
+    ninos: ['Retraso y trastornos del lenguaje', 'Dificultades del habla', 'Lectoescritura y dislexia', 'Deglución y alimentación', 'TEA'],
     pasos: [
       { titulo: 'Escucha y observación', descripcion: 'Conocemos cómo se comunica la persona y qué necesita mejorar.' },
       { titulo: 'Valoración del lenguaje', descripcion: 'Analizamos habla, voz, lenguaje o deglución según cada caso.' },
@@ -38,8 +38,8 @@ export const AREAS: Area[] = [
     sub: 'Movimiento y funcionalidad',
     intro: 'Recuperamos el movimiento y cuidamos la funcionalidad del cuerpo.',
     claim: 'Moverte mejor, con menos dolor.',
-    adultos: ['Dolor de espalda y cervical', 'Lesiones musculares y articulares', 'Rehabilitación postquirúrgica y deportiva', 'Fisioterapia neurológica', 'Movilidad y prevención de caídas'],
-    ninos: ['Fisioterapia pediátrica y desarrollo motor', 'Alteraciones posturales', 'Atención temprana'],
+    adultos: ['Dolor de espalda y cervical', 'Lesiones musculares y articulares', 'Rehabilitación postquirúrgica y deportiva', 'Fisioterapia neurológica', 'Movilidad y prevención de caídas', 'Suelo pélvico'],
+    ninos: ['Fisioterapia pediátrica y desarrollo motor', 'Alteraciones posturales', 'Atención temprana', 'Lesiones deportivas', 'Problemas respiratorios', 'Rehabilitación neurológica infantil'],
     pasos: [
       { titulo: 'Valoración del movimiento', descripcion: 'Exploramos tu dolor, tu postura y cómo te mueves.' },
       { titulo: 'Tratamiento y ejercicio', descripcion: 'Combinamos técnicas manuales y movimiento para recuperar funcionalidad.' },
@@ -54,8 +54,8 @@ export const AREAS: Area[] = [
     sub: 'Salud y equilibrio',
     intro: 'Diseñamos una alimentación a tu medida para cada etapa.',
     claim: 'Comer bien, sin obsesiones ni prohibiciones.',
-    adultos: ['Control de peso', 'Educación nutricional', 'Nutrición deportiva', 'Patologías: colesterol, diabetes e hipertensión', 'Embarazo y lactancia', 'Alimentación en la tercera edad', 'Prevención de la desnutrición'],
-    ninos: ['Alimentación infantil y adolescente', 'Selectividad alimentaria', 'Hábitos saludables en familia'],
+    adultos: ['Control de peso', 'Educación nutricional', 'Nutrición deportiva', 'Patologías: colesterol, diabetes e hipertensión', 'Embarazo y lactancia', 'Alimentación en la tercera edad', 'Alergias e intolerancias alimentarias'],
+    ninos: ['Alimentación infantil y adolescente', 'Selectividad alimentaria', 'Hábitos saludables en familia', 'Patologías digestivas', 'Nutrición deportiva', 'Trastornos de la conducta alimentaria (TCA)'],
     pasos: [
       { titulo: 'Conocemos tus hábitos', descripcion: 'Hablamos de tu alimentación, tu rutina y tus objetivos.' },
       { titulo: 'Plan a tu medida', descripcion: 'Diseñamos una pauta realista, adaptada a tus gustos y tu salud.' },
