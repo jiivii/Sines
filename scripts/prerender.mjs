@@ -21,6 +21,7 @@ const pagina = (url, seo, ruta) =>
 for (const ruta of RUTAS) {
   // /logopedia -> dist/logopedia.html (Vercel lo sirve en /logopedia con cleanUrls)
   const archivo = ruta === '/' ? 'index.html' : `${ruta.slice(1)}.html`
+  fs.mkdirSync(path.dirname(path.join(dist, archivo)), { recursive: true })
   fs.writeFileSync(path.join(dist, archivo), pagina(ruta, getSeo(ruta), ruta))
 }
 fs.writeFileSync(path.join(dist, '404.html'), pagina('/404', NOT_FOUND, null))

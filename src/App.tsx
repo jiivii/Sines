@@ -10,6 +10,7 @@ import Online from './pages/Online'
 import Programas from './pages/Programas'
 import Tarifas from './pages/Tarifas'
 import { AvisoLegal, Cookies, Privacidad } from './pages/Legal'
+import { ArticuloPage, BlogIndex } from './pages/Blog'
 
 export default function App() {
   return (
@@ -25,6 +26,8 @@ export default function App() {
         <Route path="aviso-legal" element={<AvisoLegal />} />
         <Route path="privacidad" element={<Privacidad />} />
         <Route path="cookies" element={<Cookies />} />
+        <Route path="blog" element={<BlogIndex />} />
+        <Route path="blog/:slug" element={<ArticuloPage />} />
         <Route path=":slug" element={<Servicio />} />
         <Route path="*" element={<NotFound />} />
       </Route>

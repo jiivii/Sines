@@ -5,14 +5,22 @@ import { AREAS, CONTACTO } from '../services/areas'
 import { EMPRESA, SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
 import { aplicarSeo } from '../seo'
+import { getArticulo } from '../content/articulos'
 
 const dot: Record<string, string> = { psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja' }
+
+/** Color de la franja «Web en construcción» según la página (por defecto, ocre). */
+const FRANJA: Record<string, string> = {
+  psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja',
+  'atencion-temprana': 'bg-verde', online: 'bg-azul', programas: 'bg-naranja', tarifas: 'bg-ocre',
+}
 
 const EXTRAS = [
   { to: '/atencion-temprana', label: 'Atención temprana' },
   { to: '/online', label: 'Atención online' },
   { to: '/programas', label: 'Colegios y empresas' },
   { to: '/tarifas', label: 'Tarifas' },
+  { to: '/blog', label: 'Blog' },
 ]
 
 export default function MainLayout() {
@@ -24,6 +32,8 @@ export default function MainLayout() {
     else window.scrollTo(0, 0)
     aplicarSeo(pathname)
   }, [pathname, hash])
+  const [, seccion, sub] = pathname.split('/')
+  const franja = FRANJA[seccion === 'blog' ? getArticulo(sub)?.area ?? '' : seccion] ?? 'bg-ocre'
   return (
     <>
       <header className="z-20 border-b border-line bg-bg md:sticky md:top-0">
@@ -69,7 +79,7 @@ export default function MainLayout() {
       </header>
 
       {!SITE.reservasAbiertas && (
-        <div role="status" className="bg-ocre text-tinta">
+        <div role="status" className={`${franja} border-b border-tinta/10 text-tinta`}>
           <p className="wrap mb-0 py-2 text-center text-[.82rem] leading-snug text-tinta">
             <strong className="font-medium">Web en construcción.</strong> Estamos actualizando el sitio y, de momento, no recogemos citas online. Para cualquier consulta, llámanos o escríbenos al{' '}
             <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="whitespace-nowrap font-medium text-tinta underline">{CONTACTO.telefono}</a>.
