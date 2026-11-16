@@ -1,6 +1,7 @@
 import { EMPRESA, SITE } from './config'
 import { AREAS, CONTACTO } from './services/areas'
 import { FAQ_INICIO, faqServicio, type Faq } from './services/faq'
+import { ARTICULOS } from './content/articulos'
 
 /** Dominio principal (sin barra final). Se usa en canonical, og:url y sitemap. */
 export const SITE_URL = 'https://sinestesya.es'
@@ -13,6 +14,8 @@ export interface Seo {
   noindex?: boolean
   /** Preguntas frecuentes de la página (datos estructurados FAQPage). */
   faq?: Faq[]
+  /** Otros datos estructurados de la página (p. ej. Article). */
+  jsonld?: object
 }
 
 const MARCA = 'Sinestesya'
@@ -68,6 +71,32 @@ export const SEO: Record<string, Seo> = {
   '/aviso-legal': { title: `Aviso legal · ${MARCA}`, description: `Aviso legal y datos del titular del sitio web de ${MARCA}.` },
   '/privacidad': { title: `Política de privacidad · ${MARCA}`, description: `Cómo trata ${MARCA} tus datos personales y de salud, y cómo ejercer tus derechos.` },
   '/cookies': { title: `Política de cookies · ${MARCA}`, description: `Información sobre el uso de cookies en el sitio web de ${MARCA}.` },
+}
+
+SEO['/blog'] = {
+  title: `Blog de salud para familias · ${MARCA}, ${LUGAR}`,
+  description: `Guías del equipo de ${MARCA} sobre psicología, logopedia, fisioterapia y nutrición para niños y adultos.`,
+}
+for (const a of ARTICULOS) {
+  const ruta = `/blog/${a.slug}`
+  SEO[ruta] = {
+    title: `${a.titulo} · ${MARCA}`,
+    description: a.descripcion,
+    noindex: !a.revisado,
+    faq: a.faq,
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: a.titulo,
+      description: a.descripcion,
+      datePublished: a.fecha,
+      inLanguage: 'es-ES',
+      image: OG_IMAGE,
+      mainEntityOfPage: `${SITE_URL}${ruta}`,
+      author: { '@type': 'Organization', name: MARCA, url: `${SITE_URL}/` },
+      publisher: { '@id': `${SITE_URL}/#centro` },
+    },
+  }
 }
 
 SEO['/'].faq = FAQ_INICIO
@@ -151,6 +180,7 @@ export function headHtml(seo: Seo, path: string | null) {
     `<meta name="twitter:card" content="summary_large_image" />`,
     ldScript(CENTRO_JSONLD),
     seo.faq?.length ? ldScript(faqJsonLd(seo.faq), 'faq-jsonld') : '',
+    seo.jsonld ? ldScript(seo.jsonld, 'page-jsonld') : '',
   ].filter(Boolean).join('\n  ')
 }
 
@@ -175,8 +205,16 @@ export function aplicarSeo(path: string) {
     if (!link) { link = document.createElement('link'); link.rel = 'canonical'; document.head.appendChild(link) }
     link.href = urlCanonica(path)
   } else link?.remove()
-  // Preguntas frecuentes: sustituye o quita el bloque de la página anterior
+  // Datos estructurados propios de la página: sustituye o quita los de la página anterior
   document.getElementById('faq-jsonld')?.remove()
+  document.getElementById('page-jsonld')?.remove()
+  if (seo.jsonld) {
+    const el = document.createElement('script')
+    el.type = 'application/ld+json'
+    el.id = 'page-jsonld'
+    el.textContent = JSON.stringify(seo.jsonld)
+    document.head.appendChild(el)
+  }
   if (seo.faq?.length) {
     const el = document.createElement('script')
     el.type = 'application/ld+json'

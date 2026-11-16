@@ -6,6 +6,7 @@ import { useWhatsApp } from '../hooks/useWhatsApp'
 import { getTarifas } from '../services/tarifas'
 import FaqList from '../components/Faq'
 import { faqServicio } from '../services/faq'
+import { ARTICULOS } from '../content/articulos'
 import NotFound from './NotFound'
 
 export default function Servicio() {
@@ -110,6 +111,17 @@ export default function Servicio() {
           )}
           <p className="mb-0 mt-3 text-[.85rem] text-soft">También puedes llamarnos al {CONTACTO.telefono}.</p>
         </section>
+
+        {ARTICULOS.some((x) => x.area === area.slug) && (
+          <section className="mt-14">
+            <span className="lab">Te puede interesar</span>
+            <ul className="m-0 mt-3 list-none space-y-2 p-0">
+              {ARTICULOS.filter((x) => x.area === area.slug).map((x) => (
+                <li key={x.slug}><Link to={`/blog/${x.slug}`} className="font-serif text-[1.5rem]">{x.titulo}</Link></li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section className="mt-14">
           <span className="lab">También en Sinestesya</span>

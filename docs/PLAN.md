@@ -58,9 +58,10 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 |---|---|---|---|
 | 5.1 | A | Página Equipo | ⏸ datos del personal |
 | 5.2 | B | Preguntas frecuentes en inicio y servicios + FAQPage (`src/services/faq.ts`) | ✅ revisar con el equipo |
-| 5.3 | B | Artículo «¿Cuándo llevar a mi hijo al logopeda?» | ⬜ |
+| 5.3 | B | Artículo «¿Cuándo llevar a mi hijo al logopeda?» (`/blog`) | ✅ noindex hasta revisión de la logopeda |
 
 ## Historial
+- **Paso 9** — 5.3: blog en `/blog` y primer artículo. Oculto a Google hasta poner `revisado: true` en `src/content/articulos.ts`.
 - **Paso 1** — 1.1, 1.4 y 1.5 hechos.
 - **Paso 2** — 1.3, 1.6 y 1.7 hechos; 1.2 a falta de domicilio social y CIF.
 - **Paso 3** — 2.1, 2.2 y 2.3 hechos. En móvil la cabecera deja de ser fija (la barra inferior cubre el contacto).
