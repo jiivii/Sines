@@ -38,7 +38,7 @@ export const AREAS: Area[] = [
     sub: 'Movimiento y funcionalidad',
     intro: 'Recuperamos el movimiento y cuidamos la funcionalidad del cuerpo.',
     claim: 'Moverte mejor, con menos dolor.',
-    adultos: ['Dolor de espalda y cervical', 'Lesiones musculares y articulares', 'Rehabilitación postquirúrgica y deportiva', 'Fisioterapia neurológica', 'Movilidad y prevención de caídas', 'Suelo pelvico'],
+    adultos: ['Dolor de espalda y cervical', 'Lesiones musculares y articulares', 'Rehabilitación postquirúrgica y deportiva', 'Fisioterapia neurológica', 'Movilidad y prevención de caídas', 'Suelo pélvico'],
     ninos: ['Fisioterapia pediátrica y desarrollo motor', 'Alteraciones posturales', 'Atención temprana', 'Lesiones deportivas', 'Rehabilitación neurológica infantil', 'Problemas respiratorios'],
     pasos: [
       { titulo: 'Valoración del movimiento', descripcion: 'Exploramos tu dolor, tu postura y cómo te mueves.' },
