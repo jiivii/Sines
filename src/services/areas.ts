@@ -6,8 +6,8 @@ export const AREAS: Area[] = [
     sub: 'Bienestar emocional',
     intro: 'Acompañamos las emociones, la conducta y el desarrollo personal.',
     claim: 'Un espacio para entenderte con calma.',
-    adultos: ['Ansiedad, estrés y depresión', 'Duelo y procesos vitales', 'Autoestima y gestión emocional', 'Transtornos de la conducta alimentaria(TCA)', 'Adicciones', 'Problemas de pareja'],
-    ninos: ['Dificultades emocionales y de conducta', 'Ansiedad y miedos', 'Dificultades de aprendizaje', 'Abuso de pantallas', 'TDAH y TEA', 'Trastornos de conducta alimentaria'],
+    adultos: ['Ansiedad, estrés y depresión', 'Duelo y procesos vitales', 'Autoestima y gestión emocional', 'Trastornos de la conducta alimentaria (TCA)', 'Problemas de pareja'],
+    ninos: ['Dificultades emocionales y de conducta', 'Ansiedad y miedos', 'Trastornos del aprendizaje', 'TDAH y TEA', 'Trastornos de la conducta alimentaria (TCA)', 'Abuso de pantallas'],
     pasos: [
       { titulo: 'Primera conversación', descripcion: 'Nos cuentas qué te preocupa y cómo te afecta en tu día a día.' },
       { titulo: 'Valoración emocional', descripcion: 'Exploramos juntos tu historia, tus recursos y tus objetivos.' },
@@ -55,7 +55,7 @@ export const AREAS: Area[] = [
     intro: 'Diseñamos una alimentación a tu medida para cada etapa.',
     claim: 'Comer bien, sin obsesiones ni prohibiciones.',
     adultos: ['Control de peso', 'Educación nutricional', 'Nutrición deportiva', 'Patologías: colesterol, diabetes e hipertensión', 'Embarazo y lactancia', 'Alimentación en la tercera edad', 'Alergias e intolerancias alimentarias'],
-    ninos: ['Alimentación infantil y adolescente', 'Selectividad alimentaria', 'Hábitos saludables en familia'],
+    ninos: ['Alimentación infantil y adolescente', 'Selectividad alimentaria', 'Hábitos saludables en familia', 'Patologías digestivas', 'Nutrición deportiva', 'Trastornos de la conducta alimentaria (TCA)'],
     pasos: [
       { titulo: 'Conocemos tus hábitos', descripcion: 'Hablamos de tu alimentación, tu rutina y tus objetivos.' },
       { titulo: 'Plan a tu medida', descripcion: 'Diseñamos una pauta realista, adaptada a tus gustos y tu salud.' },
