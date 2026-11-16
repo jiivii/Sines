@@ -3,14 +3,14 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { AREAS, CONTACTO, getArea, isAreaSlug } from '../services/areas'
 import { crearReserva, horasOcupadas } from '../services/bookings'
 import { fmtFecha, HORAS, proximosDias } from '../utils/dates'
-import { useTitle } from '../hooks/useTitle'
-import { SITE, WHATSAPP } from '../config'
+import { EMPRESA, SITE } from '../config'
+import { useWhatsApp } from '../hooks/useWhatsApp'
 import type { AreaSlug, Paciente } from '../types'
 
 const empty = { nombre: '', telefono: '', email: '', notas: '', edad: '', web: '', ok: false }
 
 export default function Reservar() {
-  useTitle('Reserva tu cita')
+  const wa = useWhatsApp()
   const [sp] = useSearchParams()
   const q = sp.get('area')
   const [step, setStep] = useState(1)
@@ -73,7 +73,7 @@ export default function Reservar() {
         <p className="mx-auto text-soft">Estamos actualizando el sitio y, de momento, no recogemos citas online. Para pedir información o resolver cualquier duda, llámanos o escríbenos por WhatsApp.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="btn">Llamar al {CONTACTO.telefono}</a>
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn btn-alt">WhatsApp</a>
+          <a href={wa} target="_blank" rel="noreferrer" className="btn btn-alt">WhatsApp</a>
         </div>
         <p className="mb-0 mt-6 text-[.85rem] text-soft">{CONTACTO.direccion.split('\n')[0]} · Atención {CONTACTO.horario}</p>
         <Link to="/" className="mt-6 inline-block underline">Volver al inicio</Link>
@@ -85,7 +85,7 @@ export default function Reservar() {
     <div className="wrap mt-14"><div className="max-w-[720px] rounded-[28px] bg-amarillo/25 p-8">
       <span className="lab">Solicitud recibida</span>
       <h1 className="my-3 text-[clamp(2rem,5vw,3rem)]">Gracias, {d.nombre.split(' ')[0]}.</h1>
-      <p>Hemos recibido tu solicitud. El equipo te confirmará el hueco por teléfono o email en el mismo día laborable.</p>
+      <p>Hemos recibido tu solicitud. El equipo te confirmará el hueco por teléfono o email en un plazo de 48 horas laborables.</p>
       {resumen}
       <Link to="/" className="btn mt-6">Volver al inicio</Link>
     </div></div>
@@ -120,7 +120,8 @@ export default function Reservar() {
             <label htmlFor="notas" className="mt-3.5 block text-[.85rem] font-medium">¿Quieres contarnos algo? (opcional)</label>
             <textarea id="notas" rows={3} maxLength={500} className="field" value={d.notas} onChange={set('notas')} />
             <input name="web" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px]" value={d.web} onChange={set('web')} />
-            <label className="mt-4 flex items-start gap-2.5 text-[.88rem] font-light"><input type="checkbox" className="mt-1.5" checked={d.ok} onChange={set('ok')} /><span>Acepto el tratamiento de mis datos para gestionar la cita, según la política de privacidad del centro.</span></label>
+            <label className="mt-4 flex items-start gap-2.5 text-[.88rem] font-light"><input type="checkbox" className="mt-1.5" checked={d.ok} onChange={set('ok')} /><span>He leído la <Link to="/privacidad" target="_blank" className="underline">política de privacidad</Link> y acepto el tratamiento de mis datos para gestionar la cita.</span></label>
+            <p className="mb-0 mt-2 text-[.78rem] leading-snug text-soft">Responsable: {EMPRESA.razonSocial}. Finalidad: gestionar tu cita. Base legal: tu consentimiento y tu solicitud. No cedemos tus datos salvo obligación legal. Puedes ejercer tus derechos en {EMPRESA.email}. Por favor, no incluyas en las notas detalles de salud que no sean necesarios.</p>
             <p role="alert" className="mt-2 min-h-[1.4em] text-[.88rem] text-[#A5502F]">{err}</p>
             <button className="btn" disabled={sending}>{sending ? 'Enviando…' : 'Reservar cita'}</button></form>}
 
