@@ -23,7 +23,7 @@ export const AREAS: Area[] = [
     intro: 'Mejoramos la comunicación, el habla, la voz y la deglución.',
     claim: 'Comunicarse es poder contar quién eres.',
     adultos: ['Voz y disfonías', 'Tartamudez', 'Trastornos del habla y del lenguaje', 'Disfagia y rehabilitación tras daño cerebral', 'Afasia y rehabilitación neurológica'],
-    ninos: ['Retraso y trastornos del lenguaje', 'Dificultades del habla', 'Lectoescritura y dislexia', 'Deglución y alimentación', 'TEA'],
+    ninos: ['Retraso y trastornos del lenguaje', 'Dificultades del habla', 'Lectoescritura y dislexia', 'Deglución y alimentación'],
     pasos: [
       { titulo: 'Escucha y observación', descripcion: 'Conocemos cómo se comunica la persona y qué necesita mejorar.' },
       { titulo: 'Valoración del lenguaje', descripcion: 'Analizamos habla, voz, lenguaje o deglución según cada caso.' },
