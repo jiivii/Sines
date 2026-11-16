@@ -8,6 +8,12 @@ import { aplicarSeo } from '../seo'
 
 const dot: Record<string, string> = { psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja' }
 
+/** Color de la franja «Web en construcción» según la página (por defecto, ocre). */
+const FRANJA: Record<string, string> = {
+  psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja',
+  'atencion-temprana': 'bg-verde', online: 'bg-azul', programas: 'bg-naranja', tarifas: 'bg-ocre',
+}
+
 const EXTRAS = [
   { to: '/atencion-temprana', label: 'Atención temprana' },
   { to: '/online', label: 'Atención online' },
@@ -69,7 +75,7 @@ export default function MainLayout() {
       </header>
 
       {!SITE.reservasAbiertas && (
-        <div role="status" className="bg-ocre text-tinta">
+        <div role="status" className={`${FRANJA[pathname.split('/')[1]] ?? 'bg-ocre'} border-b border-tinta/10 text-tinta`}>
           <p className="wrap mb-0 py-2 text-center text-[.82rem] leading-snug text-tinta">
             <strong className="font-medium">Web en construcción.</strong> Estamos actualizando el sitio y, de momento, no recogemos citas online. Para cualquier consulta, llámanos o escríbenos al{' '}
             <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="whitespace-nowrap font-medium text-tinta underline">{CONTACTO.telefono}</a>.
