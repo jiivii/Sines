@@ -1,12 +1,13 @@
 import { Link, useParams } from 'react-router-dom'
 import AreaCard from '../components/AreaCard'
-import { AREAS, CONTACTO, getArea } from '../services/areas'
+import { AREAS, CONTACTO, ZONA, getArea } from '../services/areas'
 import { SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
 import { getTarifas } from '../services/tarifas'
 import FaqList from '../components/Faq'
 import { faqServicio } from '../services/faq'
 import { ARTICULOS } from '../content/articulos'
+import { PROBLEMAS } from '../content/problemas'
 import NotFound from './NotFound'
 
 export default function Servicio() {
@@ -37,7 +38,7 @@ export default function Servicio() {
               <a href={wa} target="_blank" rel="noreferrer" className="btn mt-3">Contactar por WhatsApp</a>
             )}
             {primera && <p className="mb-0 mt-4 text-[.95rem]"><span className="font-medium">{primera.servicio}:</span> {primera.precio} · {primera.detalle}</p>}
-            <p className="mb-0 mt-3 text-[.85rem] opacity-80">Atención presencial y online. Las áreas concretas se definen en la primera valoración.</p>
+            <p className="mb-0 mt-3 text-[.85rem]">Atención presencial en La Puebla de Alfindén, cerca de {ZONA.municipios.slice(0, 2).join(' y ')}, y online. Las áreas concretas se definen en la primera valoración.</p>
           </div>
           <svg viewBox="0 0 100 100" aria-hidden="true" className="max-w-[150px] justify-self-center opacity-55 md:max-w-[300px]"><path fill="#F8F3ED" d={area.blob} /></svg>
         </div>
@@ -65,6 +66,21 @@ export default function Servicio() {
             ))}
           </div>
         </section>
+
+        {PROBLEMAS.some((x) => x.area === area.slug || x.otras.includes(area.slug)) && (
+          <section className="mt-20">
+            <span className="lab">En concreto</span>
+            <h2 className="mt-2">Lo que tratamos en {area.nombre.toLowerCase()}</h2>
+            <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+              {PROBLEMAS.filter((x) => x.area === area.slug || x.otras.includes(area.slug)).map((x) => (
+                <Link key={x.slug} to={`/${x.slug}`} className={`${area.soft} flex flex-col rounded-[24px] p-6 no-underline transition-transform hover:-translate-y-1`}>
+                  <span className="font-serif text-[1.45rem] leading-snug">{x.titulo}</span>
+                  <span className="mt-auto pt-3 text-[.9rem] font-medium">Saber más →</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {tarifas && (
           <section id="precios" className="mt-20">

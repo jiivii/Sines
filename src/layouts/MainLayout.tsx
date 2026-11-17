@@ -1,18 +1,23 @@
 import { useEffect } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import Logo from '../components/Logo'
-import { AREAS, CONTACTO } from '../services/areas'
+import { AREAS, CONTACTO, zonaTexto } from '../services/areas'
 import { EMPRESA, SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
 import { aplicarSeo } from '../seo'
 import { getArticulo } from '../content/articulos'
+import { getProblema } from '../content/problemas'
 
 const dot: Record<string, string> = { psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja' }
 
-/** Color de la franja «Web en construcción» según la página (por defecto, ocre). */
+/**
+ * Franja «Web en construcción»: tono muy claro del color de cada página
+ * (35 % del color de marca sobre el crema de fondo; sólido para que se lea igual en modo oscuro).
+ */
+const CLARO = { amarillo: 'bg-[#EDDFC1]', azul: 'bg-[#D8DEDF]', verde: 'bg-[#D3D9CD]', naranja: 'bg-[#EFD7CE]', ocre: 'bg-[#EEE1CA]' }
 const FRANJA: Record<string, string> = {
-  psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja',
-  'atencion-temprana': 'bg-verde', online: 'bg-azul', programas: 'bg-naranja', tarifas: 'bg-ocre',
+  psicologia: CLARO.amarillo, logopedia: CLARO.azul, fisioterapia: CLARO.verde, nutricion: CLARO.naranja,
+  'atencion-temprana': CLARO.verde, online: CLARO.azul, programas: CLARO.naranja, tarifas: CLARO.ocre,
 }
 
 const EXTRAS = [
@@ -33,7 +38,7 @@ export default function MainLayout() {
     aplicarSeo(pathname)
   }, [pathname, hash])
   const [, seccion, sub] = pathname.split('/')
-  const franja = FRANJA[seccion === 'blog' ? getArticulo(sub)?.area ?? '' : seccion] ?? 'bg-ocre'
+  const franja = FRANJA[seccion === 'blog' ? getArticulo(sub)?.area ?? '' : getProblema(seccion)?.area ?? seccion] ?? CLARO.ocre
   return (
     <>
       <header className="z-20 border-b border-line bg-bg md:sticky md:top-0">
@@ -50,7 +55,9 @@ export default function MainLayout() {
           ) : (
             <a href={wa} target="_blank" rel="noreferrer" className="btn order-2 ml-auto !px-5 !py-2 xl:order-3 xl:ml-0">Pedir cita</a>
           )}
-          <nav aria-label="Principal" className="order-3 -mx-5 flex w-[calc(100%+2.5rem)] items-center gap-1.5 overflow-x-auto px-5 xl:order-2 xl:mx-0 xl:ml-auto xl:w-auto xl:px-0">
+          {/* En móvil el menú se desliza: el degradado de la derecha indica que hay más opciones */}
+          <div className="relative order-3 -mx-5 w-[calc(100%+2.5rem)] after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:w-12 after:bg-[linear-gradient(to_left,var(--bg),transparent)] after:content-[''] xl:order-2 xl:mx-0 xl:ml-auto xl:w-auto xl:after:hidden">
+          <nav aria-label="Principal" className="flex items-center gap-1.5 overflow-x-auto px-5 pr-12 [scrollbar-width:none] xl:px-0 xl:pr-0 [&::-webkit-scrollbar]:hidden">
             {AREAS.map((a) => (
               <NavLink key={a.slug} to={`/${a.slug}`}
                 className={({ isActive }) => `flex items-center gap-2 whitespace-nowrap rounded-full px-3.5 py-2 text-[.92rem] font-normal no-underline hover:bg-panel ${isActive ? 'bg-panel' : ''}`}>
@@ -62,6 +69,7 @@ export default function MainLayout() {
               <i className="h-2.5 w-2.5 rounded-full bg-soft" />Quiénes somos
             </NavLink>
           </nav>
+          </div>
         </div>
         <div className="border-t border-line/70">
           <div className="wrap flex items-center gap-x-4 gap-y-1 overflow-x-auto py-1.5 text-[.82rem] text-soft">
@@ -95,6 +103,7 @@ export default function MainLayout() {
           <div>
             <p className="lab text-lino">Sinestesya · Salud integral</p>
             <p className="mt-2 font-serif text-2xl italic text-lino">Cuidado integral, en cada etapa de la vida.</p>
+            <p className="text-[.85rem]">Centro sanitario en La Puebla de Alfindén para {zonaTexto()} y el este de Zaragoza.</p>
             <a href={wa} target="_blank" rel="noreferrer" className="mt-3 inline-block text-[#D3D9CF] underline">Escríbenos por WhatsApp</a>
           </div>
           <div>
@@ -119,6 +128,7 @@ export default function MainLayout() {
             <p className="mb-1"><a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="no-underline hover:text-lino">{CONTACTO.telefono}</a></p>
             <p className="mb-1"><a href={`mailto:${CONTACTO.email}`} className="no-underline hover:text-lino">{CONTACTO.email}</a></p>
             <p className="mb-1 whitespace-pre-line">{CONTACTO.direccion}</p>
+            <p className="mb-1"><a href={CONTACTO.mapa} target="_blank" rel="noreferrer" className="underline hover:text-lino">Cómo llegar</a></p>
             <p className="mb-1 first-letter:uppercase">{CONTACTO.horario}</p>
             <p className="mb-0">{CONTACTO.web}</p>
           </div>
@@ -136,12 +146,12 @@ export default function MainLayout() {
       </footer>
 
       {/* Barra fija de contacto en móvil */}
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-bg px-3 pt-2 md:hidden" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + .5rem)' }}>
+      <nav aria-label="Contacto rápido" className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-bg px-3 pt-2 md:hidden" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + .5rem)' }}>
         <div className="mx-auto grid max-w-[480px] grid-cols-2 gap-2">
           <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="btn btn-alt !px-3 !py-2.5 text-center">Llamar</a>
           <a href={wa} target="_blank" rel="noreferrer" className="btn !px-3 !py-2.5 text-center">WhatsApp</a>
         </div>
-      </div>
+      </nav>
     </>
   )
 }

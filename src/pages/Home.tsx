@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import AreaCard from '../components/AreaCard'
 import Wave from '../components/Wave'
-import { AREAS, CONTACTO } from '../services/areas'
+import { AREAS, CONTACTO, ZONA, listaY, zonaTexto } from '../services/areas'
 import { SITE, whatsappLink } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
 import FaqList from '../components/Faq'
@@ -61,7 +61,7 @@ export default function Home() {
             </Link>
           ))}
           <a href={ORIENTAME} target="_blank" rel="noreferrer" className="flex flex-col rounded-[26px] bg-hoja p-6 text-lino no-underline transition-transform hover:-translate-y-1">
-            <span className="text-[.82rem] text-[#D3D9CF]">Si…</span>
+            <span className="text-[.82rem] text-lino">Si…</span>
             <span className="mt-1 font-serif text-[1.4rem] leading-snug">No lo tengo claro</span>
             <span className="mt-auto pt-4 text-[.92rem] font-medium">Escríbenos por WhatsApp y te orientamos →</span>
           </a>
@@ -101,40 +101,27 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-20">
-        <h2>Cómo empezamos</h2>
-        <div className="steps">
-          {[['Escríbenos o llámanos', 'Al 602 533 313, también por WhatsApp.'], ['Cuéntanos tu caso', 'Te orientamos hacia el profesional o la valoración conjunta que mejor encaje.'], ['Primera cita', 'En La Puebla de Alfindén o a distancia, como prefieras.']].map(([t, d], i) => (
-            <div key={t} className="border-t-2 border-salvia pt-3.5"><span className="block font-serif text-[2.6rem] font-light italic leading-none">{i + 1}</span><h3>{t}</h3><p>{d}</p></div>
-          ))}
-        </div>
-      </section>
-
       <FaqList items={FAQ_INICIO} className="mt-20" />
 
-      <section className="mt-20 rounded-[32px] bg-bosque p-[clamp(28px,5vw,56px)] text-[#F3EEE5]">
+      <section id="contacto" className="mt-20 rounded-[32px] bg-bosque p-[clamp(28px,5vw,56px)] text-[#F3EEE5]">
         <div className="grid gap-8 md:grid-cols-[1.3fr_1fr] md:items-center">
           <div>
             <span className="lab text-ocre">Contacto</span>
             <h2 className="mt-2 text-lino">Te esperamos en La Puebla de Alfindén</h2>
-            <p className="text-[#D3D9CF]">Calle Fuertes, 1 · 50171 La Puebla de Alfindén (Zaragoza)</p>
-            <p className="mb-0 text-[#D3D9CF]">Atención {CONTACTO.horario} · Presencial y online.</p>
+            <p className="mb-2 text-[#D3D9CF]">Elige cómo empezar: el resto del equipo se une cuando lo necesites.</p>
+            <p className="mb-2 text-[.92rem] text-[#D3D9CF]">Cerca de ti: atendemos a La Puebla de Alfindén, {zonaTexto()}, y a los barrios de {listaY(ZONA.zaragoza)} (Zaragoza).</p>
+            <ul className="m-0 mt-4 list-none space-y-1.5 p-0 text-[#D3D9CF]">
+              <li>{CONTACTO.direccion.replace('\n', ' · ')} · <a href={CONTACTO.mapa} target="_blank" rel="noreferrer" className="text-lino underline">Cómo llegar</a></li>
+              <li className="first-letter:uppercase">{CONTACTO.horario} · presencial y online</li>
+              <li><a href={`mailto:${CONTACTO.email}`} className="text-lino underline">{CONTACTO.email}</a></li>
+            </ul>
           </div>
           <div className="flex flex-col items-start gap-3 md:items-end">
             <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="font-serif text-3xl text-lino no-underline">{CONTACTO.telefono}</a>
-            <a href={wa} target="_blank" rel="noreferrer" className="btn !bg-lino !text-bosque">Escríbenos por WhatsApp</a>
-            <span className="text-[.9rem] text-[#AEB9B0]">{CONTACTO.web}</span>
+            {SITE.reservasAbiertas && <Link to="/reservar" className="btn !bg-lino !text-bosque">Reservar cita</Link>}
+            <a href={wa} target="_blank" rel="noreferrer" className={SITE.reservasAbiertas ? 'btn btn-alt' : 'btn !bg-lino !text-bosque'}>Escríbenos por WhatsApp</a>
           </div>
         </div>
-      </section>
-
-      <section className="mt-12 rounded-[28px] bg-panel p-[clamp(34px,6vw,64px)] text-center">
-        <p className="mx-auto mb-5 max-w-[30ch] font-serif text-[clamp(1.5rem,3vw,2.2rem)] font-light italic leading-tight">Elige cómo empezar. El resto del equipo se une cuando lo necesites.</p>
-        {SITE.reservasAbiertas ? (
-          <Link to="/reservar" className="btn">Reservar cita</Link>
-        ) : (
-          <a href={wa} target="_blank" rel="noreferrer" className="btn">Hablar con el equipo</a>
-        )}
       </section>
     </div>
   )

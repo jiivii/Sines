@@ -130,7 +130,7 @@ export function Cookies() {
 
       <h2>2. Cookies que usa este sitio</h2>
       <p>Este sitio <strong className="font-medium">no instala cookies propias ni de terceros</strong> con fines analíticos, publicitarios o de seguimiento. Por eso no te mostramos un aviso para aceptarlas.</p>
-      <p>Para mostrar las tipografías, el sitio carga fuentes desde Google Fonts. Al hacerlo, tu navegador se conecta a servidores de Google, que recibe tu dirección IP. Google Fonts no instala cookies.</p>
+      <p>Las tipografías y el resto de recursos se sirven desde nuestro propio dominio: al navegar por el sitio tu navegador no se conecta a servicios de terceros.</p>
       <p>Si pulsas un enlace a WhatsApp u otro servicio externo, ese servicio puede usar sus propias cookies según su política.</p>
 
       <h2>3. Cambios</h2>

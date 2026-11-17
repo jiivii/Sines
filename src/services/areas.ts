@@ -68,10 +68,25 @@ export const AREAS: Area[] = [
 ]
 export const getArea = (slug?: string): Area | undefined => AREAS.find((a) => a.slug === slug)
 export const isAreaSlug = (s: unknown): s is AreaSlug => AREAS.some((a) => a.slug === s)
+/**
+ * Zona de atención presencial: municipios y barrios cercanos a La Puebla de Alfindén.
+ * Se usa en la portada, las especialidades, las preguntas frecuentes y los datos para Google.
+ */
+export const ZONA = {
+  municipios: ['Alfajarín', 'Nuez de Ebro', 'Osera de Ebro', 'Villamayor de Gállego', 'Villafranca de Ebro'],
+  zaragoza: ['Santa Isabel', 'Movera', 'Montañana'],
+}
+/** ['a', 'b', 'c'] → «a, b y c» */
+export const listaY = (x: string[]) => (x.length > 1 ? `${x.slice(0, -1).join(', ')} y ${x[x.length - 1]}` : x.join(''))
+/** «Alfajarín, Nuez de Ebro, … y Villafranca de Ebro» */
+export const zonaTexto = () => listaY(ZONA.municipios)
+
 export const CONTACTO = {
   telefono: '602 533 313',
   email: 'hola@sinestesya.es',
-  direccion: 'Calle Fuertes, 1\n50171 La Puebla de Alfindén (Zaragoza)',
-  web: 'www.sinestesya.es',
+  direccion: 'Calle Fuertes, 1 Bis\n50171 La Puebla de Alfindén (Zaragoza)',
+  web: 'sinestesya.es',
+  /** Enlace a Google Maps (solo enlace: no se incrusta el mapa para no añadir cookies). */
+  mapa: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Calle Fuertes 1 Bis, 50171 La Puebla de Alfindén, Zaragoza'),
   horario: 'de lunes a viernes, de 9\u00a0h a 21\u00a0h'
 }

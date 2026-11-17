@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom'
 import { whatsappLink } from '../config'
 import { getArea } from '../services/areas'
+import { getProblema } from '../content/problemas'
 
 /** Mensajes predefinidos por página (sin barra inicial). */
 const MENSAJES: Record<string, string> = {
@@ -14,6 +15,11 @@ const GENERAL = 'Hola, quería información sobre Sinestesya.'
 export function useWhatsApp() {
   const slug = useLocation().pathname.split('/')[1] ?? ''
   const area = getArea(slug)
-  const texto = area ? `Hola, quería información sobre ${area.nombre.toLowerCase()} en Sinestesya.` : MENSAJES[slug] ?? GENERAL
+  const problema = getProblema(slug)
+  const texto = area
+    ? `Hola, quería información sobre ${area.nombre.toLowerCase()} en Sinestesya.`
+    : problema
+      ? `Hola, quería información sobre ${problema.nombre} en Sinestesya.`
+      : MENSAJES[slug] ?? GENERAL
   return whatsappLink(texto)
 }

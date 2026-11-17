@@ -11,6 +11,8 @@ import Programas from './pages/Programas'
 import Tarifas from './pages/Tarifas'
 import { AvisoLegal, Cookies, Privacidad } from './pages/Legal'
 import { ArticuloPage, BlogIndex } from './pages/Blog'
+import ProblemaPage from './pages/Problema'
+import { PROBLEMAS } from './content/problemas'
 
 export default function App() {
   return (
@@ -28,6 +30,7 @@ export default function App() {
         <Route path="cookies" element={<Cookies />} />
         <Route path="blog" element={<BlogIndex />} />
         <Route path="blog/:slug" element={<ArticuloPage />} />
+        {PROBLEMAS.map((p) => <Route key={p.slug} path={p.slug} element={<ProblemaPage />} />)}
         <Route path=":slug" element={<Servicio />} />
         <Route path="*" element={<NotFound />} />
       </Route>

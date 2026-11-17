@@ -9,6 +9,8 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 - Pendientes: nº de registro mercantil y de autorización sanitaria.
 - Precios: según `TARIFARIO_2027.pdf` (coincide con `src/services/tarifas.ts`). Sustituye al «70 € para todo».
 - Horario: de lunes a viernes, de 9 h a 21 h.
+- Dirección del centro: Calle Fuertes, 1 Bis, 50171 La Puebla de Alfindén. Apertura: febrero de 2027.
+- Sin redes sociales ni ficha de Google por ahora (recomendado crear la ficha de Google Business antes de abrir).
 - Reservas online: cerradas. Botón de cabecera «Pedir cita» → WhatsApp.
 - Hosting en producción: **Vercel**.
 - Mutuas / aseguradoras: **no**.
@@ -61,6 +63,11 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 | 5.3 | B | Artículo «¿Cuándo llevar a mi hijo al logopeda?» (`/blog`) | ✅ noindex hasta revisión de la logopeda |
 
 ## Historial
+- **SEO · páginas por problema (C)** — `/suelo-pelvico`, `/tdah-y-tea`, `/dislexia`, `/terapia-de-pareja` y `/tca` (`src/content/problemas.ts`). Ocultas a Google (noindex) hasta que cada profesional las revise y se ponga `revisado: true`.
+- **SEO local · zona de atención** — `ZONA` en `src/services/areas.ts` (Alfajarín, Nuez de Ebro, Osera de Ebro, Villamayor de Gállego y Villafranca de Ebro; Santa Isabel, Movera y Montañana en Zaragoza): portada, especialidades, pie, FAQ y `areaServed`.
+- **Revisión general (17 nov)** — Dirección «Calle Fuertes, 1 Bis»; tarifas 2027 vigentes desde febrero de 2027 (apertura). Sin redes sociales ni ficha de Google.
+  Contraste corregido (0 incidencias de accesibilidad en 15 páginas), descripciones ≤ 160 caracteres, fuentes propias (sin Google Fonts), logo WebP, CSP y HSTS,
+  eliminada la versión de Cloudflare y dependencias sin uso, Quiénes somos sin repeticiones, bloque final de portada unificado con «Cómo llegar», indicador de deslizamiento en el menú móvil.
 - **Paso 9** — 5.3: blog en `/blog` y primer artículo. Oculto a Google hasta poner `revisado: true` en `src/content/articulos.ts`.
 - **Paso 1** — 1.1, 1.4 y 1.5 hechos.
 - **Paso 2** — 1.3, 1.6 y 1.7 hechos; 1.2 a falta de domicilio social y CIF.
@@ -78,8 +85,7 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 - Enviar `https://sinestesya.es/sitemap.xml` en Google Search Console.
 
 ## Pendiente de confirmar
-- ¿La dirección del centro es también C/ Fuertes, 1 **Bis**? (la web muestra «Calle Fuertes, 1»)
-- Vigencia del tarifario: la web dice «noviembre de 2026» y el PDF se llama TARIFARIO_2027.
+- Seguridad (incidente NODE_OPTIONS en Vercel): confirmar que se borró la variable y se rotaron los secretos de Supabase, WEB1_API_SECRET y Resend.
 
 ## Borradores 4.1 (pendientes de revisión del equipo sanitario)
 **Psicología** — Es para ti si… llevas tiempo con ansiedad, estrés o tristeza que no se van · estás pasando por un duelo, una separación o un cambio importante · tu hijo/a tiene miedos, rabietas o problemas de conducta que os desbordan.
@@ -93,6 +99,13 @@ La primera sesión (60 min · 70 €): valoramos tu dolor y cómo te mueves, y e
 
 **Nutrición** — Es para ti si… quieres perder o ganar peso sin dietas imposibles · tienes colesterol, diabetes o hipertensión · estás embarazada, haces deporte o tu hijo/a come muy pocos alimentos.
 La primera sesión (60–75 min · 110 €): historia nutricional, mediciones y objetivos; sales con un plan personalizado. Trae análisis recientes si los tienes.
+
+## Revisión por el equipo sanitario (antes de indexar)
+- Fisioterapia: `/suelo-pelvico`
+- Psicología + logopedia: `/tdah-y-tea`, `/dislexia`
+- Psicología: `/terapia-de-pareja`
+- Psicología + nutrición: `/tca` (incluye aviso de urgencias, 112 y 024)
+- Logopedia: artículo `/blog/cuando-llevar-a-mi-hijo-al-logopeda`
 
 ## Para la asesoría
 - Revisar `/privacidad`, `/aviso-legal` y `/cookies` (textos en `src/pages/Legal.tsx`).

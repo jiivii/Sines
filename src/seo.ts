@@ -1,7 +1,8 @@
 import { EMPRESA, SITE } from './config'
-import { AREAS, CONTACTO } from './services/areas'
+import { AREAS, CONTACTO, ZONA } from './services/areas'
 import { FAQ_INICIO, faqServicio, type Faq } from './services/faq'
 import { ARTICULOS } from './content/articulos'
+import { PROBLEMAS } from './content/problemas'
 
 /** Dominio principal (sin barra final). Se usa en canonical, og:url y sitemap. */
 export const SITE_URL = 'https://sinestesya.es'
@@ -25,11 +26,11 @@ const LUGAR = 'La Puebla de Alfindén'
 export const SEO: Record<string, Seo> = {
   '/': {
     title: `${MARCA} · Psicología, logopedia, fisioterapia y nutrición en ${LUGAR}`,
-    description: `Centro sanitario multidisciplinar en ${LUGAR} (Zaragoza): psicología, logopedia, fisioterapia y nutrición para niños, adultos y mayores. Tel. y WhatsApp ${CONTACTO.telefono}.`,
+    description: `Psicología, logopedia, fisioterapia y nutrición en ${LUGAR}, junto a Alfajarín y Nuez de Ebro. Niños, adultos y mayores. Tel. ${CONTACTO.telefono}.`,
   },
   '/psicologia': {
     title: `Psicología infantil y de adultos en ${LUGAR} · ${MARCA}`,
-    description: `Psicología en ${LUGAR}: ansiedad, estrés, duelo y autoestima en adultos; dificultades emocionales, de conducta y de aprendizaje en niños y adolescentes. Presencial y online.`,
+    description: `Psicología en ${LUGAR}: ansiedad, duelo, TCA y pareja en adultos; conducta, aprendizaje, TDAH y TEA en niños y adolescentes. Presencial y online.`,
   },
   '/logopedia': {
     title: `Logopedia infantil y de adultos en ${LUGAR} · ${MARCA}`,
@@ -41,11 +42,11 @@ export const SEO: Record<string, Seo> = {
   },
   '/nutricion': {
     title: `Nutricionista en ${LUGAR} · ${MARCA}`,
-    description: `Nutrición en ${LUGAR}: control de peso, nutrición deportiva, colesterol, diabetes e hipertensión, embarazo y alimentación infantil. Sin dietas imposibles.`,
+    description: `Nutrición en ${LUGAR}: control de peso, deporte, colesterol, diabetes, alergias, embarazo y alimentación infantil. Sin dietas imposibles.`,
   },
   '/atencion-temprana': {
     title: `Atención temprana (0–6 años) en ${LUGAR} · ${MARCA}`,
-    description: `Atención temprana en ${LUGAR}: psicología, logopedia y fisioterapia coordinadas para acompañar el desarrollo de tu hijo o hija de 0 a 6 años, con la familia dentro del plan.`,
+    description: `Atención temprana en ${LUGAR}: psicología, logopedia y fisioterapia coordinadas para el desarrollo de tu hijo de 0 a 6 años, con la familia.`,
   },
   '/online': {
     title: `Psicología, logopedia y nutrición online · ${MARCA}`,
@@ -53,7 +54,7 @@ export const SEO: Record<string, Seo> = {
   },
   '/programas': {
     title: `Talleres de salud para colegios y empresas en Zaragoza · ${MARCA}`,
-    description: `Charlas, talleres y programas de salud a medida para colegios y empresas de ${LUGAR} y Zaragoza: bienestar emocional, lenguaje, ergonomía y alimentación.`,
+    description: `Charlas y talleres de salud a medida para colegios y empresas de ${LUGAR} y Zaragoza: bienestar emocional, lenguaje, ergonomía y alimentación.`,
   },
   '/quienes-somos': {
     title: `Quiénes somos · Centro multidisciplinar en ${LUGAR} · ${MARCA}`,
@@ -61,7 +62,7 @@ export const SEO: Record<string, Seo> = {
   },
   '/tarifas': {
     title: `Tarifas · ${MARCA}, ${LUGAR}`,
-    description: `Precios y duración de las sesiones de psicología, logopedia, fisioterapia y nutrición en ${MARCA}, ${LUGAR}.`,
+    description: `Tarifas 2027 de ${MARCA}, ${LUGAR}: precios y duración de las sesiones y bonos de psicología, logopedia, fisioterapia y nutrición.`,
   },
   '/reservar': {
     title: `Pedir cita · ${MARCA}`,
@@ -94,6 +95,27 @@ for (const a of ARTICULOS) {
       image: OG_IMAGE,
       mainEntityOfPage: `${SITE_URL}${ruta}`,
       author: { '@type': 'Organization', name: MARCA, url: `${SITE_URL}/` },
+      publisher: { '@id': `${SITE_URL}/#centro` },
+    },
+  }
+}
+
+for (const p of PROBLEMAS) {
+  const ruta = `/${p.slug}`
+  SEO[ruta] = {
+    title: `${p.seoTitulo} · ${MARCA}`,
+    description: p.descripcion,
+    noindex: !p.revisado,
+    faq: p.faq,
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'MedicalWebPage',
+      name: p.titulo,
+      description: p.descripcion,
+      url: `${SITE_URL}${ruta}`,
+      inLanguage: 'es-ES',
+      about: { '@type': 'MedicalCondition', name: p.titulo },
+      audience: { '@type': 'PeopleAudience', geographicArea: { '@type': 'City', name: LUGAR } },
       publisher: { '@id': `${SITE_URL}/#centro` },
     },
   }
@@ -140,7 +162,7 @@ export const CENTRO_JSONLD = {
   email: CONTACTO.email,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Calle Fuertes, 1',
+    streetAddress: CONTACTO.direccion.split('\n')[0],
     postalCode: '50171',
     addressLocality: LUGAR,
     addressRegion: 'Zaragoza',
@@ -154,7 +176,11 @@ export const CENTRO_JSONLD = {
   }],
   medicalSpecialty: ['https://schema.org/SpeechPathology', 'https://schema.org/Physiotherapy', 'https://schema.org/DietNutrition'],
   availableService: ['Psicología', 'Logopedia', 'Fisioterapia', 'Nutrición', 'Atención temprana'].map((name) => ({ '@type': 'MedicalTherapy', name })),
-  areaServed: [LUGAR, 'Zaragoza'],
+  areaServed: [
+    ...[LUGAR, ...ZONA.municipios].map((name) => ({ '@type': 'City', name })),
+    ...ZONA.zaragoza.map((name) => ({ '@type': 'Place', name: `${name} (Zaragoza)` })),
+    { '@type': 'City', name: 'Zaragoza' },
+  ],
   priceRange: '35 €–110 €',
   taxID: EMPRESA.cif ?? undefined,
 }

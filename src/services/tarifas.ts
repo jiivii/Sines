@@ -2,7 +2,8 @@
  * Tarifario de servicios (fuente única: página /tarifas y páginas de cada servicio).
  * Actualiza aquí los precios cuando cambie el tarifario.
  */
-export const TARIFARIO_VIGENCIA = 'noviembre de 2026'
+export const TARIFARIO_ANIO = '2027'
+export const TARIFARIO_VIGENCIA = 'febrero de 2027'
 
 export type Tarifa = { servicio: string; detalle: string; precio: string }
 

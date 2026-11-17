@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { --bg:#F8F3ED; --panel:#FFFDF9; --ink:#3E4A41; --soft:#66726A; --line:#E2DACD; }
+:root { --bg:#F8F3ED; --panel:#FFFDF9; --ink:#3E4A41; --soft:#56625A; --line:#E2DACD; }
 @media (prefers-color-scheme: dark) {
-  :root { --bg:#222B25; --panel:#2B352E; --ink:#EEE8DD; --soft:#AEB9B0; --line:#3C493F; }
+  :root { --bg:#222B25; --panel:#2B352E; --ink:#EEE8DD; --soft:#CAD2CB; --line:#3C493F; }
 }
 
 @layer base {

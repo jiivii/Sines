@@ -1,5 +1,5 @@
 import { SITE } from '../config'
-import { CONTACTO, getArea } from './areas'
+import { CONTACTO, ZONA, getArea, listaY, zonaTexto } from './areas'
 import { getTarifas } from './tarifas'
 
 /** Pregunta frecuente en texto plano: se muestra en la página y en los datos estructurados (FAQPage). */
@@ -21,6 +21,7 @@ export const FAQ_INICIO: Faq[] = [
   { q: '¿Atendéis a niños?', a: 'Sí. Atendemos a niños y adolescentes de 0 a 18 años, y también a adultos y personas mayores. Los menores acuden acompañados de su padre, madre o tutor.' },
   { q: '¿Se pueden hacer las sesiones online?', a: 'Sí, en psicología, logopedia y nutrición, y en el acompañamiento a familias. En fisioterapia valoramos contigo qué partes del proceso pueden hacerse a distancia.' },
   { q: '¿Dónde estáis?', a: `En ${DIRECCION}. Atendemos ${CONTACTO.horario}.` },
+  { q: '¿Atendéis a personas de fuera de La Puebla de Alfindén?', a: `Sí. Atendemos a familias y adultos de ${zonaTexto()}, y de barrios de Zaragoza como ${listaY(ZONA.zaragoza)}. Si vives más lejos, psicología, logopedia y nutrición también pueden hacerse online.` },
 ]
 
 const ONLINE: Record<string, string> = {

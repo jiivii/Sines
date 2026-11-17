@@ -26,7 +26,7 @@ export default function Online() {
         {VENTAJAS.map((v) => (
           <div key={v.titulo} className="rounded-[26px] bg-panel p-6">
             <span className="block h-2.5 w-2.5 rounded-full bg-azul" />
-            <h3 className="mt-3 font-serif text-2xl">{v.titulo}</h3>
+            <h2 className="mb-0 mt-3 font-serif text-2xl">{v.titulo}</h2>
             <p className="mb-0 mt-2 text-[.92rem] text-soft">{v.texto}</p>
           </div>
         ))}
