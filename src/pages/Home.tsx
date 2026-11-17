@@ -61,7 +61,7 @@ export default function Home() {
             </Link>
           ))}
           <a href={ORIENTAME} target="_blank" rel="noreferrer" className="flex flex-col rounded-[26px] bg-hoja p-6 text-lino no-underline transition-transform hover:-translate-y-1">
-            <span className="text-[.82rem] text-[#D3D9CF]">Si…</span>
+            <span className="text-[.82rem] text-lino">Si…</span>
             <span className="mt-1 font-serif text-[1.4rem] leading-snug">No lo tengo claro</span>
             <span className="mt-auto pt-4 text-[.92rem] font-medium">Escríbenos por WhatsApp y te orientamos →</span>
           </a>

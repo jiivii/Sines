@@ -101,11 +101,11 @@ export default function Reservar() {
           <div className="mb-5 flex gap-2" aria-hidden="true">{[1, 2, 3, 4].map((i) => <i key={i} className={`h-[5px] flex-1 rounded-full ${i <= step ? 'bg-hoja' : 'bg-line'}`} />)}</div>
 
           {step === 1 && <><h2>¿Para quién es la cita?</h2><div className="mt-3.5 grid gap-2.5 sm:grid-cols-2">
-            {chip(paciente === 'adulto', () => { setPaciente('adulto'); setStep(2) }, <>Adulto<small className="block opacity-75">A partir de 18 años</small></>)}
-            {chip(paciente === 'nino', () => { setPaciente('nino'); setStep(2) }, <>Niño o adolescente<small className="block opacity-75">Hasta 17 años</small></>)}</div></>}
+            {chip(paciente === 'adulto', () => { setPaciente('adulto'); setStep(2) }, <>Adulto<small className="block">A partir de 18 años</small></>)}
+            {chip(paciente === 'nino', () => { setPaciente('nino'); setStep(2) }, <>Niño o adolescente<small className="block">Hasta 17 años</small></>)}</div></>}
 
           {step === 2 && <><h2>¿Con qué área quieres empezar?</h2><p className="text-soft">Si no lo tienes claro, elige la que más se acerque. Nosotros te orientamos.</p>
-            <div className="mt-3.5 grid grid-cols-2 gap-2.5">{AREAS.map((a) => <button key={a.slug} type="button" aria-pressed={slug === a.slug} onClick={() => { setSlug(a.slug); setHora(undefined); setStep(3) }} className={`chip ${slug === a.slug ? a.bg : ''}`}>{a.nombre}<small className="block opacity-75">{a.dimension}</small></button>)}</div></>}
+            <div className="mt-3.5 grid grid-cols-2 gap-2.5">{AREAS.map((a) => <button key={a.slug} type="button" aria-pressed={slug === a.slug} onClick={() => { setSlug(a.slug); setHora(undefined); setStep(3) }} className={`chip ${slug === a.slug ? a.bg : ''}`}>{a.nombre}<small className="block">{a.dimension}</small></button>)}</div></>}
 
           {step === 3 && <><h2>Elige tu hueco preferido</h2>
             <div className="mt-3.5 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-2.5">{dias.map((f) => chip(fecha === f, () => { setFecha(f); setHora(undefined) }, fmtFecha(f)))}</div>

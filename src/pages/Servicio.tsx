@@ -37,7 +37,7 @@ export default function Servicio() {
               <a href={wa} target="_blank" rel="noreferrer" className="btn mt-3">Contactar por WhatsApp</a>
             )}
             {primera && <p className="mb-0 mt-4 text-[.95rem]"><span className="font-medium">{primera.servicio}:</span> {primera.precio} · {primera.detalle}</p>}
-            <p className="mb-0 mt-3 text-[.85rem] opacity-80">Atención presencial y online. Las áreas concretas se definen en la primera valoración.</p>
+            <p className="mb-0 mt-3 text-[.85rem]">Atención presencial y online. Las áreas concretas se definen en la primera valoración.</p>
           </div>
           <svg viewBox="0 0 100 100" aria-hidden="true" className="max-w-[150px] justify-self-center opacity-55 md:max-w-[300px]"><path fill="#F8F3ED" d={area.blob} /></svg>
         </div>

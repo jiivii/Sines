@@ -25,11 +25,11 @@ const LUGAR = 'La Puebla de Alfindén'
 export const SEO: Record<string, Seo> = {
   '/': {
     title: `${MARCA} · Psicología, logopedia, fisioterapia y nutrición en ${LUGAR}`,
-    description: `Centro sanitario multidisciplinar en ${LUGAR} (Zaragoza): psicología, logopedia, fisioterapia y nutrición para niños, adultos y mayores. Tel. y WhatsApp ${CONTACTO.telefono}.`,
+    description: `Psicología, logopedia, fisioterapia y nutrición en ${LUGAR} (Zaragoza) para niños, adultos y mayores. Tel. y WhatsApp ${CONTACTO.telefono}.`,
   },
   '/psicologia': {
     title: `Psicología infantil y de adultos en ${LUGAR} · ${MARCA}`,
-    description: `Psicología en ${LUGAR}: ansiedad, estrés, duelo y autoestima en adultos; dificultades emocionales, de conducta y de aprendizaje en niños y adolescentes. Presencial y online.`,
+    description: `Psicología en ${LUGAR}: ansiedad, duelo, TCA y pareja en adultos; conducta, aprendizaje, TDAH y TEA en niños y adolescentes. Presencial y online.`,
   },
   '/logopedia': {
     title: `Logopedia infantil y de adultos en ${LUGAR} · ${MARCA}`,
@@ -41,11 +41,11 @@ export const SEO: Record<string, Seo> = {
   },
   '/nutricion': {
     title: `Nutricionista en ${LUGAR} · ${MARCA}`,
-    description: `Nutrición en ${LUGAR}: control de peso, nutrición deportiva, colesterol, diabetes e hipertensión, embarazo y alimentación infantil. Sin dietas imposibles.`,
+    description: `Nutrición en ${LUGAR}: control de peso, deporte, colesterol, diabetes, alergias, embarazo y alimentación infantil. Sin dietas imposibles.`,
   },
   '/atencion-temprana': {
     title: `Atención temprana (0–6 años) en ${LUGAR} · ${MARCA}`,
-    description: `Atención temprana en ${LUGAR}: psicología, logopedia y fisioterapia coordinadas para acompañar el desarrollo de tu hijo o hija de 0 a 6 años, con la familia dentro del plan.`,
+    description: `Atención temprana en ${LUGAR}: psicología, logopedia y fisioterapia coordinadas para el desarrollo de tu hijo de 0 a 6 años, con la familia.`,
   },
   '/online': {
     title: `Psicología, logopedia y nutrición online · ${MARCA}`,
@@ -53,7 +53,7 @@ export const SEO: Record<string, Seo> = {
   },
   '/programas': {
     title: `Talleres de salud para colegios y empresas en Zaragoza · ${MARCA}`,
-    description: `Charlas, talleres y programas de salud a medida para colegios y empresas de ${LUGAR} y Zaragoza: bienestar emocional, lenguaje, ergonomía y alimentación.`,
+    description: `Charlas y talleres de salud a medida para colegios y empresas de ${LUGAR} y Zaragoza: bienestar emocional, lenguaje, ergonomía y alimentación.`,
   },
   '/quienes-somos': {
     title: `Quiénes somos · Centro multidisciplinar en ${LUGAR} · ${MARCA}`,

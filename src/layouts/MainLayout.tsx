@@ -136,12 +136,12 @@ export default function MainLayout() {
       </footer>
 
       {/* Barra fija de contacto en móvil */}
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-bg px-3 pt-2 md:hidden" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + .5rem)' }}>
+      <nav aria-label="Contacto rápido" className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-bg px-3 pt-2 md:hidden" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + .5rem)' }}>
         <div className="mx-auto grid max-w-[480px] grid-cols-2 gap-2">
           <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="btn btn-alt !px-3 !py-2.5 text-center">Llamar</a>
           <a href={wa} target="_blank" rel="noreferrer" className="btn !px-3 !py-2.5 text-center">WhatsApp</a>
         </div>
-      </div>
+      </nav>
     </>
   )
 }
