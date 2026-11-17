@@ -61,7 +61,7 @@ export const SEO: Record<string, Seo> = {
   },
   '/tarifas': {
     title: `Tarifas · ${MARCA}, ${LUGAR}`,
-    description: `Precios y duración de las sesiones de psicología, logopedia, fisioterapia y nutrición en ${MARCA}, ${LUGAR}.`,
+    description: `Tarifas 2027 de ${MARCA}, ${LUGAR}: precios y duración de las sesiones y bonos de psicología, logopedia, fisioterapia y nutrición.`,
   },
   '/reservar': {
     title: `Pedir cita · ${MARCA}`,
@@ -140,7 +140,7 @@ export const CENTRO_JSONLD = {
   email: CONTACTO.email,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Calle Fuertes, 1',
+    streetAddress: CONTACTO.direccion.split('\n')[0],
     postalCode: '50171',
     addressLocality: LUGAR,
     addressRegion: 'Zaragoza',

@@ -71,7 +71,7 @@ export const isAreaSlug = (s: unknown): s is AreaSlug => AREAS.some((a) => a.slu
 export const CONTACTO = {
   telefono: '602 533 313',
   email: 'hola@sinestesya.es',
-  direccion: 'Calle Fuertes, 1\n50171 La Puebla de Alfindén (Zaragoza)',
-  web: 'www.sinestesya.es',
+  direccion: 'Calle Fuertes, 1 Bis\n50171 La Puebla de Alfindén (Zaragoza)',
+  web: 'sinestesya.es',
   horario: 'de lunes a viernes, de 9\u00a0h a 21\u00a0h'
 }

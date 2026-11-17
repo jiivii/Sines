@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { AREAS, CONTACTO } from '../services/areas'
 import { SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
-import { BLOQUES, TARIFARIO_VIGENCIA } from '../services/tarifas'
+import { BLOQUES, TARIFARIO_ANIO, TARIFARIO_VIGENCIA } from '../services/tarifas'
 
 
 export default function Tarifas() {
@@ -11,7 +11,7 @@ export default function Tarifas() {
   return (
     <div className="wrap">
       <section className="mt-10 rounded-[40px] bg-ocre/30 p-[clamp(28px,6vw,64px)]">
-        <span className="lab">Tarifario</span>
+        <span className="lab">Tarifas {TARIFARIO_ANIO}</span>
         <h1 className="mb-3 mt-3">Tarifas claras, sin sorpresas.</h1>
         <p className="max-w-[62ch] text-[1.15rem]">
           Consulta aquí los precios de las sesiones y bonos de psicología, fisioterapia, logopedia y nutrición.
@@ -27,7 +27,7 @@ export default function Tarifas() {
             Llamar al {CONTACTO.telefono}
           </a>
         </div>
-        <p className="mb-0 mt-4 text-[.85rem] text-soft">Precios vigentes en {TARIFARIO_VIGENCIA}.</p>
+        <p className="mb-0 mt-4 text-[.85rem] text-soft">Precios vigentes desde {TARIFARIO_VIGENCIA}, fecha de apertura del centro.</p>
       </section>
 
       <div className="mt-14 grid gap-5 md:grid-cols-2">

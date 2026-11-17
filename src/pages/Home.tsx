@@ -117,7 +117,7 @@ export default function Home() {
           <div>
             <span className="lab text-ocre">Contacto</span>
             <h2 className="mt-2 text-lino">Te esperamos en La Puebla de Alfindén</h2>
-            <p className="text-[#D3D9CF]">Calle Fuertes, 1 · 50171 La Puebla de Alfindén (Zaragoza)</p>
+            <p className="text-[#D3D9CF]">{CONTACTO.direccion.replace('\n', ' · ')}</p>
             <p className="mb-0 text-[#D3D9CF]">Atención {CONTACTO.horario} · Presencial y online.</p>
           </div>
           <div className="flex flex-col items-start gap-3 md:items-end">
