@@ -73,5 +73,7 @@ export const CONTACTO = {
   email: 'hola@sinestesya.es',
   direccion: 'Calle Fuertes, 1 Bis\n50171 La Puebla de Alfindén (Zaragoza)',
   web: 'sinestesya.es',
+  /** Enlace a Google Maps (solo enlace: no se incrusta el mapa para no añadir cookies). */
+  mapa: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Calle Fuertes 1 Bis, 50171 La Puebla de Alfindén, Zaragoza'),
   horario: 'de lunes a viernes, de 9\u00a0h a 21\u00a0h'
 }

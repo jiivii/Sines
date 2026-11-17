@@ -50,7 +50,9 @@ export default function MainLayout() {
           ) : (
             <a href={wa} target="_blank" rel="noreferrer" className="btn order-2 ml-auto !px-5 !py-2 xl:order-3 xl:ml-0">Pedir cita</a>
           )}
-          <nav aria-label="Principal" className="order-3 -mx-5 flex w-[calc(100%+2.5rem)] items-center gap-1.5 overflow-x-auto px-5 xl:order-2 xl:mx-0 xl:ml-auto xl:w-auto xl:px-0">
+          {/* En móvil el menú se desliza: el degradado de la derecha indica que hay más opciones */}
+          <div className="relative order-3 -mx-5 w-[calc(100%+2.5rem)] after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:w-12 after:bg-[linear-gradient(to_left,var(--bg),transparent)] after:content-[''] xl:order-2 xl:mx-0 xl:ml-auto xl:w-auto xl:after:hidden">
+          <nav aria-label="Principal" className="flex items-center gap-1.5 overflow-x-auto px-5 pr-12 [scrollbar-width:none] xl:px-0 xl:pr-0 [&::-webkit-scrollbar]:hidden">
             {AREAS.map((a) => (
               <NavLink key={a.slug} to={`/${a.slug}`}
                 className={({ isActive }) => `flex items-center gap-2 whitespace-nowrap rounded-full px-3.5 py-2 text-[.92rem] font-normal no-underline hover:bg-panel ${isActive ? 'bg-panel' : ''}`}>
@@ -62,6 +64,7 @@ export default function MainLayout() {
               <i className="h-2.5 w-2.5 rounded-full bg-soft" />Quiénes somos
             </NavLink>
           </nav>
+          </div>
         </div>
         <div className="border-t border-line/70">
           <div className="wrap flex items-center gap-x-4 gap-y-1 overflow-x-auto py-1.5 text-[.82rem] text-soft">
@@ -119,6 +122,7 @@ export default function MainLayout() {
             <p className="mb-1"><a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="no-underline hover:text-lino">{CONTACTO.telefono}</a></p>
             <p className="mb-1"><a href={`mailto:${CONTACTO.email}`} className="no-underline hover:text-lino">{CONTACTO.email}</a></p>
             <p className="mb-1 whitespace-pre-line">{CONTACTO.direccion}</p>
+            <p className="mb-1"><a href={CONTACTO.mapa} target="_blank" rel="noreferrer" className="underline hover:text-lino">Cómo llegar</a></p>
             <p className="mb-1 first-letter:uppercase">{CONTACTO.horario}</p>
             <p className="mb-0">{CONTACTO.web}</p>
           </div>
