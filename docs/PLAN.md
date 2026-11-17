@@ -63,6 +63,7 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 | 5.3 | B | Artículo «¿Cuándo llevar a mi hijo al logopeda?» (`/blog`) | ✅ noindex hasta revisión de la logopeda |
 
 ## Historial
+- **SEO · páginas por problema (C)** — `/suelo-pelvico`, `/tdah-y-tea`, `/dislexia`, `/terapia-de-pareja` y `/tca` (`src/content/problemas.ts`). Ocultas a Google (noindex) hasta que cada profesional las revise y se ponga `revisado: true`.
 - **SEO local · zona de atención** — `ZONA` en `src/services/areas.ts` (Alfajarín, Nuez de Ebro, Osera de Ebro, Villamayor de Gállego y Villafranca de Ebro; Santa Isabel, Movera y Montañana en Zaragoza): portada, especialidades, pie, FAQ y `areaServed`.
 - **Revisión general (17 nov)** — Dirección «Calle Fuertes, 1 Bis»; tarifas 2027 vigentes desde febrero de 2027 (apertura). Sin redes sociales ni ficha de Google.
   Contraste corregido (0 incidencias de accesibilidad en 15 páginas), descripciones ≤ 160 caracteres, fuentes propias (sin Google Fonts), logo WebP, CSP y HSTS,
@@ -98,6 +99,13 @@ La primera sesión (60 min · 70 €): valoramos tu dolor y cómo te mueves, y e
 
 **Nutrición** — Es para ti si… quieres perder o ganar peso sin dietas imposibles · tienes colesterol, diabetes o hipertensión · estás embarazada, haces deporte o tu hijo/a come muy pocos alimentos.
 La primera sesión (60–75 min · 110 €): historia nutricional, mediciones y objetivos; sales con un plan personalizado. Trae análisis recientes si los tienes.
+
+## Revisión por el equipo sanitario (antes de indexar)
+- Fisioterapia: `/suelo-pelvico`
+- Psicología + logopedia: `/tdah-y-tea`, `/dislexia`
+- Psicología: `/terapia-de-pareja`
+- Psicología + nutrición: `/tca` (incluye aviso de urgencias, 112 y 024)
+- Logopedia: artículo `/blog/cuando-llevar-a-mi-hijo-al-logopeda`
 
 ## Para la asesoría
 - Revisar `/privacidad`, `/aviso-legal` y `/cookies` (textos en `src/pages/Legal.tsx`).

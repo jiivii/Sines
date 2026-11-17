@@ -6,6 +6,7 @@ import { EMPRESA, SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
 import { aplicarSeo } from '../seo'
 import { getArticulo } from '../content/articulos'
+import { getProblema } from '../content/problemas'
 
 const dot: Record<string, string> = { psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja' }
 
@@ -37,7 +38,7 @@ export default function MainLayout() {
     aplicarSeo(pathname)
   }, [pathname, hash])
   const [, seccion, sub] = pathname.split('/')
-  const franja = FRANJA[seccion === 'blog' ? getArticulo(sub)?.area ?? '' : seccion] ?? CLARO.ocre
+  const franja = FRANJA[seccion === 'blog' ? getArticulo(sub)?.area ?? '' : getProblema(seccion)?.area ?? seccion] ?? CLARO.ocre
   return (
     <>
       <header className="z-20 border-b border-line bg-bg md:sticky md:top-0">

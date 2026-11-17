@@ -24,6 +24,7 @@ npm run build && npm run preview # web compilada (páginas generadas) sin API
 `npm run build` comprueba tipos, compila y genera en `dist/` una página HTML por ruta, la 404 y el sitemap.
 Para añadir una página: crea la ruta en `src/App.tsx` y su título y descripción en `src/seo.ts`.
 Para añadir un artículo: sus datos en `src/content/articulos.ts`, el texto en un componente de `src/content/` y su entrada en `CUERPOS` (`src/pages/Blog.tsx`). Con `revisado: false` se publica sin indexar.
+Para añadir una página por problema (p. ej. «suelo pélvico»): añade una entrada en `src/content/problemas.ts`; la ruta, el SEO, los enlaces desde la especialidad y el mensaje de WhatsApp se generan solos. También con `revisado`.
 
 ## Puesta en producción
 1. **Supabase**: crea un proyecto y ejecuta `supabase/migrations/001_reservas.sql` en el SQL Editor.

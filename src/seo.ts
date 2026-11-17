@@ -2,6 +2,7 @@ import { EMPRESA, SITE } from './config'
 import { AREAS, CONTACTO, ZONA } from './services/areas'
 import { FAQ_INICIO, faqServicio, type Faq } from './services/faq'
 import { ARTICULOS } from './content/articulos'
+import { PROBLEMAS } from './content/problemas'
 
 /** Dominio principal (sin barra final). Se usa en canonical, og:url y sitemap. */
 export const SITE_URL = 'https://sinestesya.es'
@@ -94,6 +95,27 @@ for (const a of ARTICULOS) {
       image: OG_IMAGE,
       mainEntityOfPage: `${SITE_URL}${ruta}`,
       author: { '@type': 'Organization', name: MARCA, url: `${SITE_URL}/` },
+      publisher: { '@id': `${SITE_URL}/#centro` },
+    },
+  }
+}
+
+for (const p of PROBLEMAS) {
+  const ruta = `/${p.slug}`
+  SEO[ruta] = {
+    title: `${p.seoTitulo} · ${MARCA}`,
+    description: p.descripcion,
+    noindex: !p.revisado,
+    faq: p.faq,
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'MedicalWebPage',
+      name: p.titulo,
+      description: p.descripcion,
+      url: `${SITE_URL}${ruta}`,
+      inLanguage: 'es-ES',
+      about: { '@type': 'MedicalCondition', name: p.titulo },
+      audience: { '@type': 'PeopleAudience', geographicArea: { '@type': 'City', name: LUGAR } },
       publisher: { '@id': `${SITE_URL}/#centro` },
     },
   }

@@ -7,6 +7,7 @@ import { getTarifas } from '../services/tarifas'
 import FaqList from '../components/Faq'
 import { faqServicio } from '../services/faq'
 import { ARTICULOS } from '../content/articulos'
+import { PROBLEMAS } from '../content/problemas'
 import NotFound from './NotFound'
 
 export default function Servicio() {
@@ -65,6 +66,21 @@ export default function Servicio() {
             ))}
           </div>
         </section>
+
+        {PROBLEMAS.some((x) => x.area === area.slug || x.otras.includes(area.slug)) && (
+          <section className="mt-20">
+            <span className="lab">En concreto</span>
+            <h2 className="mt-2">Lo que tratamos en {area.nombre.toLowerCase()}</h2>
+            <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+              {PROBLEMAS.filter((x) => x.area === area.slug || x.otras.includes(area.slug)).map((x) => (
+                <Link key={x.slug} to={`/${x.slug}`} className={`${area.soft} flex flex-col rounded-[24px] p-6 no-underline transition-transform hover:-translate-y-1`}>
+                  <span className="font-serif text-[1.45rem] leading-snug">{x.titulo}</span>
+                  <span className="mt-auto pt-3 text-[.9rem] font-medium">Saber más →</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {tarifas && (
           <section id="precios" className="mt-20">
