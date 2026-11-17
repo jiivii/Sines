@@ -10,7 +10,7 @@ Stack: Vite + React + TypeScript + Tailwind · Supabase (base de datos) · Verce
 - `api/` · funciones de Vercel: `reservar` (valida y llama a Web1) y `disponibilidad` (horas ocupadas)
 - `src/seo.ts` · título, descripción y dominio de cada página (también genera el sitemap)
 - `scripts/prerender.mjs` · al compilar crea un HTML por página (`dist/logopedia.html`…), `404.html` y `sitemap.xml`
-- `public/` · `og.png` (imagen para redes), `robots.txt` y `favicon.svg`
+- `public/` · `og.png` (imagen para redes), `robots.txt` e iconos: `favicon.ico` (16/32/48), `favicon-32.png`, `apple-touch-icon.png` (180), `icon-192/512.png` y `site.webmanifest`. Son la S del logo sobre verde bosque (#3E4A41), recortada de `src/assets/logo-sinestesya.png`; si llega el logo en vectorial, conviene regenerarlos desde él.
 - `vercel.json` · URLs limpias, cabeceras de seguridad (incluida la Content-Security-Policy) y caché
 - `supabase/migrations` · tabla `reservas` con RLS
 
