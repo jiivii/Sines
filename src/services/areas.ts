@@ -73,12 +73,12 @@ export const isAreaSlug = (s: unknown): s is AreaSlug => AREAS.some((a) => a.slu
  * Se usa en la portada, las especialidades, las preguntas frecuentes y los datos para Google.
  */
 export const ZONA = {
-  municipios: ['Alfajarín', 'Pastriz', 'Nuez de Ebro', 'Villafranca de Ebro', 'Villamayor de Gállego', 'El Burgo de Ebro'],
+  municipios: ['Alfajarín', 'Nuez de Ebro', 'Osera de Ebro', 'Villamayor de Gállego', 'Villafranca de Ebro'],
   zaragoza: ['Santa Isabel', 'Movera', 'Montañana'],
 }
 /** ['a', 'b', 'c'] → «a, b y c» */
 export const listaY = (x: string[]) => (x.length > 1 ? `${x.slice(0, -1).join(', ')} y ${x[x.length - 1]}` : x.join(''))
-/** «Alfajarín, Pastriz, … y El Burgo de Ebro» */
+/** «Alfajarín, Nuez de Ebro, … y Villafranca de Ebro» */
 export const zonaTexto = () => listaY(ZONA.municipios)
 
 export const CONTACTO = {

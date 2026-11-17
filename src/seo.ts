@@ -25,7 +25,7 @@ const LUGAR = 'La Puebla de Alfindén'
 export const SEO: Record<string, Seo> = {
   '/': {
     title: `${MARCA} · Psicología, logopedia, fisioterapia y nutrición en ${LUGAR}`,
-    description: `Psicología, logopedia, fisioterapia y nutrición en ${LUGAR} (Zaragoza), cerca de Alfajarín y Pastriz. Niños, adultos y mayores. Tel. ${CONTACTO.telefono}.`,
+    description: `Psicología, logopedia, fisioterapia y nutrición en ${LUGAR}, junto a Alfajarín y Nuez de Ebro. Niños, adultos y mayores. Tel. ${CONTACTO.telefono}.`,
   },
   '/psicologia': {
     title: `Psicología infantil y de adultos en ${LUGAR} · ${MARCA}`,
