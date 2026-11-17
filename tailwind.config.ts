@@ -11,8 +11,8 @@ export default {
         bg: 'var(--bg)', panel: 'var(--panel)', ink: 'var(--ink)', soft: 'var(--soft)', line: 'var(--line)',
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', '"Iowan Old Style"', 'Georgia', 'serif'],
-        sans: ['Jost', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        serif: ['"Cormorant Garamond Variable"', '"Cormorant Garamond"', '"Iowan Old Style"', 'Georgia', 'serif'],
+        sans: ['"Jost Variable"', 'Jost', '"Helvetica Neue"', 'Arial', 'sans-serif'],
       },
     },
   },

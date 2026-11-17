@@ -3,9 +3,7 @@ dist
 .env
 .env.*
 !.env.example
-.dev.vars
 .vercel
-.wrangler
 *.log
 .DS_Store
 dist-ssr
