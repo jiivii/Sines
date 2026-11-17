@@ -1,5 +1,5 @@
 import { EMPRESA, SITE } from './config'
-import { AREAS, CONTACTO } from './services/areas'
+import { AREAS, CONTACTO, ZONA } from './services/areas'
 import { FAQ_INICIO, faqServicio, type Faq } from './services/faq'
 import { ARTICULOS } from './content/articulos'
 
@@ -25,7 +25,7 @@ const LUGAR = 'La Puebla de Alfindén'
 export const SEO: Record<string, Seo> = {
   '/': {
     title: `${MARCA} · Psicología, logopedia, fisioterapia y nutrición en ${LUGAR}`,
-    description: `Psicología, logopedia, fisioterapia y nutrición en ${LUGAR} (Zaragoza) para niños, adultos y mayores. Tel. y WhatsApp ${CONTACTO.telefono}.`,
+    description: `Psicología, logopedia, fisioterapia y nutrición en ${LUGAR} (Zaragoza), cerca de Alfajarín y Pastriz. Niños, adultos y mayores. Tel. ${CONTACTO.telefono}.`,
   },
   '/psicologia': {
     title: `Psicología infantil y de adultos en ${LUGAR} · ${MARCA}`,
@@ -154,7 +154,11 @@ export const CENTRO_JSONLD = {
   }],
   medicalSpecialty: ['https://schema.org/SpeechPathology', 'https://schema.org/Physiotherapy', 'https://schema.org/DietNutrition'],
   availableService: ['Psicología', 'Logopedia', 'Fisioterapia', 'Nutrición', 'Atención temprana'].map((name) => ({ '@type': 'MedicalTherapy', name })),
-  areaServed: [LUGAR, 'Zaragoza'],
+  areaServed: [
+    ...[LUGAR, ...ZONA.municipios].map((name) => ({ '@type': 'City', name })),
+    ...ZONA.zaragoza.map((name) => ({ '@type': 'Place', name: `${name} (Zaragoza)` })),
+    { '@type': 'City', name: 'Zaragoza' },
+  ],
   priceRange: '35 €–110 €',
   taxID: EMPRESA.cif ?? undefined,
 }

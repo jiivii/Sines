@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import Logo from '../components/Logo'
-import { AREAS, CONTACTO } from '../services/areas'
+import { AREAS, CONTACTO, zonaTexto } from '../services/areas'
 import { EMPRESA, SITE } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
 import { aplicarSeo } from '../seo'
@@ -102,6 +102,7 @@ export default function MainLayout() {
           <div>
             <p className="lab text-lino">Sinestesya · Salud integral</p>
             <p className="mt-2 font-serif text-2xl italic text-lino">Cuidado integral, en cada etapa de la vida.</p>
+            <p className="text-[.85rem]">Centro sanitario en La Puebla de Alfindén para {zonaTexto()} y el este de Zaragoza.</p>
             <a href={wa} target="_blank" rel="noreferrer" className="mt-3 inline-block text-[#D3D9CF] underline">Escríbenos por WhatsApp</a>
           </div>
           <div>

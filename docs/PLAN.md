@@ -63,6 +63,7 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 | 5.3 | B | Artículo «¿Cuándo llevar a mi hijo al logopeda?» (`/blog`) | ✅ noindex hasta revisión de la logopeda |
 
 ## Historial
+- **SEO local · zona de atención** — `ZONA` en `src/services/areas.ts` (Alfajarín, Pastriz, Nuez de Ebro, Villafranca de Ebro, Villamayor de Gállego, El Burgo de Ebro; Santa Isabel, Movera y Montañana en Zaragoza): portada, especialidades, pie, FAQ y `areaServed`.
 - **Revisión general (17 nov)** — Dirección «Calle Fuertes, 1 Bis»; tarifas 2027 vigentes desde febrero de 2027 (apertura). Sin redes sociales ni ficha de Google.
   Contraste corregido (0 incidencias de accesibilidad en 15 páginas), descripciones ≤ 160 caracteres, fuentes propias (sin Google Fonts), logo WebP, CSP y HSTS,
   eliminada la versión de Cloudflare y dependencias sin uso, Quiénes somos sin repeticiones, bloque final de portada unificado con «Cómo llegar», indicador de deslizamiento en el menú móvil.

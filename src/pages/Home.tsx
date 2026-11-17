@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import AreaCard from '../components/AreaCard'
 import Wave from '../components/Wave'
-import { AREAS, CONTACTO } from '../services/areas'
+import { AREAS, CONTACTO, ZONA, listaY, zonaTexto } from '../services/areas'
 import { SITE, whatsappLink } from '../config'
 import { useWhatsApp } from '../hooks/useWhatsApp'
 import FaqList from '../components/Faq'
@@ -109,6 +109,7 @@ export default function Home() {
             <span className="lab text-ocre">Contacto</span>
             <h2 className="mt-2 text-lino">Te esperamos en La Puebla de Alfindén</h2>
             <p className="mb-2 text-[#D3D9CF]">Elige cómo empezar: el resto del equipo se une cuando lo necesites.</p>
+            <p className="mb-2 text-[.92rem] text-[#D3D9CF]">Cerca de ti: atendemos a La Puebla de Alfindén, {zonaTexto()}, y a los barrios de {listaY(ZONA.zaragoza)} (Zaragoza).</p>
             <ul className="m-0 mt-4 list-none space-y-1.5 p-0 text-[#D3D9CF]">
               <li>{CONTACTO.direccion.replace('\n', ' · ')} · <a href={CONTACTO.mapa} target="_blank" rel="noreferrer" className="text-lino underline">Cómo llegar</a></li>
               <li className="first-letter:uppercase">{CONTACTO.horario} · presencial y online</li>

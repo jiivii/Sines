@@ -68,6 +68,19 @@ export const AREAS: Area[] = [
 ]
 export const getArea = (slug?: string): Area | undefined => AREAS.find((a) => a.slug === slug)
 export const isAreaSlug = (s: unknown): s is AreaSlug => AREAS.some((a) => a.slug === s)
+/**
+ * Zona de atención presencial: municipios y barrios cercanos a La Puebla de Alfindén.
+ * Se usa en la portada, las especialidades, las preguntas frecuentes y los datos para Google.
+ */
+export const ZONA = {
+  municipios: ['Alfajarín', 'Pastriz', 'Nuez de Ebro', 'Villafranca de Ebro', 'Villamayor de Gállego', 'El Burgo de Ebro'],
+  zaragoza: ['Santa Isabel', 'Movera', 'Montañana'],
+}
+/** ['a', 'b', 'c'] → «a, b y c» */
+export const listaY = (x: string[]) => (x.length > 1 ? `${x.slice(0, -1).join(', ')} y ${x[x.length - 1]}` : x.join(''))
+/** «Alfajarín, Pastriz, … y El Burgo de Ebro» */
+export const zonaTexto = () => listaY(ZONA.municipios)
+
 export const CONTACTO = {
   telefono: '602 533 313',
   email: 'hola@sinestesya.es',
