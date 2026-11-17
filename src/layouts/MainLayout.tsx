@@ -9,10 +9,14 @@ import { getArticulo } from '../content/articulos'
 
 const dot: Record<string, string> = { psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja' }
 
-/** Color de la franja «Web en construcción» según la página (por defecto, ocre). */
+/**
+ * Franja «Web en construcción»: tono muy claro del color de cada página
+ * (35 % del color de marca sobre el crema de fondo; sólido para que se lea igual en modo oscuro).
+ */
+const CLARO = { amarillo: 'bg-[#EDDFC1]', azul: 'bg-[#D8DEDF]', verde: 'bg-[#D3D9CD]', naranja: 'bg-[#EFD7CE]', ocre: 'bg-[#EEE1CA]' }
 const FRANJA: Record<string, string> = {
-  psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja',
-  'atencion-temprana': 'bg-verde', online: 'bg-azul', programas: 'bg-naranja', tarifas: 'bg-ocre',
+  psicologia: CLARO.amarillo, logopedia: CLARO.azul, fisioterapia: CLARO.verde, nutricion: CLARO.naranja,
+  'atencion-temprana': CLARO.verde, online: CLARO.azul, programas: CLARO.naranja, tarifas: CLARO.ocre,
 }
 
 const EXTRAS = [
@@ -33,7 +37,7 @@ export default function MainLayout() {
     aplicarSeo(pathname)
   }, [pathname, hash])
   const [, seccion, sub] = pathname.split('/')
-  const franja = FRANJA[seccion === 'blog' ? getArticulo(sub)?.area ?? '' : seccion] ?? 'bg-ocre'
+  const franja = FRANJA[seccion === 'blog' ? getArticulo(sub)?.area ?? '' : seccion] ?? CLARO.ocre
   return (
     <>
       <header className="z-20 border-b border-line bg-bg md:sticky md:top-0">
