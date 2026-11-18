@@ -11,7 +11,7 @@ import { getProblema } from '../content/problemas'
 const dot: Record<string, string> = { psicologia: 'bg-amarillo', logopedia: 'bg-azul', fisioterapia: 'bg-verde', nutricion: 'bg-naranja' }
 
 /**
- * Franja «Web en construcción»: tono muy claro del color de cada página
+ * Franja del aviso de apertura: tono muy claro del color de cada página
  * (35 % del color de marca sobre el crema de fondo; sólido para que se lea igual en modo oscuro).
  */
 const CLARO = { amarillo: 'bg-[#EDDFC1]', azul: 'bg-[#D8DEDF]', verde: 'bg-[#D3D9CD]', naranja: 'bg-[#EFD7CE]', ocre: 'bg-[#EEE1CA]' }
@@ -89,7 +89,9 @@ export default function MainLayout() {
       {!SITE.reservasAbiertas && (
         <div role="status" className={`${franja} border-b border-tinta/10 text-tinta`}>
           <p className="wrap mb-0 py-2 text-center text-[.82rem] leading-snug text-tinta">
-            <strong className="font-medium">Web en construcción.</strong> Estamos actualizando el sitio y, de momento, no recogemos citas online. Para cualquier consulta, llámanos o escríbenos al{' '}
+            {SITE.apertura
+              ? <><strong className="font-medium">Abrimos en {SITE.apertura}.</strong> Mientras tanto, para resolver dudas o pedir información, llámanos o escríbenos por WhatsApp al{' '}</>
+              : <>Para pedir cita, llámanos o escríbenos por WhatsApp al{' '}</>}
             <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="whitespace-nowrap font-medium text-tinta underline">{CONTACTO.telefono}</a>.
           </p>
         </div>

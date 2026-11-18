@@ -68,9 +68,9 @@ export default function Reservar() {
   if (!SITE.reservasAbiertas) return (
     <div className="wrap mt-14">
       <div className="mx-auto max-w-[720px] rounded-[28px] bg-ocre/25 p-8 text-center">
-        <span className="lab">Web en construcción</span>
-        <h1 className="my-3 text-[clamp(2rem,5vw,3rem)]">Citas online en pausa</h1>
-        <p className="mx-auto text-soft">Estamos actualizando el sitio y, de momento, no recogemos citas online. Para pedir información o resolver cualquier duda, llámanos o escríbenos por WhatsApp.</p>
+        <span className="lab">{SITE.apertura ? `Abrimos en ${SITE.apertura}` : 'Pedir cita'}</span>
+        <h1 className="my-3 text-[clamp(2rem,5vw,3rem)]">Pide cita por teléfono o WhatsApp</h1>
+        <p className="mx-auto text-soft">{SITE.apertura ? `El centro abre en ${SITE.apertura}. ` : ''}De momento no recogemos citas en la web. Para pedir información o resolver cualquier duda, llámanos o escríbenos por WhatsApp.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <a href={`tel:+34${CONTACTO.telefono.replace(/\s/g, '')}`} className="btn">Llamar al {CONTACTO.telefono}</a>
           <a href={wa} target="_blank" rel="noreferrer" className="btn btn-alt">WhatsApp</a>

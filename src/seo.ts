@@ -25,7 +25,7 @@ const LUGAR = 'La Puebla de Alfindén'
 /** Título y descripción de cada página. La clave es la ruta sin barra final. */
 export const SEO: Record<string, Seo> = {
   '/': {
-    title: `${MARCA} · Psicología, logopedia, fisioterapia y nutrición en ${LUGAR}`,
+    title: `Psicología, logopedia, fisio y nutrición en La Puebla · ${MARCA}`,
     description: `Psicología, logopedia, fisioterapia y nutrición en ${LUGAR}, junto a Alfajarín y Nuez de Ebro. Niños, adultos y mayores. Tel. ${CONTACTO.telefono}.`,
   },
   '/psicologia': {
@@ -57,7 +57,7 @@ export const SEO: Record<string, Seo> = {
     description: `Charlas y talleres de salud a medida para colegios y empresas de ${LUGAR} y Zaragoza: bienestar emocional, lenguaje, ergonomía y alimentación.`,
   },
   '/quienes-somos': {
-    title: `Quiénes somos · Centro multidisciplinar en ${LUGAR} · ${MARCA}`,
+    title: `Quiénes somos · ${MARCA}, ${LUGAR}`,
     description: `${MARCA} reúne psicología, logopedia, fisioterapia y nutrición bajo un mismo techo en ${LUGAR}. Un equipo coordinado para cada etapa de la vida.`,
   },
   '/tarifas': {

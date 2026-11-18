@@ -12,7 +12,7 @@ const TEL = CONTACTO.telefono
 const DIRECCION = CONTACTO.direccion.replace('\n', ', ')
 const CITA = SITE.reservasAbiertas
   ? `Puedes reservar en la web, llamarnos o escribirnos por WhatsApp al ${TEL}, ${CONTACTO.horario}.`
-  : `Llámanos o escríbenos por WhatsApp al ${TEL}, ${CONTACTO.horario}. De momento no recogemos citas online.`
+  : `Llámanos o escríbenos por WhatsApp al ${TEL}, ${CONTACTO.horario}.${SITE.apertura ? ` El centro abre en ${SITE.apertura}.` : ''} De momento no recogemos citas en la web.`
 
 export const FAQ_INICIO: Faq[] = [
   { q: '¿Cómo pido cita?', a: CITA },

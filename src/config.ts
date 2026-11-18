@@ -6,8 +6,8 @@ export const SITE = {
   nombre: 'Sinestesya',
   claim: 'Salud integral',
   reservasAbiertas: false,
-  avisoConstruccion:
-    'Web en construcción. Estamos actualizando el sitio y, de momento, no recogemos citas online. Para cualquier consulta, llámanos o escríbenos.',
+  /** Cuándo abre el centro. Se muestra en el aviso superior, en la página de cita y en las preguntas frecuentes. Pon `null` cuando ya esté abierto. */
+  apertura: 'febrero de 2027' as string | null,
 }
 
 export const WHATSAPP = 'https://wa.me/34602533313'
