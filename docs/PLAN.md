@@ -46,7 +46,7 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 | 3.4 | A | Sitemap completo, canonical y og:image | ✅ |
 | 3.5 | B | Datos estructurados `MedicalClinic` (`CENTRO_JSONLD` en `src/seo.ts`) | ✅ |
 | 3.6 | B | Encabezados descriptivos y refuerzo «Sinestesya + La Puebla» | ✅ |
-| 3.7 | — | Search Console y ficha de Google Business (fuera del código) | ⬜ |
+| 3.7 | — | Search Console y ficha de Google Business (fuera del código) | 🟨 |
 
 ## Fase 4 · Contenido de servicios
 | # | Prio | Tarea | Estado |
@@ -63,6 +63,7 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 | 5.3 | B | Artículo «¿Cuándo llevar a mi hijo al logopeda?» (`/blog`) | ✅ noindex hasta revisión de la logopeda |
 
 ## Historial
+- **Aviso de apertura y títulos (18 nov)** — Fecha de apertura en `SITE.apertura` (`src/config.ts`): aviso superior «Abrimos en febrero de 2027», página de cita y FAQ. Títulos más cortos en portada y Quiénes somos para que Google no los corte. Al abrir, poner `apertura: null`.
 - **SEO · páginas por problema (C)** — `/suelo-pelvico`, `/tdah-y-tea`, `/dislexia`, `/terapia-de-pareja` y `/tca` (`src/content/problemas.ts`). Ocultas a Google (noindex) hasta que cada profesional las revise y se ponga `revisado: true`.
 - **SEO local · zona de atención** — `ZONA` en `src/services/areas.ts` (Alfajarín, Nuez de Ebro, Osera de Ebro, Villamayor de Gállego y Villafranca de Ebro; Santa Isabel, Movera y Montañana en Zaragoza): portada, especialidades, pie, FAQ y `areaServed`.
 - **Revisión general (17 nov)** — Dirección «Calle Fuertes, 1 Bis»; tarifas 2027 vigentes desde febrero de 2027 (apertura). Sin redes sociales ni ficha de Google.
