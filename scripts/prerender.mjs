@@ -6,7 +6,7 @@ import { pathToFileURL } from 'node:url'
 
 const dist = path.resolve('dist')
 const ssrDir = path.resolve('dist-ssr')
-const { render, RUTAS, NOT_FOUND, getSeo, headHtml, urlCanonica } = await import(pathToFileURL(path.join(ssrDir, 'entry-server.js')).href)
+const { render, llmsTxt, RUTAS, NOT_FOUND, getSeo, headHtml, urlCanonica } = await import(pathToFileURL(path.join(ssrDir, 'entry-server.js')).href)
 
 const plantilla = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
 if (!/<!--seo-->[\s\S]*?<!--\/seo-->/.test(plantilla) || !plantilla.includes('<div id="root"></div>')) {
@@ -31,6 +31,8 @@ fs.writeFileSync(
   path.join(dist, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((r) => `  <url><loc>${urlCanonica(r)}</loc></url>`).join('\n')}\n</urlset>\n`,
 )
+
+fs.writeFileSync(path.join(dist, 'llms.txt'), llmsTxt())
 
 fs.rmSync(ssrDir, { recursive: true, force: true })
 console.log(`Prerenderizadas ${RUTAS.length} rutas + 404 · sitemap con ${urls.length} URL`)

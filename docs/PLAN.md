@@ -63,6 +63,7 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 | 5.3 | B | Artículo «¿Cuándo llevar a mi hijo al logopeda?» (`/blog`) | ✅ noindex hasta revisión de la logopeda |
 
 ## Historial
+- **IAs y Bing (23 nov)** — `/llms.txt` generado al compilar con los datos de la web (`src/llms.ts`): resumen del centro para ChatGPT, Gemini, Perplexity… Alta en Bing Webmaster Tools.
 - **Estimulación temprana y marca (23 nov)** — Eliminada la página `/atencion-temprana` y todos sus enlaces (menú, portada, especialidades, online, colegios); redirige 301 a `/fisioterapia`. «Estimulación temprana» en fisioterapia y logopedia infantil, portada y datos para Google. Marca delante en el título de portada, «Sinestesya» visible encima del H1 y datos `WebSite` con el nombre del sitio.
   Diagnóstico Google: solo la portada está indexada; Google corrige «sinestesya» por «sinestesia». La ficha de Google está verificada pero incompleta. Indexación solicitada el 23 nov (portada, 4 especialidades, tarifas, quiénes somos, online, programas y blog). Pendiente: completar la ficha (fotos, descripción, servicios, enlace web) y conseguir enlaces y menciones con «Sinestesya» (directorios, Ayuntamiento, colegios profesionales).
 - **Search Console y ficha de Google (19 nov)** — Propiedad `https://sinestesya.es/` verificada (por DNS) y sitemap enviado: correcto, 14 páginas. Ficha de Google: categoría principal Psicólogo; secundarias Logopeda, Fisioterapeuta y Nutricionista.

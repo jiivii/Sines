@@ -4,6 +4,7 @@ import { StaticRouter } from 'react-router-dom/server'
 import App from './App'
 
 export { RUTAS, NOT_FOUND, getSeo, headHtml, urlCanonica } from './seo'
+export { llmsTxt } from './llms'
 
 /** HTML de una ruta, para generar las páginas estáticas al compilar. */
 export function render(url: string) {
