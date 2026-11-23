@@ -74,7 +74,6 @@ export default function Programas() {
       </section>
 
       <nav aria-label="Más páginas" className="mt-10 flex flex-wrap gap-x-5 gap-y-2 text-[.9rem]">
-        <Link to="/atencion-temprana" className="text-soft underline hover:text-ink">Atención temprana</Link>
         <Link to="/online" className="text-soft underline hover:text-ink">Atención online</Link>
         <Link to="/quienes-somos" className="text-soft underline hover:text-ink">Quiénes somos</Link>
       </nav>

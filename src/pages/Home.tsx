@@ -8,7 +8,6 @@ import FaqList from '../components/Faq'
 import { FAQ_INICIO } from '../services/faq'
 
 const EXTRAS = [
-  { to: '/atencion-temprana', label: 'Atención temprana', texto: 'Intervención coordinada de 0 a 6 años, con la familia dentro del plan.' },
   { to: '/online', label: 'Atención online', texto: 'Sesiones desde casa para que la distancia o el horario no sean un obstáculo.' },
   { to: '/programas', label: 'Colegios y empresas', texto: 'Charlas, talleres y programas de salud a medida para tu centro o empresa.' },
 ]
@@ -18,7 +17,7 @@ const EMPEZAR = [
   { si: 'Me siento con ansiedad, triste o desbordado/a', to: '/psicologia', destino: 'Psicología', color: 'bg-amarillo' },
   { si: 'Me duele la espalda, tengo una lesión o me han operado', to: '/fisioterapia', destino: 'Fisioterapia', color: 'bg-verde' },
   { si: 'Quiero comer mejor, controlar el peso o tengo colesterol o diabetes', to: '/nutricion', destino: 'Nutrición', color: 'bg-naranja' },
-  { si: 'Mi bebé o niño pequeño (0–6 años) va más despacio en su desarrollo', to: '/atencion-temprana', destino: 'Atención temprana', color: 'bg-salvia' },
+  { si: 'Mi bebé o niño pequeño va más despacio en su desarrollo', to: '/fisioterapia', destino: 'Estimulación temprana', color: 'bg-salvia' },
 ]
 const ORIENTAME = whatsappLink('Hola, no sé por dónde empezar, ¿me orientáis?')
 
@@ -28,7 +27,7 @@ export default function Home() {
     <div className="wrap">
       <section className="mt-5 grid items-center gap-10 rounded-[40px] bg-bosque p-[clamp(28px,5vw,56px)] text-[#F3EEE5] lg:grid-cols-[1.5fr_1fr]">
         <div>
-        <span className="lab mb-4 block text-ocre">Centro sanitario en La Puebla de Alfindén</span>
+        <span className="lab mb-4 block text-ocre">Sinestesya · Centro sanitario en La Puebla de Alfindén</span>
         <h1 className="max-w-[20ch] text-[clamp(2.1rem,5vw,3.6rem)]">Psicología, logopedia, fisioterapia y nutrición en La Puebla de Alfindén</h1>
         <p className="mt-4 font-serif text-[clamp(1.3rem,2.4vw,1.7rem)] font-light italic text-lino">Cuidado integral, en cada etapa de la vida.</p>
         <p className="text-[#D3D9CF]">Un mismo equipo para niños, adultos y mayores. Cuéntanos qué te pasa y te orientamos sobre por dónde empezar.</p>
@@ -83,14 +82,14 @@ export default function Home() {
 
       <section className="mt-4 grid gap-4 md:grid-cols-2">
         <div className="rounded-[28px] bg-verde/25 p-8"><span className="lab">Tercera edad</span><h2 className="mt-2">Autonomía y bienestar</h2><p>Acompañamiento emocional, estimulación cognitiva, movilidad y equilibrio, prevención de caídas y alimentación adaptada.</p></div>
-        <div className="rounded-[28px] bg-naranja/25 p-8"><span className="lab">Atención temprana</span><h2 className="mt-2">De 0 a 6 años</h2><p>Psicología, logopedia y fisioterapia trabajan juntas y de la mano de la familia para acompañar el desarrollo del niño.</p></div>
+        <div className="rounded-[28px] bg-naranja/25 p-8"><span className="lab">Estimulación temprana</span><h2 className="mt-2">Bebés y primeros años</h2><p>Fisioterapia pediátrica y logopedia para estimular el desarrollo motor y del lenguaje de tu bebé o niño pequeño, con pautas para casa.</p></div>
       </section>
 
       <section className="mt-20">
         <span className="lab">Más formas de cuidarte</span>
         <h2 className="mt-2">Salud también donde tú estás</h2>
         <p className="text-soft">Además de la consulta en el centro, llevamos nuestro acompañamiento a casa, a los colegios y a las empresas.</p>
-        <div className="mt-6 grid gap-3.5 md:grid-cols-3">
+        <div className="mt-6 grid gap-3.5 md:grid-cols-2">
           {EXTRAS.map((e) => (
             <Link key={e.to} to={e.to} className="rounded-[26px] bg-panel p-6 no-underline transition-transform hover:-translate-y-1">
               <h3 className="font-serif text-2xl">{e.label}</h3>

@@ -63,6 +63,8 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 | 5.3 | B | Artículo «¿Cuándo llevar a mi hijo al logopeda?» (`/blog`) | ✅ noindex hasta revisión de la logopeda |
 
 ## Historial
+- **Estimulación temprana y marca (23 nov)** — Eliminada la página `/atencion-temprana` y todos sus enlaces (menú, portada, especialidades, online, colegios); redirige 301 a `/fisioterapia`. «Estimulación temprana» en fisioterapia y logopedia infantil, portada y datos para Google. Marca delante en el título de portada, «Sinestesya» visible encima del H1 y datos `WebSite` con el nombre del sitio.
+  Diagnóstico Google: solo la portada está indexada; Google corrige «sinestesya» por «sinestesia». La ficha de Google está verificada pero incompleta. Pendiente: solicitar indexación de cada URL en Search Console, completar la ficha (fotos, descripción, servicios, enlace web) y conseguir enlaces y menciones con «Sinestesya» (directorios, Ayuntamiento, colegios profesionales).
 - **Search Console y ficha de Google (19 nov)** — Propiedad `https://sinestesya.es/` verificada (por DNS) y sitemap enviado: correcto, 14 páginas. Ficha de Google: añadidas las categorías Psicólogo, Logopeda, Fisioterapeuta y Nutricionista (principal: Centro de salud y bienestar).
 - **Aviso de apertura y títulos (18 nov)** — Fecha de apertura en `SITE.apertura` (`src/config.ts`): aviso superior «Abrimos en febrero de 2027», página de cita y FAQ. Títulos más cortos en portada y Quiénes somos para que Google no los corte. Al abrir, poner `apertura: null`.
 - **SEO · páginas por problema (C)** — `/suelo-pelvico`, `/tdah-y-tea`, `/dislexia`, `/terapia-de-pareja` y `/tca` (`src/content/problemas.ts`). Ocultas a Google (noindex) hasta que cada profesional las revise y se ponga `revisado: true`.

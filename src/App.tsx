@@ -5,7 +5,6 @@ import Servicio from './pages/Servicio'
 import Reservar from './pages/Reservar'
 import NotFound from './pages/NotFound'
 import QuienesSomos from './pages/QuienesSomos'
-import AtencionTemprana from './pages/AtencionTemprana'
 import Online from './pages/Online'
 import Programas from './pages/Programas'
 import Tarifas from './pages/Tarifas'
@@ -21,7 +20,6 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="reservar" element={<Reservar />} />
         <Route path="quienes-somos" element={<QuienesSomos />} />
-        <Route path="atencion-temprana" element={<AtencionTemprana />} />
         <Route path="online" element={<Online />} />
         <Route path="programas" element={<Programas />} />
         <Route path="tarifas" element={<Tarifas />} />

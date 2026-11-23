@@ -59,7 +59,6 @@ export default function Online() {
       </section>
 
       <nav aria-label="Más páginas" className="mt-10 flex flex-wrap gap-x-5 gap-y-2 text-[.9rem]">
-        <Link to="/atencion-temprana" className="text-soft underline hover:text-ink">Atención temprana</Link>
         <Link to="/programas" className="text-soft underline hover:text-ink">Colegios y empresas</Link>
         <Link to="/quienes-somos" className="text-soft underline hover:text-ink">Quiénes somos</Link>
       </nav>

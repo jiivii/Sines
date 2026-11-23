@@ -23,7 +23,7 @@ export const AREAS: Area[] = [
     intro: 'Mejoramos la comunicación, el habla, la voz y la deglución.',
     claim: 'Comunicarse es poder contar quién eres.',
     adultos: ['Voz y disfonías', 'Tartamudez', 'Trastornos del habla y del lenguaje', 'Disfagia y rehabilitación tras daño cerebral', 'Afasia y rehabilitación neurológica'],
-    ninos: ['Retraso y trastornos del lenguaje', 'Dificultades del habla', 'Lectoescritura y dislexia', 'Deglución y alimentación'],
+    ninos: ['Estimulación temprana del lenguaje', 'Retraso y trastornos del lenguaje', 'Dificultades del habla', 'Lectoescritura y dislexia', 'Deglución y alimentación'],
     pasos: [
       { titulo: 'Escucha y observación', descripcion: 'Conocemos cómo se comunica la persona y qué necesita mejorar.' },
       { titulo: 'Valoración del lenguaje', descripcion: 'Analizamos habla, voz, lenguaje o deglución según cada caso.' },
@@ -39,7 +39,7 @@ export const AREAS: Area[] = [
     intro: 'Recuperamos el movimiento y cuidamos la funcionalidad del cuerpo.',
     claim: 'Moverte mejor, con menos dolor.',
     adultos: ['Dolor de espalda y cervical', 'Lesiones musculares y articulares', 'Rehabilitación postquirúrgica y deportiva', 'Fisioterapia neurológica', 'Movilidad y prevención de caídas', 'Suelo pélvico'],
-    ninos: ['Fisioterapia pediátrica y desarrollo motor', 'Alteraciones posturales', 'Atención temprana', 'Lesiones deportivas', 'Rehabilitación neurológica infantil', 'Problemas respiratorios'],
+    ninos: ['Fisioterapia pediátrica y desarrollo motor', 'Alteraciones posturales', 'Estimulación temprana', 'Lesiones deportivas', 'Rehabilitación neurológica infantil', 'Problemas respiratorios'],
     pasos: [
       { titulo: 'Valoración del movimiento', descripcion: 'Exploramos tu dolor, tu postura y cómo te mueves.' },
       { titulo: 'Tratamiento y ejercicio', descripcion: 'Combinamos técnicas manuales y movimiento para recuperar funcionalidad.' },

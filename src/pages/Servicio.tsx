@@ -143,7 +143,6 @@ export default function Servicio() {
           <span className="lab">También en Sinestesya</span>
           <div className="mt-4 grid gap-3.5 sm:grid-cols-3">{AREAS.map((a, i) => a.slug !== area.slug && <AreaCard key={a.slug} area={a} i={i} compact />)}</div>
           <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[.9rem]">
-            <Link to="/atencion-temprana" className="text-soft underline hover:text-ink">Atención temprana</Link>
             <Link to="/online" className="text-soft underline hover:text-ink">Atención online</Link>
             <Link to="/programas" className="text-soft underline hover:text-ink">Colegios y empresas</Link>
           </div>

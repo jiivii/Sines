@@ -5,7 +5,6 @@ import { getProblema } from '../content/problemas'
 
 /** Mensajes predefinidos por página (sin barra inicial). */
 const MENSAJES: Record<string, string> = {
-  'atencion-temprana': 'Hola, quería información sobre atención temprana para mi hijo/a.',
   online: 'Hola, quería información sobre la atención online de Sinestesya.',
   programas: 'Hola, quería información sobre los programas para colegios y empresas.',
 }

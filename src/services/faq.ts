@@ -42,7 +42,7 @@ const ESPECIFICAS: Record<string, Faq[]> = {
   ],
   fisioterapia: [
     { q: '¿Qué tengo que llevar a la primera sesión?', a: 'Ropa cómoda y, si los tienes, informes médicos o pruebas de imagen relacionados con tu problema.' },
-    { q: '¿Tratáis a bebés y niños?', a: 'Sí. Hacemos fisioterapia pediátrica: desarrollo motor, alteraciones posturales, atención temprana, lesiones deportivas, problemas respiratorios y rehabilitación neurológica infantil.' },
+    { q: '¿Tratáis a bebés y niños?', a: 'Sí. Hacemos fisioterapia pediátrica: desarrollo motor, estimulación temprana, alteraciones posturales, lesiones deportivas, problemas respiratorios y rehabilitación neurológica infantil.' },
   ],
   nutricion: [
     { q: '¿Qué incluye la primera consulta?', a: 'Historia nutricional, entrevista, antropometría y mediciones (pliegues cuando procede), valoración de objetivos y planificación nutricional personalizada.' },

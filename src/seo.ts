@@ -25,7 +25,7 @@ const LUGAR = 'La Puebla de Alfindén'
 /** Título y descripción de cada página. La clave es la ruta sin barra final. */
 export const SEO: Record<string, Seo> = {
   '/': {
-    title: `Psicología, logopedia, fisio y nutrición en La Puebla · ${MARCA}`,
+    title: `${MARCA} · Psicología, logopedia, fisio y nutrición en La Puebla`,
     description: `Psicología, logopedia, fisioterapia y nutrición en ${LUGAR}, junto a Alfajarín y Nuez de Ebro. Niños, adultos y mayores. Tel. ${CONTACTO.telefono}.`,
   },
   '/psicologia': {
@@ -43,10 +43,6 @@ export const SEO: Record<string, Seo> = {
   '/nutricion': {
     title: `Nutricionista en ${LUGAR} · ${MARCA}`,
     description: `Nutrición en ${LUGAR}: control de peso, deporte, colesterol, diabetes, alergias, embarazo y alimentación infantil. Sin dietas imposibles.`,
-  },
-  '/atencion-temprana': {
-    title: `Atención temprana (0–6 años) en ${LUGAR} · ${MARCA}`,
-    description: `Atención temprana en ${LUGAR}: psicología, logopedia y fisioterapia coordinadas para el desarrollo de tu hijo de 0 a 6 años, con la familia.`,
   },
   '/online': {
     title: `Psicología, logopedia y nutrición online · ${MARCA}`,
@@ -175,7 +171,7 @@ export const CENTRO_JSONLD = {
     closes: '21:00',
   }],
   medicalSpecialty: ['https://schema.org/SpeechPathology', 'https://schema.org/Physiotherapy', 'https://schema.org/DietNutrition'],
-  availableService: ['Psicología', 'Logopedia', 'Fisioterapia', 'Nutrición', 'Atención temprana'].map((name) => ({ '@type': 'MedicalTherapy', name })),
+  availableService: ['Psicología', 'Logopedia', 'Fisioterapia', 'Nutrición', 'Estimulación temprana'].map((name) => ({ '@type': 'MedicalTherapy', name })),
   areaServed: [
     ...[LUGAR, ...ZONA.municipios].map((name) => ({ '@type': 'City', name })),
     ...ZONA.zaragoza.map((name) => ({ '@type': 'Place', name: `${name} (Zaragoza)` })),
@@ -183,6 +179,18 @@ export const CENTRO_JSONLD = {
   ],
   priceRange: '35 €–110 €',
   taxID: EMPRESA.cif ?? undefined,
+}
+
+/** Nombre del sitio para Google (aparece encima del resultado). */
+export const WEBSITE_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}/#web`,
+  name: MARCA,
+  alternateName: [`${MARCA} Salud integral`, `${MARCA} ${LUGAR}`, 'Centro Sinestesya'],
+  url: `${SITE_URL}/`,
+  inLanguage: 'es-ES',
+  publisher: { '@id': `${SITE_URL}/#centro` },
 }
 
 /** Etiquetas del <head> para una ruta. `path` es null en la página 404. */
@@ -205,6 +213,7 @@ export function headHtml(seo: Seo, path: string | null) {
     `<meta property="og:image:height" content="630" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     ldScript(CENTRO_JSONLD),
+    path === '/' ? ldScript(WEBSITE_JSONLD) : '',
     seo.faq?.length ? ldScript(faqJsonLd(seo.faq), 'faq-jsonld') : '',
     seo.jsonld ? ldScript(seo.jsonld, 'page-jsonld') : '',
   ].filter(Boolean).join('\n  ')

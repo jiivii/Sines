@@ -17,11 +17,10 @@ const dot: Record<string, string> = { psicologia: 'bg-amarillo', logopedia: 'bg-
 const CLARO = { amarillo: 'bg-[#EDDFC1]', azul: 'bg-[#D8DEDF]', verde: 'bg-[#D3D9CD]', naranja: 'bg-[#EFD7CE]', ocre: 'bg-[#EEE1CA]' }
 const FRANJA: Record<string, string> = {
   psicologia: CLARO.amarillo, logopedia: CLARO.azul, fisioterapia: CLARO.verde, nutricion: CLARO.naranja,
-  'atencion-temprana': CLARO.verde, online: CLARO.azul, programas: CLARO.naranja, tarifas: CLARO.ocre,
+  online: CLARO.azul, programas: CLARO.naranja, tarifas: CLARO.ocre,
 }
 
 const EXTRAS = [
-  { to: '/atencion-temprana', label: 'Atención temprana' },
   { to: '/online', label: 'Atención online' },
   { to: '/programas', label: 'Colegios y empresas' },
   { to: '/tarifas', label: 'Tarifas' },
