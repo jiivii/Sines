@@ -1,14 +1,22 @@
 /**
  * Ajustes temporales del sitio.
- * Para volver a recoger citas online, cambia `reservasAbiertas` a `true`.
+ * `reservasAbiertas` muestra u oculta la reserva online en la web. Desde qué día
+ * se puede pedir cita, el horario y las duraciones NO se cambian aquí: los
+ * decide Órbita (tabla `web_booking_settings`, archivo `supabase/reservas_web.sql`
+ * de Órbita). Si Órbita tiene las reservas paradas o no responde, la página de
+ * cita muestra el teléfono y WhatsApp.
  */
 export const SITE = {
   nombre: 'Sinestesya',
   claim: 'Salud integral',
-  reservasAbiertas: false,
+  reservasAbiertas: true,
   /** Cuándo abre el centro. Se muestra en el aviso superior, en la página de cita y en las preguntas frecuentes. Pon `null` cuando ya esté abierto. */
   apertura: 'febrero de 2027' as string | null,
 }
+
+/** Función de Órbita que da los huecos y recibe las solicitudes (Supabase). */
+export const RESERVAS_API: string =
+  import.meta.env.VITE_RESERVAS_API || 'https://qgcywuzantcgoitrybwb.supabase.co/functions/v1/web-booking'
 
 export const WHATSAPP = 'https://wa.me/34602533313'
 

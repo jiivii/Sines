@@ -24,6 +24,6 @@ export interface Area {
   blob: string
 }
 export interface ReservaInput {
-  area: AreaSlug; paciente: Paciente; edad?: number; fecha: string; hora: string
+  area: AreaSlug; paciente: Paciente; edad?: number; servicio: string; fecha: string; hora: string
   nombre: string; telefono: string; email: string; notas?: string; web?: string
 }
