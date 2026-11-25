@@ -11,8 +11,8 @@ Prioridad: A = imprescindible · B = importante · C = si hay tiempo
 - Horario: de lunes a viernes, de 9 h a 21 h.
 - Dirección del centro: Calle Fuertes, 1 Bis, 50171 La Puebla de Alfindén. Apertura: febrero de 2027.
 - Sin redes sociales ni ficha de Google por ahora (recomendado crear la ficha de Google Business antes de abrir).
-- Reservas online: cerradas. Botón de cabecera «Pedir cita» → WhatsApp.
-- Hosting en producción: **Vercel**.
+- Reservas online: abiertas desde la web, con citas solo a partir del 1 de febrero de 2027 (fecha y horario en Órbita, `web_booking_settings`).
+- Hosting: **Cloudflare Pages** (antes Vercel; se borra cuando la web nueva esté publicada).
 - Mutuas / aseguradoras: **no**.
 - `/admin`: se elimina; la gestión se hace desde Órbita. `/api/disponibilidad` se mantiene.
 - Equipo: datos del personal más adelante.
