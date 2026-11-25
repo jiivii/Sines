@@ -5,7 +5,7 @@ import { ARTICULOS } from './content/articulos'
 import { PROBLEMAS } from './content/problemas'
 
 /** Dominio principal (sin barra final). Se usa en canonical, og:url y sitemap. */
-export const SITE_URL = 'https://sinestesya.es'
+export const SITE_URL = 'https://www.sinestesya.es'
 export const OG_IMAGE = `${SITE_URL}/og.png`
 
 export interface Seo {
