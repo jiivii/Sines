@@ -32,9 +32,9 @@ Para añadir una página por problema (p. ej. «suelo pélvico»): añade una en
 ## Puesta en producción (Cloudflare Pages)
 1. Cloudflare → Workers & Pages → Create → Pages → conectar el repositorio `jiivii/Sines`.
 2. Build command: `npm run build`; directorio de salida: `dist`. No hace falta ninguna variable de entorno.
-3. Dominio: la web se sirve en `www.sinestesya.es` (Custom domains de Cloudflare + CNAME `www` en STRATO). `sinestesya.es` sin www redirige a www desde STRATO; los DNS y el correo siguen en STRATO.
+3. Dominio: la web se sirve en `www.sinestesya.es` (Custom domains de Cloudflare + CNAME `www` en STRATO). `sinestesya.es` sin www sigue apuntando a Vercel, que solo hace de desvío a `https://www.sinestesya.es` (archivo `vercel.json`; STRATO no tiene certificado, por eso no se usa su redirección). Los DNS y el correo siguen en STRATO.
 4. En Supabase (Órbita), la función `web-booking` acepta por defecto `https://sinestesya.es` y `https://www.sinestesya.es`. Para probar en la dirección `*.pages.dev`, añade el secret `WEB_BOOKING_ALLOWED_ORIGINS` con las tres direcciones separadas por comas.
-5. Cuando funcione, borrar el proyecto de Vercel y su base de datos de Supabase antigua (tabla `reservas`).
+5. No borrar el proyecto de Vercel mientras `sinestesya.es` apunte a él: hace el desvío a www. Sí se puede borrar su base de datos de Supabase antigua (tabla `reservas`).
 
 ## Seguridad
 - La web no guarda datos ni claves: no hay funciones de servidor ni clave de servicio. Nunca pongas claves con prefijo `VITE_` (acaban en el navegador).

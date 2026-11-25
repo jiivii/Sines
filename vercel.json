@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "sinestesya.es" }],
+      "destination": "https://www.sinestesya.es/:path*",
+      "permanent": true
+    }
+  ]
+}
